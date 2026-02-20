@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RustView — Mockup</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Viewer image transition ── */
+    .viewer-image { transition: opacity 180ms ease, transform 200ms ease; }
+    /* ── Drag-over highlight ── */
+    .viewer.dragover { background: rgba(108,143,255,0.06); }
+    .viewer.dragover::after {
+      content: 'Drop image here';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--accent);
+      border: 2px dashed var(--accent);
+      border-radius: var(--radius-lg);
+      margin: 24px;
+      pointer-events: none;
+    }
+    /* ── Rotate animation ── */
+    @keyframes rotate-pulse { from { opacity: 0.5; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ══════════════ TOOLBAR ══════════════ -->
+  <div class="toolbar">
+
+    <!-- App icon -->
+    <span style="font-size:18px; margin-right:4px;">🦀</span>
+
+    <!-- File open -->
+    <button class="btn btn-icon" title="파일 열기 (Ctrl+O)" onclick="alert('파일 열기 다이얼로그')">📂</button>
+
+    <div class="toolbar-sep"></div>
+
+    <!-- Navigation -->
+    <div class="toolbar-group">
+      <button class="btn btn-icon" title="이전 이미지 (←)" onclick="navigate(-1)">‹</button>
+      <button class="btn btn-icon" title="다음 이미지 (→)" onclick="navigate(+1)">›</button>
+    </div>
+
+    <div class="toolbar-sep"></div>
+
+    <!-- File name -->
+    <div class="toolbar-title"><span id="toolbar-filename">ocean_wave.webp</span></div>
+
+    <div class="toolbar-spacer"></div>
+
+    <!-- Zoom controls -->
+    <div class="zoom-controls">
+      <button class="btn btn-icon" title="축소 (-)" onclick="zoomOut()" style="font-size:16px;">−</button>
+      <span class="zoom-val">100%</span>
+      <button class="btn btn-icon" title="확대 (+)" onclick="zoomIn()"  style="font-size:16px;">+</button>
+    </div>
+    <button class="btn" title="창에 맞춤 (0)" onclick="zoomFit()" style="font-size:11px; padding: 0 8px;">맞춤</button>
+    <button class="btn" title="원본 크기 (1)" onclick="zoom1x()"  style="font-size:11px; padding: 0 8px;">1:1</button>
+
+    <div class="toolbar-sep"></div>
+
+    <!-- Rotate -->
+    <button class="btn btn-icon" title="왼쪽 회전 (L)" onclick="rotateLeft()"  style="font-size:15px;">↺</button>
+    <button class="btn btn-icon" title="오른쪽 회전 (R)" onclick="rotateRight()" style="font-size:15px;">↻</button>
+
+    <div class="toolbar-sep"></div>
+
+    <!-- View toggle -->
+    <div class="view-tabs">
+      <button class="view-tab active" data-view="viewer"  onclick="switchView('viewer')">뷰어</button>
+      <button class="view-tab"        data-view="gallery" onclick="switchView('gallery')">갤러리</button>
+    </div>
+
+    <div class="toolbar-sep"></div>
+
+    <!-- Info panel toggle -->
+    <button class="btn btn-icon active" id="btn-info" title="정보 패널 (I)" onclick="toggleInfo()" style="font-size:15px;">ℹ</button>
+
+    <!-- Checkerboard toggle -->
+    <button class="btn btn-icon" id="btn-checker" title="투명 배경 격자 (T)" onclick="toggleChecker()" style="font-size:13px; opacity:0.5;" >▦</button>
+
+    <!-- Fullscreen -->
+    <button class="btn btn-icon" title="전체화면 (F)" onclick="toggleFullscreen()" style="font-size:14px;">⛶</button>
+
+  </div>
+  <!-- /toolbar -->
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <div class="content">
+
+    <!-- ── VIEWER VIEW ── -->
+    <div id="view-viewer" class="content" style="display:flex;"
+         ondragover="event.preventDefault(); this.classList.add('dragover')"
+         ondragleave="this.classList.remove('dragover')"
+         ondrop="this.classList.remove('dragover'); handleDrop(event)">
+
+      <div class="viewer" id="main-viewer">
+        <div class="viewer-image-wrap">
+          <img
+            class="viewer-image"
+            src="https://picsum.photos/seed/a4/800/600"
+            alt="현재 이미지"
+            draggable="false"
+          />
+        </div>
+
+        <!-- Nav arrows -->
+        <button class="nav-arrow prev" onclick="navigate(-1)" title="이전 (←)">‹</button>
+        <button class="nav-arrow next" onclick="navigate(+1)" title="다음 (→)">›</button>
+
+        <!-- Zoom badge (shows on hover) -->
+        <div class="zoom-badge">100%</div>
+      </div>
+
+      <!-- ── Info Panel ── -->
+      <aside class="info-panel" id="info-panel">
+
+        <div class="info-section">
+          <img class="info-thumb" src="https://picsum.photos/seed/a4/400/300" alt="preview" />
+        </div>
+
+        <div class="info-section">
+          <div class="info-label">파일 정보</div>
+          <div class="info-row">
+            <span class="info-key">파일명</span>
+            <span class="info-val" id="info-filename">ocean_wave.webp</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">포맷</span>
+            <span class="info-val" id="info-format">WebP</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">파일 크기</span>
+            <span class="info-val" id="info-size">2.1 MB</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">해상도</span>
+            <span class="info-val mono" id="info-dims">6016 × 4016</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">수정일</span>
+            <span class="info-val" id="info-date">2025-05-05</span>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <div class="info-label">EXIF</div>
+          <div class="info-row">
+            <span class="info-key">카메라</span>
+            <span class="info-val" style="font-size:11px;">Sony A7R V</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">렌즈</span>
+            <span class="info-val" style="font-size:11px;">FE 24-70mm</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">셔터</span>
+            <span class="info-val mono">1/500s</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">조리개</span>
+            <span class="info-val mono">f/8.0</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">ISO</span>
+            <span class="info-val mono">200</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">초점 거리</span>
+            <span class="info-val mono">35mm</span>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <div class="info-label">폴더</div>
+          <div class="info-row">
+            <span class="info-key">위치</span>
+            <span class="info-val" style="font-size:10px; font-family:var(--font-mono)">~/Pictures/travel</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">폴더 내</span>
+            <span class="info-val"><span id="status-index">4 / 6</span></span>
+          </div>
+        </div>
+
+      </aside>
+      <!-- /info-panel -->
+
+    </div>
+    <!-- /view-viewer -->
+
+    <!-- ── GALLERY VIEW ── -->
+    <div id="view-gallery" class="content" style="display:none; flex-direction:column;">
+
+      <!-- Folder bar -->
+      <div class="folder-bar">
+        <span>📁</span>
+        <span class="path">~/Pictures/travel</span>
+        <div class="toolbar-sep"></div>
+        <select class="btn" style="width:auto;" onchange="">
+          <option>이름순</option>
+          <option>날짜순</option>
+          <option>크기순</option>
+        </select>
+        <span class="count">24개</span>
+      </div>
+
+      <!-- Thumbnail grid -->
+      <div class="gallery">
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Injected by JS below -->
+        </div>
+      </div>
+
+    </div>
+    <!-- /view-gallery -->
+
+  </div>
+  <!-- /content -->
+
+  <!-- ══════════════ STATUS BAR ══════════════ -->
+  <div class="statusbar">
+    <div class="statusbar-item">🖼 <span id="status-index">4 / 24</span></div>
+    <div class="statusbar-item">📐 <span id="status-dims">6016 × 4016</span></div>
+    <div class="statusbar-item">🔍 <span id="status-zoom">100%</span></div>
+    <div class="statusbar-item" style="margin-left:auto; font-size:10px; color:var(--text-muted)">
+      키보드: ← → 탐색 &nbsp;|&nbsp; +/- 줌 &nbsp;|&nbsp; I 정보 &nbsp;|&nbsp; G 갤러리 &nbsp;|&nbsp; F 전체화면
+    </div>
+  </div>
+
+</div>
+<!-- /app -->
+
+<script src="scripts/app.js"></script>
+<script>
+// ── Rotation ──────────────────────────────────────────────────────────────
+let rotation = 0;
+function rotateLeft()  { rotation = (rotation - 90 + 360) % 360; applyRotation(); }
+function rotateRight() { rotation = (rotation + 90) % 360; applyRotation(); }
+function applyRotation() {
+  const img = document.querySelector('.viewer-image');
+  if (img) img.style.transform = `scale(${state.zoom/100}) rotate(${rotation}deg)`;
+}
+
+// ── Drop handler ──────────────────────────────────────────────────────────
+function handleDrop(e) {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+  const url = URL.createObjectURL(file);
+  const img = document.querySelector('.viewer-image');
+  if (img) img.src = url;
+  document.querySelector('.toolbar-title').innerHTML = `<span>${file.name}</span>`;
+}
+
+// ── Gallery grid population ───────────────────────────────────────────────
+(function buildGallery() {
+  const grid = document.getElementById('gallery-grid');
+  if (!grid) return;
+  const seeds = ['b1','b2','b3','b4','b5','b6','b7','b8','b9','b10',
+                 'b11','b12','b13','b14','b15','b16','b17','b18','b19','b20',
+                 'b21','b22','b23','b24'];
+  const names = ['IMG_0042.jpg','sunset.png','portrait.jpg','abstract.webp',
+                 'macro_leaf.jpg','city_night.jpg','beach.png','mountain.jpg',
+                 'flower.webp','snow.jpg','street.jpg','lake.png',
+                 'dog.jpg','cat.jpg','bird.webp','forest.jpg',
+                 'building.jpg','sky.png','food.jpg','coffee.webp',
+                 'car.jpg','train.jpg','boat.png','night.jpg'];
+  seeds.forEach((s, i) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item' + (i === 3 ? ' selected' : '');
+    item.innerHTML = `
+      <img src="https://picsum.photos/seed/${s}/280/280" alt="${names[i]}" loading="lazy" />
+      <div class="gallery-item-label">${names[i]}</div>`;
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-item').forEach(el => el.classList.remove('selected'));
+      item.classList.add('selected');
+      state.imageIndex = i % IMAGES.length;
+      switchView('viewer');
+      loadImage(state.imageIndex);
+    });
+    grid.appendChild(item);
+  });
+})();
+
+// ── Checkerboard toggle ───────────────────────────────────────────────────
+let checkerOn = true;
+function toggleChecker() {
+  checkerOn = !checkerOn;
+  const wrap = document.querySelector('.viewer-image-wrap');
+  if (wrap) wrap.classList.toggle('no-checker', !checkerOn);
+  const btn = document.getElementById('btn-checker');
+  if (btn) {
+    btn.style.opacity = checkerOn ? '1' : '0.4';
+    btn.classList.toggle('active', checkerOn);
+  }
+}
+// T 키 단축키
+document.addEventListener('keydown', e => {
+  if (e.key === 't' || e.key === 'T') toggleChecker();
+});
+</script>
+</body>
+</html>

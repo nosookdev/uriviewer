@@ -1,28 +1,30 @@
 // loader.rs — Image loading and EXIF extraction
 
-use std::path::Path;
 use egui::Context;
-use image::DynamicImage;
+use image::{AnimationDecoder, DynamicImage};
+use std::io::BufReader;
+use std::path::Path;
 
-use crate::types::{ExifData, LoadedImage};
+use crate::types::{AnimatedImage, AnimationFrame, ExifData, LoadedImage};
 
 // ── Format detection ──────────────────────────────────────────────────────
 
 pub fn format_from_path(path: &Path) -> String {
-    match path.extension()
+    match path
+        .extension()
         .and_then(|e| e.to_str())
         .map(|e| e.to_lowercase())
         .as_deref()
     {
         Some("jpg") | Some("jpeg") => "JPEG",
-        Some("png")                => "PNG",
-        Some("gif")                => "GIF",
-        Some("bmp")                => "BMP",
-        Some("webp")               => "WebP",
+        Some("png") => "PNG",
+        Some("gif") => "GIF",
+        Some("bmp") => "BMP",
+        Some("webp") => "WebP",
         Some("tif") | Some("tiff") => "TIFF",
-        Some("ico")                => "ICO",
-        Some("svg")                => "SVG",
-        _                          => "Unknown",
+        Some("ico") => "ICO",
+        Some("svg") => "SVG",
+        _ => "Unknown",
     }
     .to_string()
 }
@@ -40,15 +42,28 @@ pub fn read_exif(path: &Path) -> Option<ExifData> {
             .map(|f| f.display_value().with_unit(&exif).to_string())
     };
 
+    let gps = if let (Some(lat), Some(lon)) = (
+        exif.get_field(exif::Tag::GPSLatitude, exif::In::PRIMARY),
+        exif.get_field(exif::Tag::GPSLongitude, exif::In::PRIMARY),
+    ) {
+        Some(format!("{}, {}", lat.display_value(), lon.display_value()))
+    } else {
+        None
+    };
+
     Some(ExifData {
-        camera_make:  get(exif::Tag::Make),
+        camera_make: get(exif::Tag::Make),
         camera_model: get(exif::Tag::Model),
-        lens:         get(exif::Tag::LensModel),
-        exposure:     get(exif::Tag::ExposureTime),
-        f_number:     get(exif::Tag::FNumber),
-        iso:          get(exif::Tag::PhotographicSensitivity),
+        lens: get(exif::Tag::LensModel),
+        exposure: get(exif::Tag::ExposureTime),
+        f_number: get(exif::Tag::FNumber),
+        iso: get(exif::Tag::PhotographicSensitivity),
         focal_length: get(exif::Tag::FocalLength),
-        date_taken:   get(exif::Tag::DateTimeOriginal),
+        date_taken: get(exif::Tag::DateTimeOriginal),
+        software: get(exif::Tag::Software),
+        artist: get(exif::Tag::Artist),
+        orientation: get(exif::Tag::Orientation),
+        gps,
     })
 }
 
@@ -56,36 +71,75 @@ pub fn read_exif(path: &Path) -> Option<ExifData> {
 
 /// Load an image from disk and upload it as an egui texture.
 pub fn load_image(ctx: &Context, path: &Path) -> Result<LoadedImage, String> {
-    let file_size = std::fs::metadata(path)
-        .map(|m| m.len())
-        .unwrap_or(0);
+    let file_size = std::fs::metadata(path).map(|m| m.len()).unwrap_or(0);
 
     let format = format_from_path(path);
+    let name = path
+        .file_name()
+        .unwrap_or_default()
+        .to_string_lossy()
+        .to_string();
 
-    let dyn_img: DynamicImage = image::open(path)
-        .map_err(|e| format!("이미지를 열 수 없습니다: {e}"))?;
+    let mut animation = None;
+
+    // Handle animated GIF
+    if format == "GIF" {
+        let file = std::fs::File::open(path).map_err(|e| e.to_string())?;
+        let reader = BufReader::new(file);
+        let decoder = image::codecs::gif::GifDecoder::new(reader).map_err(|e| e.to_string())?;
+
+        let mut anim_frames = Vec::new();
+        let mut total_duration_ms = 0;
+
+        for (i, frame_result) in decoder.into_frames().enumerate() {
+            let frame = frame_result.map_err(|e: image::ImageError| e.to_string())?;
+
+            // Get delay BEFORE consuming frame
+            let delay = frame.delay();
+            let (num, den) = delay.numer_denom_ms();
+            let delay_ms = if den == 0 { 100 } else { (num / den) as u32 };
+
+            let buffer: image::RgbaImage = frame.into_buffer();
+            let (w, h) = buffer.dimensions();
+
+            let color_image =
+                egui::ColorImage::from_rgba_unmultiplied([w as usize, h as usize], buffer.as_raw());
+            let tex_name = format!("{}:{}", name, i);
+            let texture = ctx.load_texture(tex_name, color_image, egui::TextureOptions::LINEAR);
+
+            anim_frames.push(AnimationFrame { texture, delay_ms });
+            total_duration_ms += delay_ms;
+        }
+
+        if !anim_frames.is_empty() {
+            animation = Some(AnimatedImage {
+                frames: anim_frames,
+                total_duration_ms,
+            });
+        }
+    }
+
+    let mut dyn_img: DynamicImage =
+        image::open(path).map_err(|e| format!("이미지를 열 수 없습니다: {e}"))?;
 
     let orig_w = dyn_img.width();
     let orig_h = dyn_img.height();
+
+    // egui texture size limit (typically 2048 or 4096 depending on GPU, 2048 is safe)
+    const MAX_SIZE: u32 = 2048;
+    if orig_w > MAX_SIZE || orig_h > MAX_SIZE {
+        dyn_img = dyn_img.thumbnail(MAX_SIZE, MAX_SIZE);
+    }
 
     let rgba = dyn_img.to_rgba8();
     let pixels = rgba.as_raw();
 
     let color_image = egui::ColorImage::from_rgba_unmultiplied(
-        [orig_w as usize, orig_h as usize],
+        [dyn_img.width() as usize, dyn_img.height() as usize],
         pixels,
     );
 
-    let name = path.file_name()
-        .unwrap_or_default()
-        .to_string_lossy()
-        .to_string();
-
-    let texture = ctx.load_texture(
-        &name,
-        color_image,
-        egui::TextureOptions::LINEAR,
-    );
+    let texture = ctx.load_texture(&name, color_image, egui::TextureOptions::LINEAR);
 
     let exif = read_exif(path);
 
@@ -97,6 +151,7 @@ pub fn load_image(ctx: &Context, path: &Path) -> Result<LoadedImage, String> {
         file_size,
         format,
         exif,
+        animation,
     })
 }
 
@@ -105,18 +160,14 @@ pub fn load_image(ctx: &Context, path: &Path) -> Result<LoadedImage, String> {
 const THUMB_PX: u32 = 256;
 
 pub fn load_thumbnail(ctx: &Context, path: &Path) -> Result<egui::TextureHandle, String> {
-    let dyn_img = image::open(path)
-        .map_err(|e| e.to_string())?;
+    let dyn_img = image::open(path).map_err(|e| e.to_string())?;
 
     // Fit into THUMB_PX × THUMB_PX box
     let thumb = dyn_img.thumbnail(THUMB_PX, THUMB_PX);
-    let rgba  = thumb.to_rgba8();
+    let rgba = thumb.to_rgba8();
     let (tw, th) = (thumb.width() as usize, thumb.height() as usize);
 
-    let color_image = egui::ColorImage::from_rgba_unmultiplied(
-        [tw, th],
-        rgba.as_raw(),
-    );
+    let color_image = egui::ColorImage::from_rgba_unmultiplied([tw, th], rgba.as_raw());
 
     let name = format!(
         "thumb:{}",

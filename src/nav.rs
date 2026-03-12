@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 
 /// Extensions recognised as image files
 const IMAGE_EXTS: &[&str] = &[
-    "jpg", "jpeg", "png", "gif", "bmp", "webp", "tif", "tiff", "ico",
+    "jpg", "jpeg", "png", "gif", "bmp", "webp", "tif", "tiff", "ico", "svg",
 ];
 
 pub fn is_image(path: &Path) -> bool {
@@ -16,9 +16,13 @@ pub fn is_image(path: &Path) -> bool {
 
 /// Return all image files in the same folder as `current`, sorted by name.
 pub fn images_in_folder(current: &Path) -> Vec<PathBuf> {
-    let dir = match current.parent() {
-        Some(d) => d,
-        None    => return vec![],
+    let dir = if current.is_dir() {
+        current
+    } else {
+        match current.parent() {
+            Some(d) => d,
+            None    => return vec![],
+        }
     };
 
     let mut images: Vec<PathBuf> = std::fs::read_dir(dir)

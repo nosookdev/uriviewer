@@ -386,11 +386,29 @@ impl IContextMenu3_Impl for ShellExtension_Impl {
 }
 
 unsafe fn create_preview_bitmap(path: &Path) -> Result<HBITMAP> {
-    let img = image::open(path).map_err(|_| windows::core::Error::from_win32())?;
-    // 썸네일 크기를 적절히 조정 (메뉴에 너무 크지 않게)
-    let thumb = img.thumbnail(160, 120);
-    let rgba = thumb.to_rgba8();
-    let (w, h) = rgba.dimensions();
+    let extension = path.extension().and_then(|e| e.to_str()).unwrap_or("").to_lowercase();
+    
+    let (w, h, rgba_data) = if extension == "svg" {
+        let svg_data = std::fs::read(path).map_err(|_| windows::core::Error::from_win32())?;
+        let opt = usvg::Options::default();
+        let tree = usvg::Tree::from_data(&svg_data, &opt).map_err(|_| windows::core::Error::from_win32())?;
+        
+        let size = tree.size();
+        let ratio = (160.0 / size.width()).min(120.0 / size.height());
+        let (tw, th) = (size.width() * ratio, size.height() * ratio);
+
+        let mut pixmap = resvg::tiny_skia::Pixmap::new(tw as u32, th as u32)
+            .ok_or_else(|| windows::core::Error::from_win32())?;
+        
+        resvg::render(&tree, resvg::tiny_skia::Transform::from_scale(ratio, ratio), &mut pixmap.as_mut());
+        (tw as u32, th as u32, pixmap.data().to_vec())
+    } else {
+        let img = image::open(path).map_err(|_| windows::core::Error::from_win32())?;
+        let thumb = img.thumbnail(160, 120);
+        let rgba = thumb.to_rgba8();
+        let (tw, th) = rgba.dimensions();
+        (tw, th, rgba.into_raw())
+    };
 
     let bmi = BITMAPINFO {
         bmiHeader: BITMAPINFOHEADER {
@@ -412,18 +430,47 @@ unsafe fn create_preview_bitmap(path: &Path) -> Result<HBITMAP> {
 
     if !bits.is_null() {
         let bits_slice = std::slice::from_raw_parts_mut(bits as *mut u8, (w * h * 4) as usize);
-        for i in 0..(w * h) as usize {
-            let r = rgba.as_raw()[i * 4];
-            let g = rgba.as_raw()[i * 4 + 1];
-            let b = rgba.as_raw()[i * 4 + 2];
-            let a = rgba.as_raw()[i * 4 + 3];
+        for y in 0..h as usize {
+            for x in 0..w as usize {
+                let i = y * (w as usize) + x;
+                let r = rgba_data[i * 4];
+                let g = rgba_data[i * 4 + 1];
+                let b = rgba_data[i * 4 + 2];
+                let a = rgba_data[i * 4 + 3];
 
-            // 윈도우 메뉴는 프리멀티플라이드 알파(Pre-multiplied Alpha)를 기대하는 경우가 많습니다.
-            let alpha_f = a as f32 / 255.0;
-            bits_slice[i * 4] = (b as f32 * alpha_f) as u8; // B
-            bits_slice[i * 4 + 1] = (g as f32 * alpha_f) as u8; // G
-            bits_slice[i * 4 + 2] = (r as f32 * alpha_f) as u8; // R
-            bits_slice[i * 4 + 3] = a; // A
+                // 격자무늬 배경 계산 (8px 크기 격자)
+                let is_white = ((x / 8) + (y / 8)) % 2 == 0;
+                let bg_val = if is_white { 255u8 } else { 240u8 }; // 더 밝은 회색으로 변경
+
+                // 알파 블렌딩 (Source over Background)
+                // tiny_skia(resvg)는 프리멀티플라이드 알파를 사용하여 이미 색상에 알파가 곱해져 있습니다.
+                // 일반 이미지(image crate)는 스트레이트 알파를 사용하므로 분기가 필요합니다.
+                let alpha_f = a as f32 / 255.0;
+                let inv_alpha_f = 1.0 - alpha_f;
+
+                let (out_r, out_g, out_b) = if extension == "svg" {
+                    // SVG (resvg) - Premultiplied Alpha
+                    (
+                        (r as f32 + bg_val as f32 * inv_alpha_f).min(255.0) as u8,
+                        (g as f32 + bg_val as f32 * inv_alpha_f).min(255.0) as u8,
+                        (b as f32 + bg_val as f32 * inv_alpha_f).min(255.0) as u8,
+                    )
+                } else {
+                    // Image (Straight Alpha)
+                    (
+                        (r as f32 * alpha_f + bg_val as f32 * inv_alpha_f) as u8,
+                        (g as f32 * alpha_f + bg_val as f32 * inv_alpha_f) as u8,
+                        (b as f32 * alpha_f + bg_val as f32 * inv_alpha_f) as u8,
+                    )
+                };
+
+                // 윈도우 DIB는 BGR 혹은 프리멀티플라이드 형식을 기대하므로 여기에 맞춰 저장
+                // 여기서는 24시간 뒤에도 깔끔하게 보이도록 BGRA 구조로 저장
+                bits_slice[i * 4] = out_b;
+                bits_slice[i * 4 + 1] = out_g;
+                bits_slice[i * 4 + 2] = out_r;
+                bits_slice[i * 4 + 3] = 255; // 배경과 합쳐졌으므로 최종 불투명도는 255
+            }
         }
     }
 

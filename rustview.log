@@ -1,0 +1,855 @@
+[2026-03-10 03:58:19] Initialize called
+[2026-03-10 03:58:19] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-10 03:58:19] Insert CONVERT: Success
+[2026-03-10 03:58:19] Insert VIEW: Success
+[2026-03-10 03:58:19] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\7o-OURWEL3-_mICxXRHpDbkGqF4BJWgMysgo5lQV50d_PCTQ-YkIY1qCfeF9fWMsBdHFxTvWtP5Y6XaJ7tuB0TJyXWms0jqrTB0q7iRq8LigYgymIyHmYUPklVoIFF9VP6jJ5a60gecj3Z7OmPexLw.webp"
+[2026-03-10 03:58:19] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffb60529e0))
+[2026-03-10 03:58:19] QueryContextMenu returning items_added=3
+[2026-03-10 03:58:20] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x590DE80
+[2026-03-10 03:58:20] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x590DE60
+[2026-03-10 03:58:20] HandleMenuMsg2: Drawing preview item...
+[2026-03-10 03:58:22] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x590DE60
+[2026-03-10 03:58:22] HandleMenuMsg2: Drawing preview item...
+[2026-03-10 03:58:23] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x590DE60
+[2026-03-10 03:58:23] HandleMenuMsg2: Drawing preview item...
+[2026-03-10 03:58:23] InvokeCommand: id=2
+[2026-03-10 03:58:23] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\7o-OURWEL3-_mICxXRHpDbkGqF4BJWgMysgo5lQV50d_PCTQ-YkIY1qCfeF9fWMsBdHFxTvWtP5Y6XaJ7tuB0TJyXWms0jqrTB0q7iRq8LigYgymIyHmYUPklVoIFF9VP6jJ5a60gecj3Z7OmPexLw.webp"
+[2026-03-10 03:58:23] Preview clicked (opening viewer)
+[2026-03-10 03:58:28] Initialize called
+[2026-03-10 03:58:28] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-10 03:58:28] Insert CONVERT: Success
+[2026-03-10 03:58:28] Insert VIEW: Success
+[2026-03-10 03:58:28] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\7o-OURWEL3-_mICxXRHpDbkGqF4BJWgMysgo5lQV50d_PCTQ-YkIY1qCfeF9fWMsBdHFxTvWtP5Y6XaJ7tuB0TJyXWms0jqrTB0q7iRq8LigYgymIyHmYUPklVoIFF9VP6jJ5a60gecj3Z7OmPexLw.webp"
+[2026-03-10 03:58:28] Insert PREVIEW: Success (hbitmap=HBITMAP(0x48051676))
+[2026-03-10 03:58:28] QueryContextMenu returning items_added=3
+[2026-03-10 03:58:30] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x590DE80
+[2026-03-10 03:58:30] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x590DE60
+[2026-03-10 03:58:30] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 12:08:58] Initialize called
+[2026-03-11 12:08:58] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 12:08:58] Insert CONVERT: Success
+[2026-03-11 12:08:58] Insert VIEW: Success
+[2026-03-11 12:08:58] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:08:58] Failed to create preview bitmap
+[2026-03-11 12:08:58] QueryContextMenu returning items_added=2
+[2026-03-11 12:14:24] Initialize called
+[2026-03-11 12:14:24] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 12:14:24] Insert CONVERT: Success
+[2026-03-11 12:14:24] Insert VIEW: Success
+[2026-03-11 12:14:24] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:14:24] Failed to create preview bitmap
+[2026-03-11 12:14:24] QueryContextMenu returning items_added=2
+[2026-03-11 12:14:25] Initialize called
+[2026-03-11 12:14:25] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 12:14:25] Insert CONVERT: Success
+[2026-03-11 12:14:25] Insert VIEW: Success
+[2026-03-11 12:14:25] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:14:25] Failed to create preview bitmap
+[2026-03-11 12:14:25] QueryContextMenu returning items_added=2
+[2026-03-11 12:14:27] Initialize called
+[2026-03-11 12:14:27] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 12:14:27] Insert CONVERT: Success
+[2026-03-11 12:14:27] Insert VIEW: Success
+[2026-03-11 12:14:27] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.png"
+[2026-03-11 12:14:27] Insert PREVIEW: Success (hbitmap=HBITMAP(0xd0519a6))
+[2026-03-11 12:14:27] QueryContextMenu returning items_added=3
+[2026-03-11 12:14:29] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53ADF10
+[2026-03-11 12:14:29] Initialize called
+[2026-03-11 12:14:29] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 12:14:29] Insert CONVERT: Success
+[2026-03-11 12:14:29] Insert VIEW: Success
+[2026-03-11 12:14:29] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:14:29] Failed to create preview bitmap
+[2026-03-11 12:14:29] QueryContextMenu returning items_added=2
+[2026-03-11 12:14:29] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53A9AB0
+[2026-03-11 12:14:29] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 12:14:33] Initialize called
+[2026-03-11 12:14:33] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 12:14:33] Insert CONVERT: Success
+[2026-03-11 12:14:33] Insert VIEW: Success
+[2026-03-11 12:14:33] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:14:33] Failed to create preview bitmap
+[2026-03-11 12:14:33] QueryContextMenu returning items_added=2
+[2026-03-11 12:14:37] InvokeCommand: id=1
+[2026-03-11 12:14:37] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:14:37] View command
+[2026-03-11 12:17:50] Initialize called
+[2026-03-11 12:17:50] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 12:17:50] Insert CONVERT: Success
+[2026-03-11 12:17:50] Insert VIEW: Success
+[2026-03-11 12:17:50] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 12:17:50] Failed to create preview bitmap
+[2026-03-11 12:17:50] QueryContextMenu returning items_added=2
+[2026-03-11 12:17:52] Initialize called
+[2026-03-11 12:17:52] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 12:17:52] Insert CONVERT: Success
+[2026-03-11 12:17:52] Insert VIEW: Success
+[2026-03-11 12:17:52] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\50b83322-efb8-4802-8c38-dfda4a1c679e.png"
+[2026-03-11 12:17:52] Insert PREVIEW: Success (hbitmap=HBITMAP(0x70518d0))
+[2026-03-11 12:17:52] QueryContextMenu returning items_added=3
+[2026-03-11 12:17:53] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53ADF10
+[2026-03-11 12:17:54] Initialize called
+[2026-03-11 12:17:54] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 12:17:54] Insert CONVERT: Success
+[2026-03-11 12:17:54] Insert VIEW: Success
+[2026-03-11 12:17:54] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\grass.png"
+[2026-03-11 12:17:54] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffd1051788))
+[2026-03-11 12:17:54] QueryContextMenu returning items_added=3
+[2026-03-11 12:17:54] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53A9AB0
+[2026-03-11 12:17:54] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 12:18:07] Initialize called
+[2026-03-11 12:18:07] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 12:18:07] Insert CONVERT: Success
+[2026-03-11 12:18:07] Insert VIEW: Success
+[2026-03-11 12:18:07] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.png"
+[2026-03-11 12:18:08] Insert PREVIEW: Success (hbitmap=HBITMAP(0x2d05182b))
+[2026-03-11 12:18:08] QueryContextMenu returning items_added=3
+[2026-03-11 12:18:09] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 12:18:09] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 12:18:09] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 12:18:10] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 12:18:10] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 12:18:11] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 12:18:11] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 12:18:13] Initialize called
+[2026-03-11 12:18:13] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 12:18:13] Insert CONVERT: Success
+[2026-03-11 12:18:13] Insert VIEW: Success
+[2026-03-11 12:18:13] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 12:18:13] Failed to create preview bitmap
+[2026-03-11 12:18:13] QueryContextMenu returning items_added=2
+[2026-03-11 12:18:19] InvokeCommand: id=1
+[2026-03-11 12:18:19] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 12:18:19] View command
+[2026-03-11 12:18:40] Initialize called
+[2026-03-11 12:18:40] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 12:18:40] Insert CONVERT: Success
+[2026-03-11 12:18:40] Insert VIEW: Success
+[2026-03-11 12:18:40] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 12:18:40] Failed to create preview bitmap
+[2026-03-11 12:18:40] QueryContextMenu returning items_added=2
+[2026-03-11 12:18:43] InvokeCommand: id=1
+[2026-03-11 12:18:43] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 12:18:43] View command
+[2026-03-11 12:19:24] Initialize called
+[2026-03-11 12:19:24] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 12:19:24] Insert CONVERT: Success
+[2026-03-11 12:19:24] Insert VIEW: Success
+[2026-03-11 12:19:24] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 12:19:24] Failed to create preview bitmap
+[2026-03-11 12:19:24] QueryContextMenu returning items_added=2
+[2026-03-11 12:19:33] Initialize called
+[2026-03-11 12:19:33] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 12:19:33] Insert CONVERT: Success
+[2026-03-11 12:19:33] Insert VIEW: Success
+[2026-03-11 12:19:33] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:19:33] Failed to create preview bitmap
+[2026-03-11 12:19:33] QueryContextMenu returning items_added=2
+[2026-03-11 12:23:09] Initialize called
+[2026-03-11 12:23:09] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 12:23:09] Insert CONVERT: Success
+[2026-03-11 12:23:09] Insert VIEW: Success
+[2026-03-11 12:23:09] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:23:09] Failed to create preview bitmap
+[2026-03-11 12:23:09] QueryContextMenu returning items_added=2
+[2026-03-11 12:23:13] InvokeCommand: id=1
+[2026-03-11 12:23:13] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:23:13] View command
+[2026-03-11 12:23:27] Initialize called
+[2026-03-11 12:23:27] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 12:23:27] Insert CONVERT: Success
+[2026-03-11 12:23:27] Insert VIEW: Success
+[2026-03-11 12:23:27] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:23:27] Failed to create preview bitmap
+[2026-03-11 12:23:27] QueryContextMenu returning items_added=2
+[2026-03-11 12:23:39] InvokeCommand: id=1
+[2026-03-11 12:23:39] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 12:23:39] View command
+[2026-03-11 13:04:40] Initialize called
+[2026-03-11 13:04:40] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 13:04:40] Insert CONVERT: Success
+[2026-03-11 13:04:40] Insert VIEW: Success
+[2026-03-11 13:04:40] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 13:04:40] Failed to create preview bitmap
+[2026-03-11 13:04:40] QueryContextMenu returning items_added=2
+[2026-03-11 13:07:59] Initialize called
+[2026-03-11 13:07:59] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 13:07:59] Insert CONVERT: Success
+[2026-03-11 13:07:59] Insert VIEW: Success
+[2026-03-11 13:07:59] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 13:07:59] Failed to create preview bitmap
+[2026-03-11 13:07:59] QueryContextMenu returning items_added=2
+[2026-03-11 13:08:34] Initialize called
+[2026-03-11 13:08:34] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 13:08:34] Insert CONVERT: Success
+[2026-03-11 13:08:34] Insert VIEW: Success
+[2026-03-11 13:08:34] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 13:08:34] Failed to create preview bitmap
+[2026-03-11 13:08:34] QueryContextMenu returning items_added=2
+[2026-03-11 13:08:43] Initialize called
+[2026-03-11 13:08:43] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 13:08:43] Insert CONVERT: Success
+[2026-03-11 13:08:43] Insert VIEW: Success
+[2026-03-11 13:08:43] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 13:08:43] Failed to create preview bitmap
+[2026-03-11 13:08:43] QueryContextMenu returning items_added=2
+[2026-03-11 13:09:34] Initialize called
+[2026-03-11 13:09:34] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 13:09:34] Insert CONVERT: Success
+[2026-03-11 13:09:34] Insert VIEW: Success
+[2026-03-11 13:09:34] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 13:09:34] Failed to create preview bitmap
+[2026-03-11 13:09:34] QueryContextMenu returning items_added=2
+[2026-03-11 13:09:38] InvokeCommand: id=1
+[2026-03-11 13:09:38] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 13:09:38] View command
+[2026-03-11 13:26:53] Initialize called
+[2026-03-11 13:26:53] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 13:26:53] Insert CONVERT: Success
+[2026-03-11 13:26:53] Insert VIEW: Success
+[2026-03-11 13:26:53] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-11 13:26:53] Insert PREVIEW: Success (hbitmap=HBITMAP(0x60514d7))
+[2026-03-11 13:26:53] QueryContextMenu returning items_added=3
+[2026-03-11 13:26:55] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 13:26:55] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:26:55] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:26:56] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:26:56] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:00] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:00] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:02] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:02] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:02] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:02] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:03] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:03] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:04] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:04] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:08] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:08] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:16] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:16] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:24] Initialize called
+[2026-03-11 13:27:24] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 13:27:24] Insert CONVERT: Success
+[2026-03-11 13:27:24] Insert VIEW: Success
+[2026-03-11 13:27:24] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-11 13:27:24] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffed051526))
+[2026-03-11 13:27:24] QueryContextMenu returning items_added=3
+[2026-03-11 13:27:24] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 13:27:24] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:24] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:25] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:25] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:26] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:27:26] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:27:59] Initialize called
+[2026-03-11 13:27:59] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 13:27:59] Insert CONVERT: Success
+[2026-03-11 13:27:59] Insert VIEW: Success
+[2026-03-11 13:27:59] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-11 13:27:59] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffe805156f))
+[2026-03-11 13:27:59] QueryContextMenu returning items_added=3
+[2026-03-11 13:28:01] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 13:28:01] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:28:01] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:28:01] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:28:01] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:28:02] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:28:02] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:28:02] InvokeCommand: id=2
+[2026-03-11 13:28:02] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-11 13:28:02] Preview clicked (opening viewer)
+[2026-03-11 13:28:11] Initialize called
+[2026-03-11 13:28:11] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 13:28:11] Insert CONVERT: Success
+[2026-03-11 13:28:11] Insert VIEW: Success
+[2026-03-11 13:28:11] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-11 13:28:11] Insert PREVIEW: Success (hbitmap=HBITMAP(0xa051718))
+[2026-03-11 13:28:11] QueryContextMenu returning items_added=3
+[2026-03-11 13:28:13] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 13:28:13] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:28:13] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:28:14] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:28:14] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:28:14] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:28:14] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:31:30] Initialize called
+[2026-03-11 13:31:30] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 13:31:30] Insert CONVERT: Success
+[2026-03-11 13:31:30] Insert VIEW: Success
+[2026-03-11 13:31:30] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-11 13:31:30] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffd605179d))
+[2026-03-11 13:31:30] QueryContextMenu returning items_added=3
+[2026-03-11 13:31:32] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 13:31:32] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:31:32] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:31:37] Initialize called
+[2026-03-11 13:31:37] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 13:31:37] Insert CONVERT: Success
+[2026-03-11 13:31:37] Insert VIEW: Success
+[2026-03-11 13:31:37] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-11 13:31:38] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffff8305188b))
+[2026-03-11 13:31:38] QueryContextMenu returning items_added=3
+[2026-03-11 13:31:38] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 13:31:38] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:31:38] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:31:40] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:31:40] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:31:40] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 13:31:40] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 13:31:42] Initialize called
+[2026-03-11 13:31:42] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 13:31:42] Insert CONVERT: Success
+[2026-03-11 13:31:42] Insert VIEW: Success
+[2026-03-11 13:31:42] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 13:31:42] Failed to create preview bitmap
+[2026-03-11 13:31:42] QueryContextMenu returning items_added=2
+[2026-03-11 13:38:30] Initialize called
+[2026-03-11 13:38:30] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 13:38:30] Insert CONVERT: Success
+[2026-03-11 13:38:30] Insert VIEW: Success
+[2026-03-11 13:38:30] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 13:38:30] Failed to create preview bitmap
+[2026-03-11 13:38:30] QueryContextMenu returning items_added=2
+[2026-03-11 14:08:51] Initialize called
+[2026-03-11 14:08:51] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 14:08:51] Insert CONVERT: Success
+[2026-03-11 14:08:51] Insert VIEW: Success
+[2026-03-11 14:08:51] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor21.png"
+[2026-03-11 14:08:51] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffff8d05173a))
+[2026-03-11 14:08:51] QueryContextMenu returning items_added=3
+[2026-03-11 14:08:53] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x53AD3F0
+[2026-03-11 14:08:53] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 14:08:53] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:08:54] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 14:08:54] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:08:55] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 14:08:55] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:08:56] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 14:08:56] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:08:57] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x53AD3D0
+[2026-03-11 14:08:57] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:25:01] Initialize called
+[2026-03-11 14:25:01] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 14:25:01] Insert CONVERT: Success
+[2026-03-11 14:25:01] Insert VIEW: Success
+[2026-03-11 14:25:01] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2 (1).svg"
+[2026-03-11 14:25:01] Failed to create preview bitmap
+[2026-03-11 14:25:01] QueryContextMenu returning items_added=2
+[2026-03-11 14:25:04] Initialize called
+[2026-03-11 14:25:04] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 14:25:04] Insert CONVERT: Success
+[2026-03-11 14:25:04] Insert VIEW: Success
+[2026-03-11 14:25:04] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.svg"
+[2026-03-11 14:25:04] Failed to create preview bitmap
+[2026-03-11 14:25:04] QueryContextMenu returning items_added=2
+[2026-03-11 14:25:06] Initialize called
+[2026-03-11 14:25:06] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 14:25:06] Insert CONVERT: Success
+[2026-03-11 14:25:06] Insert VIEW: Success
+[2026-03-11 14:25:06] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.png"
+[2026-03-11 14:25:07] Insert PREVIEW: Success (hbitmap=HBITMAP(0x52051863))
+[2026-03-11 14:25:07] QueryContextMenu returning items_added=3
+[2026-03-11 14:25:08] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4DBD3E0
+[2026-03-11 14:25:08] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4DBD3C0
+[2026-03-11 14:25:08] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:25:11] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4DBD3C0
+[2026-03-11 14:25:11] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:25:14] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4DBD3C0
+[2026-03-11 14:25:14] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 14:25:14] InvokeCommand: id=2
+[2026-03-11 14:25:14] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor2.png"
+[2026-03-11 14:25:14] Preview clicked (opening viewer)
+[2026-03-11 17:16:50] Initialize called
+[2026-03-11 17:16:50] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 17:16:50] Insert CONVERT: Success
+[2026-03-11 17:16:50] Insert VIEW: Success
+[2026-03-11 17:16:50] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor2.png"
+[2026-03-11 17:16:51] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffcb05003d))
+[2026-03-11 17:16:51] QueryContextMenu returning items_added=3
+[2026-03-11 17:16:53] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4DBD3E0
+[2026-03-11 17:16:53] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4DBD3C0
+[2026-03-11 17:16:53] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:16:57] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4DBD3C0
+[2026-03-11 17:16:57] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:16:57] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4DBD3C0
+[2026-03-11 17:16:57] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:16:57] InvokeCommand: id=2
+[2026-03-11 17:16:57] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor2.png"
+[2026-03-11 17:16:57] Preview clicked (opening viewer)
+[2026-03-11 17:21:10] Initialize called
+[2026-03-11 17:21:10] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 17:21:10] Insert CONVERT: Success
+[2026-03-11 17:21:10] Insert VIEW: Success
+[2026-03-11 17:21:10] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Gemini_Generated_Image_e4isuye4isuye4is.png"
+[2026-03-11 17:21:10] Insert PREVIEW: Success (hbitmap=HBITMAP(0x7a0500f5))
+[2026-03-11 17:21:10] QueryContextMenu returning items_added=3
+[2026-03-11 17:21:10] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569E170
+[2026-03-11 17:21:11] Initialize called
+[2026-03-11 17:21:11] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 17:21:11] Insert CONVERT: Success
+[2026-03-11 17:21:11] Insert VIEW: Success
+[2026-03-11 17:21:11] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Gemini_Generated_Image_e4isuye4isuye4is.png"
+[2026-03-11 17:21:11] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffbb050ce3))
+[2026-03-11 17:21:11] QueryContextMenu returning items_added=3
+[2026-03-11 17:21:11] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x5699D10
+[2026-03-11 17:21:11] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:21:13] Initialize called
+[2026-03-11 17:21:13] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 17:21:13] Insert CONVERT: Success
+[2026-03-11 17:21:13] Insert VIEW: Success
+[2026-03-11 17:21:13] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Gemini_Generated_Image_e4isuye4isuye4is.png"
+[2026-03-11 17:21:13] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffc60517c0))
+[2026-03-11 17:21:13] QueryContextMenu returning items_added=3
+[2026-03-11 17:21:14] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569E170
+[2026-03-11 17:21:14] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:21:14] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:21:18] Initialize called
+[2026-03-11 17:21:18] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 17:21:18] Insert CONVERT: Success
+[2026-03-11 17:21:18] Insert VIEW: Success
+[2026-03-11 17:21:18] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 17:21:18] Insert PREVIEW: Success (hbitmap=HBITMAP(0x23050acf))
+[2026-03-11 17:21:18] QueryContextMenu returning items_added=3
+[2026-03-11 17:21:19] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569E170
+[2026-03-11 17:21:19] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:21:19] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:21:24] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:21:24] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:21:24] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:21:24] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:21:24] InvokeCommand: id=2
+[2026-03-11 17:21:24] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 17:21:24] Preview clicked (opening viewer)
+[2026-03-11 17:22:05] Initialize called
+[2026-03-11 17:22:05] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-11 17:22:05] Insert CONVERT: Success
+[2026-03-11 17:22:05] Insert VIEW: Success
+[2026-03-11 17:22:05] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.svg"
+[2026-03-11 17:22:05] Insert PREVIEW: Success (hbitmap=HBITMAP(0xfffffffff005186c))
+[2026-03-11 17:22:05] QueryContextMenu returning items_added=3
+[2026-03-11 17:22:05] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569E170
+[2026-03-11 17:22:05] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:22:05] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:22:15] Initialize called
+[2026-03-11 17:22:15] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 17:22:15] Insert CONVERT: Success
+[2026-03-11 17:22:15] Insert VIEW: Success
+[2026-03-11 17:22:15] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\grass.png"
+[2026-03-11 17:22:15] Insert PREVIEW: Success (hbitmap=HBITMAP(0x71050a71))
+[2026-03-11 17:22:15] QueryContextMenu returning items_added=3
+[2026-03-11 17:22:16] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569E170
+[2026-03-11 17:22:16] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:22:16] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:23:25] Initialize called
+[2026-03-11 17:23:25] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 17:23:25] Insert CONVERT: Success
+[2026-03-11 17:23:25] Insert VIEW: Success
+[2026-03-11 17:23:25] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\grass.png"
+[2026-03-11 17:23:25] Insert PREVIEW: Success (hbitmap=HBITMAP(0x5051620))
+[2026-03-11 17:23:25] QueryContextMenu returning items_added=3
+[2026-03-11 17:23:27] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569E170
+[2026-03-11 17:23:27] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:23:27] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:23:28] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:23:28] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:23:29] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569E150
+[2026-03-11 17:23:29] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 17:23:29] InvokeCommand: id=2
+[2026-03-11 17:23:29] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\grass.png"
+[2026-03-11 17:23:29] Preview clicked (opening viewer)
+[2026-03-11 17:24:18] Initialize called
+[2026-03-11 17:24:18] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 17:24:18] Insert CONVERT: Success
+[2026-03-11 17:24:18] Insert VIEW: Success
+[2026-03-11 17:24:18] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\grass.png"
+[2026-03-11 17:24:18] Insert PREVIEW: Success (hbitmap=HBITMAP(0x5d050ab6))
+[2026-03-11 17:24:18] QueryContextMenu returning items_added=3
+[2026-03-11 17:24:20] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569E170
+[2026-03-11 17:24:20] Initialize called
+[2026-03-11 17:24:20] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-11 17:24:20] Insert CONVERT: Success
+[2026-03-11 17:24:20] Insert VIEW: Success
+[2026-03-11 17:24:20] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\grass.png"
+[2026-03-11 17:24:20] Insert PREVIEW: Success (hbitmap=HBITMAP(0x11050b90))
+[2026-03-11 17:24:20] QueryContextMenu returning items_added=3
+[2026-03-11 17:24:20] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x5699D10
+[2026-03-11 17:24:20] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 18:15:29] Initialize called
+[2026-03-11 18:15:29] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-11 18:15:29] Insert CONVERT: Success
+[2026-03-11 18:15:29] Insert VIEW: Success
+[2026-03-11 18:15:29] Creating preview for: "C:\\Users\\uripapa7\\OneDrive\\사진\\abcd3.png"
+[2026-03-11 18:15:29] Insert PREVIEW: Success (hbitmap=HBITMAP(0x240518f2))
+[2026-03-11 18:15:29] QueryContextMenu returning items_added=3
+[2026-03-11 18:15:31] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569D650
+[2026-03-11 18:15:31] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-11 18:15:31] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 18:15:32] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-11 18:15:32] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 18:15:33] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-11 18:15:33] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 18:15:33] InvokeCommand: id=2
+[2026-03-11 18:15:33] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\OneDrive\\사진\\abcd3.png"
+[2026-03-11 18:15:33] Preview clicked (opening viewer)
+[2026-03-11 22:57:24] Initialize called
+[2026-03-11 22:57:24] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-11 22:57:24] Insert CONVERT: Success
+[2026-03-11 22:57:24] Insert VIEW: Success
+[2026-03-11 22:57:24] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor21.svg"
+[2026-03-11 22:57:24] Insert PREVIEW: Success (hbitmap=HBITMAP(0x74050b11))
+[2026-03-11 22:57:24] QueryContextMenu returning items_added=3
+[2026-03-11 22:57:25] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569D650
+[2026-03-11 22:57:25] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-11 22:57:25] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 22:57:27] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-11 22:57:27] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 22:57:27] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-11 22:57:27] HandleMenuMsg2: Drawing preview item...
+[2026-03-11 22:57:27] InvokeCommand: id=2
+[2026-03-11 22:57:27] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor21.svg"
+[2026-03-11 22:57:27] Preview clicked (opening viewer)
+[2026-03-12 01:11:46] Initialize called
+[2026-03-12 01:11:46] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 01:11:46] Insert CONVERT: Success
+[2026-03-12 01:11:46] Insert VIEW: Success
+[2026-03-12 01:11:46] Creating preview for: "C:\\Users\\uripapa7\\OneDrive\\사진\\1667368-12.jpg"
+[2026-03-12 01:11:46] Insert PREVIEW: Success (hbitmap=HBITMAP(0xf051e96))
+[2026-03-12 01:11:46] QueryContextMenu returning items_added=3
+[2026-03-12 01:11:48] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x361D160
+[2026-03-12 01:11:48] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:11:48] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:11:49] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:11:49] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:11:50] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:11:50] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:11:50] InvokeCommand: id=2
+[2026-03-12 01:11:50] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\OneDrive\\사진\\1667368-12.jpg"
+[2026-03-12 01:11:50] Preview clicked (opening viewer)
+[2026-03-12 01:22:48] Initialize called
+[2026-03-12 01:22:48] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 01:22:48] Insert CONVERT: Success
+[2026-03-12 01:22:48] Insert VIEW: Success
+[2026-03-12 01:22:48] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor21.png"
+[2026-03-12 01:22:48] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffb9051e9a))
+[2026-03-12 01:22:48] QueryContextMenu returning items_added=3
+[2026-03-12 01:22:50] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x569D650
+[2026-03-12 01:22:50] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-12 01:22:50] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:22:51] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-12 01:22:51] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:22:52] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x569D630
+[2026-03-12 01:22:52] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:22:52] InvokeCommand: id=2
+[2026-03-12 01:22:52] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor21.png"
+[2026-03-12 01:22:52] Preview clicked (opening viewer)
+[2026-03-12 01:29:52] Initialize called
+[2026-03-12 01:29:52] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 01:29:52] Insert CONVERT: Success
+[2026-03-12 01:29:52] Insert VIEW: Success
+[2026-03-12 01:29:52] Creating preview for: "C:\\Users\\uripapa7\\OneDrive\\사진\\1667368-2.jpg"
+[2026-03-12 01:29:52] Insert PREVIEW: Success (hbitmap=HBITMAP(0x79051217))
+[2026-03-12 01:29:52] QueryContextMenu returning items_added=3
+[2026-03-12 01:29:54] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x361D160
+[2026-03-12 01:29:54] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:29:54] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:29:55] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:29:55] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:29:56] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:29:56] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:29:56] InvokeCommand: id=2
+[2026-03-12 01:29:56] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\OneDrive\\사진\\1667368-2.jpg"
+[2026-03-12 01:29:56] Preview clicked (opening viewer)
+[2026-03-12 01:37:23] Initialize called
+[2026-03-12 01:37:23] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 01:37:23] Insert CONVERT: Success
+[2026-03-12 01:37:23] Insert VIEW: Success
+[2026-03-12 01:37:23] Creating preview for: "C:\\Users\\uripapa7\\OneDrive\\사진\\1667368-13.jpg"
+[2026-03-12 01:37:23] Insert PREVIEW: Success (hbitmap=HBITMAP(0x1f052019))
+[2026-03-12 01:37:23] QueryContextMenu returning items_added=3
+[2026-03-12 01:37:25] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x361D160
+[2026-03-12 01:37:25] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:37:25] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:37:26] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:37:26] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:37:27] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:37:27] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:37:27] InvokeCommand: id=2
+[2026-03-12 01:37:27] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\OneDrive\\사진\\1667368-13.jpg"
+[2026-03-12 01:37:27] Preview clicked (opening viewer)
+[2026-03-12 01:37:58] Initialize called
+[2026-03-12 01:37:58] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 01:37:58] Insert CONVERT: Success
+[2026-03-12 01:37:58] Insert VIEW: Success
+[2026-03-12 01:37:58] Creating preview for: "C:\\Users\\uripapa7\\OneDrive\\사진\\10879465325_l (1).jpg"
+[2026-03-12 01:37:58] Insert PREVIEW: Success (hbitmap=HBITMAP(0x7b051f56))
+[2026-03-12 01:37:58] QueryContextMenu returning items_added=3
+[2026-03-12 01:38:00] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x361D160
+[2026-03-12 01:38:00] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:00] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:01] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:01] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:01] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:01] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:02] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:02] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:02] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:02] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:20] Initialize called
+[2026-03-12 01:38:20] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 01:38:20] Insert CONVERT: Success
+[2026-03-12 01:38:20] Insert VIEW: Success
+[2026-03-12 01:38:20] Creating preview for: "C:\\Users\\uripapa7\\OneDrive\\사진\\10879465325_l (1).jpg"
+[2026-03-12 01:38:20] Insert PREVIEW: Success (hbitmap=HBITMAP(0xe052027))
+[2026-03-12 01:38:20] QueryContextMenu returning items_added=3
+[2026-03-12 01:38:22] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x361D160
+[2026-03-12 01:38:22] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:22] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:23] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:23] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:24] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x361D140
+[2026-03-12 01:38:24] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 01:38:24] InvokeCommand: id=2
+[2026-03-12 01:38:24] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\OneDrive\\사진\\10879465325_l (1).jpg"
+[2026-03-12 01:38:24] Preview clicked (opening viewer)
+[2026-03-12 11:44:11] Initialize called
+[2026-03-12 11:44:11] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-12 11:44:11] Insert CONVERT: Success
+[2026-03-12 11:44:11] Insert VIEW: Success
+[2026-03-12 11:44:11] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\57453c3d-4b20-4738-a939-57a91c49d49e.png"
+[2026-03-12 11:44:11] Insert PREVIEW: Success (hbitmap=HBITMAP(0x2051356))
+[2026-03-12 11:44:11] QueryContextMenu returning items_added=3
+[2026-03-12 11:44:12] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAE3B0
+[2026-03-12 11:44:12] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:44:12] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:44:12] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:44:12] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:44:13] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:44:13] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:44:14] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:44:14] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:44:14] InvokeCommand: id=2
+[2026-03-12 11:44:14] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\57453c3d-4b20-4738-a939-57a91c49d49e.png"
+[2026-03-12 11:44:14] Preview clicked (opening viewer)
+[2026-03-12 11:44:22] Initialize called
+[2026-03-12 11:44:22] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-12 11:44:22] Insert CONVERT: Success
+[2026-03-12 11:44:22] Insert VIEW: Success
+[2026-03-12 11:44:22] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\57453c3d-4b20-4738-a939-57a91c49d49e.png"
+[2026-03-12 11:44:22] Insert PREVIEW: Success (hbitmap=HBITMAP(0x20513af))
+[2026-03-12 11:44:22] QueryContextMenu returning items_added=3
+[2026-03-12 11:44:24] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAE3B0
+[2026-03-12 11:44:24] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:44:24] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:46:15] Initialize called
+[2026-03-12 11:46:15] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-12 11:46:15] Insert CONVERT: Success
+[2026-03-12 11:46:15] Insert VIEW: Success
+[2026-03-12 11:46:15] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor22.svg"
+[2026-03-12 11:46:15] Insert PREVIEW: Success (hbitmap=HBITMAP(0x76051290))
+[2026-03-12 11:46:15] QueryContextMenu returning items_added=3
+[2026-03-12 11:46:16] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAE3B0
+[2026-03-12 11:46:16] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:46:16] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:46:17] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:46:17] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:46:18] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 11:46:18] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 11:46:18] InvokeCommand: id=2
+[2026-03-12 11:46:18] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor22.svg"
+[2026-03-12 11:46:18] Preview clicked (opening viewer)
+[2026-03-12 12:13:55] Initialize called
+[2026-03-12 12:13:55] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-12 12:13:55] Insert CONVERT: Success
+[2026-03-12 12:13:55] Insert VIEW: Success
+[2026-03-12 12:13:55] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\50b83322-efb8-4802-8c38-dfda4a1c679e.png"
+[2026-03-12 12:13:55] Insert PREVIEW: Success (hbitmap=HBITMAP(0x260514f1))
+[2026-03-12 12:13:55] QueryContextMenu returning items_added=3
+[2026-03-12 12:13:57] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAE3B0
+[2026-03-12 12:13:57] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 12:13:57] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:13:58] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 12:13:58] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:13:58] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 12:13:58] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:13:58] InvokeCommand: id=2
+[2026-03-12 12:13:58] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\50b83322-efb8-4802-8c38-dfda4a1c679e.png"
+[2026-03-12 12:13:58] Preview clicked (opening viewer)
+[2026-03-12 12:16:56] Initialize called
+[2026-03-12 12:16:56] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-12 12:16:56] Insert CONVERT: Success
+[2026-03-12 12:16:56] Insert VIEW: Success
+[2026-03-12 12:16:56] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\50b83322-efb8-4802-8c38-dfda4a1c679e.png"
+[2026-03-12 12:16:56] Insert PREVIEW: Success (hbitmap=HBITMAP(0x27051264))
+[2026-03-12 12:16:56] QueryContextMenu returning items_added=3
+[2026-03-12 12:16:59] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAE3B0
+[2026-03-12 12:16:59] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 12:16:59] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:17:01] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 12:17:01] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:17:02] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAE390
+[2026-03-12 12:17:02] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:17:02] InvokeCommand: id=2
+[2026-03-12 12:17:02] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\50b83322-efb8-4802-8c38-dfda4a1c679e.png"
+[2026-03-12 12:17:02] Preview clicked (opening viewer)
+[2026-03-12 12:17:57] Initialize called
+[2026-03-12 12:17:57] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 12:17:57] Insert CONVERT: Success
+[2026-03-12 12:17:57] Insert VIEW: Success
+[2026-03-12 12:17:57] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\removed-bg (2).png"
+[2026-03-12 12:17:57] Insert PREVIEW: Success (hbitmap=HBITMAP(0x29051014))
+[2026-03-12 12:17:57] QueryContextMenu returning items_added=3
+[2026-03-12 12:17:59] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAD890
+[2026-03-12 12:17:59] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:17:59] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:00] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:00] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:00] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:00] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:00] InvokeCommand: id=2
+[2026-03-12 12:18:00] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\removed-bg (2).png"
+[2026-03-12 12:18:00] Preview clicked (opening viewer)
+[2026-03-12 12:18:06] Initialize called
+[2026-03-12 12:18:06] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 12:18:06] Insert CONVERT: Success
+[2026-03-12 12:18:06] Insert VIEW: Success
+[2026-03-12 12:18:06] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\removed-bg (3).png"
+[2026-03-12 12:18:06] Insert PREVIEW: Success (hbitmap=HBITMAP(0x2905149e))
+[2026-03-12 12:18:06] QueryContextMenu returning items_added=3
+[2026-03-12 12:18:08] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAD890
+[2026-03-12 12:18:08] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:08] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:09] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:09] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:09] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:09] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:10] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:10] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:10] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:10] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:13] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:13] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:13] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:13] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:14] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:14] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:15] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:15] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:15] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:15] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:16] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:18:16] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:18:19] InvokeCommand: id=1
+[2026-03-12 12:18:19] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\removed-bg (3).png"
+[2026-03-12 12:18:19] View command
+[2026-03-12 12:25:23] Initialize called
+[2026-03-12 12:25:23] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 12:25:23] Insert CONVERT: Success
+[2026-03-12 12:25:23] Insert VIEW: Success
+[2026-03-12 12:25:23] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Gemini_Generated_Image_epakc0epakc0epak.png"
+[2026-03-12 12:25:23] Insert PREVIEW: Success (hbitmap=HBITMAP(0x705174b))
+[2026-03-12 12:25:23] QueryContextMenu returning items_added=3
+[2026-03-12 12:25:25] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAD890
+[2026-03-12 12:25:25] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:25:25] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:25:34] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:25:34] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:25:35] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 12:25:35] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 12:25:35] InvokeCommand: id=2
+[2026-03-12 12:25:35] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\Gemini_Generated_Image_epakc0epakc0epak.png"
+[2026-03-12 12:25:35] Preview clicked (opening viewer)
+[2026-03-12 17:19:38] Initialize called
+[2026-03-12 17:19:38] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-12 17:19:38] Insert CONVERT: Success
+[2026-03-12 17:19:38] Insert VIEW: Success
+[2026-03-12 17:19:38] Creating preview for: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe"
+[2026-03-12 17:19:38] Failed to create preview bitmap
+[2026-03-12 17:19:38] QueryContextMenu returning items_added=2
+[2026-03-12 18:20:29] Initialize called
+[2026-03-12 18:20:29] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-12 18:20:29] Insert CONVERT: Success
+[2026-03-12 18:20:29] Insert VIEW: Success
+[2026-03-12 18:20:29] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\removed-bg (6).png"
+[2026-03-12 18:20:29] Insert PREVIEW: Success (hbitmap=HBITMAP(0x7805108c))
+[2026-03-12 18:20:29] QueryContextMenu returning items_added=3
+[2026-03-12 18:20:31] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4BAD890
+[2026-03-12 18:20:31] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 18:20:31] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 18:20:32] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 18:20:32] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 18:20:32] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 18:20:32] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 18:20:32] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 18:20:32] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 18:20:33] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4BAD870
+[2026-03-12 18:20:33] HandleMenuMsg2: Drawing preview item...
+[2026-03-12 18:20:33] InvokeCommand: id=2
+[2026-03-12 18:20:33] Executing: "C:\\_new_ai_project\\uriviewer\\target\\release\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\removed-bg (6).png"
+[2026-03-12 18:20:33] Preview clicked (opening viewer)
+[2026-03-13 19:02:28] Initialize called
+[2026-03-13 19:02:28] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-13 19:02:28] Insert CONVERT: Success
+[2026-03-13 19:02:28] Insert VIEW: Success
+[2026-03-13 19:02:28] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-13 19:02:28] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffd10512ef))
+[2026-03-13 19:02:28] QueryContextMenu returning items_added=3
+[2026-03-13 19:02:28] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4D3DF90
+[2026-03-13 19:02:28] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:28] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:28] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:28] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:29] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:29] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:29] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:29] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:29] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:29] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:29] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:29] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:29] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:29] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:30] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:02:30] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:02:30] InvokeCommand: id=2
+[2026-03-13 19:02:30] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-13 19:02:30] Preview clicked (opening viewer)
+[2026-03-13 19:02:49] Initialize called
+[2026-03-13 19:02:49] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-13 19:02:49] Insert CONVERT: Success
+[2026-03-13 19:02:49] Insert VIEW: Success
+[2026-03-13 19:02:49] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-13 19:02:49] Insert PREVIEW: Success (hbitmap=HBITMAP(0x1b051398))
+[2026-03-13 19:02:49] QueryContextMenu returning items_added=3
+[2026-03-13 19:02:51] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4D3DF90
+[2026-03-13 19:02:52] Initialize called
+[2026-03-13 19:02:52] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-13 19:02:52] Insert CONVERT: Success
+[2026-03-13 19:02:52] Insert VIEW: Success
+[2026-03-13 19:02:52] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-13 19:02:52] Insert PREVIEW: Success (hbitmap=HBITMAP(0x20514f1))
+[2026-03-13 19:02:52] QueryContextMenu returning items_added=3
+[2026-03-13 19:02:52] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D39B30
+[2026-03-13 19:02:52] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:05:19] Initialize called
+[2026-03-13 19:05:19] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-13 19:05:19] Insert CONVERT: Success
+[2026-03-13 19:05:19] Insert VIEW: Success
+[2026-03-13 19:05:19] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor.png"
+[2026-03-13 19:05:19] Insert PREVIEW: Success (hbitmap=HBITMAP(0xb051509))
+[2026-03-13 19:05:19] QueryContextMenu returning items_added=3
+[2026-03-13 19:05:21] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4D3DF90
+[2026-03-13 19:05:21] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:05:21] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:05:22] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:05:22] HandleMenuMsg2: Drawing preview item...
+[2026-03-13 19:05:22] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D3DF70
+[2026-03-13 19:05:22] HandleMenuMsg2: Drawing preview item...
+[2026-03-14 01:04:39] Initialize called
+[2026-03-14 01:04:39] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-14 01:04:39] Insert CONVERT: Success
+[2026-03-14 01:04:39] Insert VIEW: Success
+[2026-03-14 01:04:39] Creating preview for: "D:\\game\\횡스크롤 경찰액션 도어 킥커스 액션시쿼드 [무설치][한글패치]\\Door.Kickers.Action.Squad-GOG.zip.ezc"
+[2026-03-14 01:04:39] Failed to create preview bitmap
+[2026-03-14 01:04:39] QueryContextMenu returning items_added=2

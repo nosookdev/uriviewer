@@ -4,8 +4,10 @@ use egui::{Color32, Context, Key, Painter, Pos2, Rect, Vec2};
 use std::path::{Path, PathBuf};
 
 use crate::loader::{human_size, load_image};
-use crate::nav::{current_index, images_in_folder, is_image};
+use crate::nav::is_image;
 use crate::types::*;
+use arboard::Clipboard;
+use image::GenericImageView;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // App state
@@ -131,6 +133,33 @@ impl RustViewApp {
             if i.key_pressed(Key::T) { self.view_state.checker = !self.view_state.checker; self.config.checker = self.view_state.checker; }
             if i.key_pressed(Key::L) { self.view_state.rotation = self.view_state.rotation.ccw(); }
             if i.key_pressed(Key::R) { self.view_state.rotation = self.view_state.rotation.cw(); }
+            // S key for selection mode - consume it to prevent double-triggering
+            // Also check for 's' text event to handle Korean IME ('ㄴ')
+            let mut s_pressed = i.key_pressed(Key::S);
+            if !s_pressed {
+                for event in &i.raw.events {
+                    if let egui::Event::Text(t) = event {
+                        if t == "s" || t == "S" || t == "ㄴ" {
+                            s_pressed = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if s_pressed && !i.modifiers.any() {
+                self.view_state.selection_mode = !self.view_state.selection_mode;
+                if !self.view_state.selection_mode {
+                    self.view_state.selection = None;
+                    self.status = None;
+                } else {
+                    self.status = Some("영역 선택 모드 활성화".to_string());
+                    // Auto-switch to Viewer if in Gallery
+                    if self.view_mode == ViewMode::Gallery {
+                        self.view_mode = ViewMode::Viewer;
+                    }
+                }
+            }
             if i.key_pressed(Key::F11) { 
                 let is_fs = i.viewport().fullscreen.unwrap_or(false);
                 ctx.send_viewport_cmd(egui::ViewportCommand::Fullscreen(!is_fs));
@@ -163,6 +192,130 @@ impl RustViewApp {
         self.view_state.fit_mode = false;
         self.view_state.scale = (current * factor).clamp(0.02, 32.0);
     }
+
+    fn copy_selection(&mut self, screen_rect: Rect, img_rect: Rect) {
+        println!("DEBUG: copy_selection called");
+        if self.image.is_none() { 
+            self.status = Some("❌ 복사 실패: 이미지 없음".to_string());
+            return; 
+        }
+        
+        self.status = Some("⏳ 이미지 크롭 중...".to_string());
+        let res = self.get_cropped_image(screen_rect, img_rect);
+        
+        match res {
+            Ok(cropped) => {
+                self.status = Some("⏳ 클립보드 접근 중...".to_string());
+                match Clipboard::new() {
+                    Ok(mut clipboard) => {
+                        let rgba = cropped.to_rgba8();
+                        let (w, h) = rgba.dimensions();
+                        let img_data = arboard::ImageData {
+                            width: w as usize,
+                            height: h as usize,
+                            bytes: std::borrow::Cow::from(rgba.as_raw()),
+                        };
+                        if let Err(e) = clipboard.set_image(img_data) {
+                            self.status = Some(format!("❌ 클립보드 전송 오류: {}", e));
+                            println!("DEBUG: Clipboard set_image error: {}", e);
+                        } else {
+                            self.status = Some("✅ 선택 영역이 클립보드에 복사되었습니다.".to_string());
+                            println!("DEBUG: Copy successful");
+                        }
+                    }
+                    Err(e) => {
+                        self.status = Some(format!("❌ 클립보드 초기화 실패: {}", e));
+                        println!("DEBUG: Clipboard initialization error: {}", e);
+                    }
+                }
+            }
+            Err(e) => {
+                self.status = Some(format!("❌ 이미지 크롭 오류: {}", e));
+                println!("DEBUG: Crop error: {}", e);
+            }
+        }
+    }
+
+    fn save_selection(&mut self, screen_rect: Rect, img_rect: Rect) {
+        println!("DEBUG: save_selection called");
+        if let Some(img) = &self.image {
+            self.status = Some("⏳ 이미지 처리 중...".to_string());
+            let res = self.get_cropped_image(screen_rect, img_rect);
+            match res {
+                Ok(cropped) => {
+                    let start_dir = self.config.last_directory.clone()
+                        .or_else(|| dirs::picture_dir())
+                        .unwrap_or_else(|| std::env::current_dir().unwrap_or_default());
+                    
+                    let filename = format!("crop_{}", img.path.file_name().unwrap_or_default().to_string_lossy());
+                    
+                    self.status = Some("📂 저장 위치를 선택하세요...".to_string());
+                    println!("DEBUG: Opening file dialog at {:?}", start_dir);
+                    
+                    // RFD FileDialog
+                    let picked = rfd::FileDialog::new()
+                        .set_directory(&start_dir)
+                        .set_file_name(&filename)
+                        .add_filter("PNG Image (*.png)", &["png"])
+                        .add_filter("JPEG Image (*.jpg)", &["jpg", "jpeg"])
+                        .save_file();
+                    
+                    if let Some(path) = picked {
+                        println!("DEBUG: Path picked: {:?}", path);
+                        self.status = Some(format!("💾 저장 중: {}...", path.file_name().unwrap_or_default().to_string_lossy()));
+                        match cropped.save(&path) {
+                            Ok(_) => {
+                                self.status = Some(format!("✅ 성공적으로 저장되었습니다: {}", path.file_name().unwrap_or_default().to_string_lossy()));
+                                println!("DEBUG: Save successful");
+                                if let Some(parent) = path.parent() {
+                                    self.config.last_directory = Some(parent.to_path_buf());
+                                }
+                            }
+                            Err(e) => {
+                                self.status = Some(format!("❌ 파일 저장 오류: {}", e));
+                                println!("DEBUG: Save error: {}", e);
+                            }
+                        }
+                    } else {
+                        self.status = Some("ℹ️ 저장이 취소되었습니다.".to_string());
+                        println!("DEBUG: Save cancelled");
+                    }
+                }
+                Err(e) => {
+                    self.status = Some(format!("❌ 이미지 크롭 오류: {}", e));
+                    println!("DEBUG: Crop error: {}", e);
+                }
+            }
+        }
+    }
+
+    fn get_cropped_image(&self, screen_rect: Rect, img_rect: Rect) -> Result<image::DynamicImage, String> {
+        let img = self.image.as_ref().ok_or("No image")?;
+        let mut full_img = image::open(&img.path).map_err(|e| e.to_string())?;
+        
+        // Apply rotation
+        full_img = match self.view_state.rotation {
+            Rotation::R90 => full_img.rotate90(),
+            Rotation::R180 => full_img.rotate180(),
+            Rotation::R270 => full_img.rotate270(),
+            _ => full_img,
+        };
+
+        let (w, h) = full_img.dimensions();
+        let rx = (screen_rect.min.x - img_rect.min.x) / img_rect.width();
+        let ry = (screen_rect.min.y - img_rect.min.y) / img_rect.height();
+        let rw = screen_rect.width() / img_rect.width();
+        let rh = screen_rect.height() / img_rect.height();
+
+        let x = (rx * w as f32).max(0.0) as u32;
+        let y = (ry * h as f32).max(0.0) as u32;
+        let width = (rw * w as f32).min((w - x) as f32) as u32;
+        let height = (rh * h as f32).min((h - y) as f32) as u32;
+
+        if width == 0 || height == 0 { return Err("Invalid dimensions".to_string()); }
+
+        Ok(full_img.crop_imm(x, y, width, height))
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -187,9 +340,14 @@ impl eframe::App for RustViewApp {
         
         ctx.set_visuals(visuals);
         ctx.style_mut(|s| {
-            s.spacing.button_padding = egui::vec2(10.0, 5.0); // Slightly reduced but still spacious
+            s.spacing.button_padding = egui::vec2(10.0, 5.0); 
             s.spacing.item_spacing = egui::vec2(6.0, 0.0);
         });
+
+        // Global cursor for selection mode
+        if self.view_state.selection_mode {
+            ctx.set_cursor_icon(egui::CursorIcon::Crosshair);
+        }
 
         // Process background thumbnails
         while let Ok((path, color_img)) = self.thumb_rx.try_recv() {
@@ -272,6 +430,19 @@ impl RustViewApp {
         // Navigation
         if ui.button("‹").clicked() { self.navigate(ctx, -1); }
         if ui.button("›").clicked() { self.navigate(ctx, 1); }
+        
+        ui.separator();
+
+        if ui.add(egui::Button::new("✂").selected(self.view_state.selection_mode)).on_hover_text("영역 선택 (S)").clicked() {
+            self.view_state.selection_mode = !self.view_state.selection_mode;
+            if !self.view_state.selection_mode { 
+                self.view_state.selection = None; 
+                self.status = None;
+            } else {
+                self.status = Some("영역 선택 모드 활성화".to_string());
+                if self.view_mode == ViewMode::Gallery { self.view_mode = ViewMode::Viewer; }
+            }
+        }
 
         ui.separator();
 
@@ -465,11 +636,49 @@ impl RustViewApp {
 
     fn render_viewer(&mut self, ui: &mut egui::Ui, _ctx: &Context) {
         let available = ui.available_rect_before_wrap();
-        let response = ui.allocate_rect(available, egui::Sense::click_and_drag());
         
-        if response.dragged() {
-            self.view_state.offset += response.drag_delta();
-            self.view_state.fit_mode = false;
+        let mut selection_consumed = false;
+        if self.view_state.selection_mode {
+            // Check if pointer is over any UI area (like the floating toolbar) to avoid hijacking clicks
+            let is_over_area = _ctx.is_pointer_over_area();
+            let is_dragging = self.view_state.selection.as_ref().map_or(false, |s| s.active);
+            
+            if !is_over_area || is_dragging {
+                let response = ui.allocate_rect(available, egui::Sense::drag());
+                selection_consumed = true; 
+                
+                if response.drag_started() {
+                    if let Some(pos) = response.interact_pointer_pos() {
+                        self.view_state.selection = Some(SelectionState {
+                            start: pos,
+                            end: pos,
+                            active: true,
+                        });
+                    }
+                } else if response.dragged() {
+                    if let Some(pos) = response.interact_pointer_pos() {
+                        if let Some(sel) = &mut self.view_state.selection {
+                            sel.end = pos;
+                            sel.active = true;
+                        }
+                    }
+                } else if response.drag_stopped() {
+                    if let Some(sel) = &mut self.view_state.selection {
+                        sel.active = false;
+                        if sel.start.distance(sel.end) < 4.0 {
+                            self.view_state.selection = None;
+                        }
+                    }
+                }
+            }
+        }
+
+        if !selection_consumed {
+            let response = ui.allocate_rect(available, egui::Sense::click_and_drag());
+            if response.dragged() {
+                self.view_state.offset += response.drag_delta();
+                self.view_state.fit_mode = false;
+            }
         }
 
         let painter = ui.painter_at(available);
@@ -513,8 +722,120 @@ impl RustViewApp {
             
             mesh.indices.extend([0, 1, 2, 0, 2, 3]);
             painter.add(mesh);
+
+            // --- Selection Mode Overlay ---
+            if self.view_state.selection_mode {
+                let badge_rect = Rect::from_center_size(
+                    Pos2::new(available.center().x, available.top() + 40.0),
+                    egui::vec2(200.0, 30.0)
+                );
+                painter.rect_filled(badge_rect, 15.0, Color32::from_black_alpha(180));
+                painter.text(
+                    badge_rect.center(),
+                    egui::Align2::CENTER_CENTER,
+                    "영역 선택 모드 (드래그)",
+                    egui::FontId::proportional(14.0),
+                    Color32::from_rgb(108, 143, 255)
+                );
+                
+                // Also draw a thin blue border around the viewer area to show it's active
+                painter.rect_stroke(available, 0.0, egui::Stroke::new(2.0, Color32::from_rgb(108, 143, 255)));
+            }
             
-            // Overlay navigation buttons
+            // --- Selection Rendering ---
+            if let Some(sel) = &self.view_state.selection {
+                let full_selection = Rect::from_two_pos(sel.start, sel.end).intersect(available);
+                let active_rect = full_selection.intersect(img_rect);
+                
+                if full_selection.width() > 1.0 && full_selection.height() > 1.0 {
+                    draw_marching_ants(&painter, full_selection, _ctx.input(|i| i.time));
+                    _ctx.request_repaint(); // Animate marching ants
+                    
+                    // Floating Toolbar - Only if selection overlaps with image
+                    if !sel.active && active_rect.width() > 4.0 && active_rect.height() > 4.0 {
+                        // Keyboard Shortcuts using the active_rect (intersection with image)
+                        let mut do_copy = false;
+                        let mut do_save = false;
+                        _ctx.input(|i| {
+                            if i.key_pressed(Key::Enter) {
+                                do_copy = true;
+                            }
+                            if i.key_pressed(Key::S) && i.modifiers.command {
+                                do_save = true;
+                            }
+                        });
+                        
+                        if do_copy { self.copy_selection(active_rect, img_rect); }
+                        if do_save { self.save_selection(active_rect, img_rect); }
+                        
+                        if _ctx.input(|i| i.key_pressed(Key::Escape)) {
+                            self.view_state.selection = None;
+                        }
+
+                        // Ensure toolbar is within available area
+                        let mut toolbar_pos = Pos2::new(active_rect.center().x - 65.0, active_rect.bottom() + 10.0);
+                        let toolbar_size = egui::vec2(130.0, 34.0);
+                        
+                        // Keep within CentralPanel (available)
+                        if toolbar_pos.x < available.left() + 4.0 { toolbar_pos.x = available.left() + 4.0; }
+                        if toolbar_pos.x + toolbar_size.x > available.right() - 4.0 { toolbar_pos.x = available.right() - toolbar_size.x - 4.0; }
+                        if toolbar_pos.y + toolbar_size.y > available.bottom() - 10.0 { 
+                            toolbar_pos.y = active_rect.top() - toolbar_size.y - 10.0; 
+                        }
+                        if toolbar_pos.y < available.top() + 10.0 {
+                            toolbar_pos.y = active_rect.bottom() + 10.0;
+                        }
+
+                        // Use egui::Area to ensure the toolbar is on top and handles its own clicks
+                        egui::Area::new(egui::Id::new("selection_toolbar"))
+                            .fixed_pos(toolbar_pos)
+                            .order(egui::Order::Foreground)
+                            .show(_ctx, |ui| {
+                                egui::Frame::none()
+                                    .fill(Color32::from_rgb(32, 32, 36))
+                                    .stroke(egui::Stroke::new(1.0, Color32::from_rgb(60, 60, 65)))
+                                    .rounding(8.0)
+                                    .shadow(egui::epaint::Shadow {
+                                        offset: egui::vec2(0.0, 4.0),
+                                        blur: 12.0,
+                                        spread: 0.0,
+                                        color: Color32::from_black_alpha(180),
+                                    })
+                                    .inner_margin(4.0)
+                                    .show(ui, |ui| {
+                                        ui.set_min_size(toolbar_size);
+                                        ui.horizontal(|ui| {
+                                            ui.spacing_mut().item_spacing = egui::vec2(4.0, 0.0);
+                                            
+                                            let btn_copy = egui::Button::new(egui::RichText::new("📋").size(14.0))
+                                                .fill(egui::Color32::TRANSPARENT);
+                                            if ui.add(btn_copy).on_hover_text("클립보드 복사 (Enter)").clicked() {
+                                                self.copy_selection(active_rect, img_rect);
+                                            }
+                                            
+                                            let btn_save = egui::Button::new(egui::RichText::new("💾").size(14.0))
+                                                .fill(egui::Color32::TRANSPARENT);
+                                            if ui.add(btn_save).on_hover_text("파일로 저장 (Ctrl+S)").clicked() {
+                                                self.save_selection(active_rect, img_rect);
+                                            }
+                                            
+                                            ui.add_space(2.0);
+                                            ui.separator();
+                                            ui.add_space(2.0);
+                                            
+                                            let btn_close = egui::Button::new(egui::RichText::new("✕").size(12.0).strong())
+                                                .fill(egui::Color32::TRANSPARENT);
+                                            if ui.add(btn_close).on_hover_text("선택 취소 (Esc)").clicked() {
+                                                self.view_state.selection = None;
+                                            }
+                                        })
+                                    });
+                            });
+                    }
+                }
+            }
+            
+            // --- Navigation Overlays ---
             if self.folder_imgs.len() > 1 {
                 let btn_size = egui::vec2(50.0, 80.0);
                 let pointer_pos = _ctx.input(|i| i.pointer.hover_pos()).unwrap_or_default();
@@ -726,4 +1047,48 @@ fn save_config(config: &AppConfig) {
     let Some(path) = config_path() else { return; };
     if let Some(dir) = path.parent() { let _ = std::fs::create_dir_all(dir); }
     if let Ok(text) = toml::to_string(config) { let _ = std::fs::write(path, text); }
+}
+
+fn draw_marching_ants(painter: &Painter, rect: Rect, time: f64) {
+    let speed = 30.0;
+    let dash_len = 4.0;
+    let offset = (time * speed) % (dash_len * 2.0);
+    
+    let stroke_white = egui::Stroke::new(1.2, Color32::WHITE);
+    let stroke_black = egui::Stroke::new(1.2, Color32::BLACK);
+    
+    // Outer shadow/glow for visibility on any background
+    painter.rect_stroke(rect.expand(0.8), 0.0, egui::Stroke::new(1.0, Color32::from_black_alpha(80)));
+    
+    // Draw edges
+    let points = [
+        rect.left_top(), rect.right_top(),
+        rect.right_top(), rect.right_bottom(),
+        rect.right_bottom(), rect.left_bottom(),
+        rect.left_bottom(), rect.left_top(),
+    ];
+    
+    for i in (0..points.len()).step_by(2) {
+        let start = points[i];
+        let end = points[i+1];
+        let diff = end - start;
+        let len = diff.length();
+        let dir = diff / len;
+        
+        let mut d = -offset as f32;
+        while d < len {
+            let s = d.max(0.0);
+            let e = (d + dash_len as f32).min(len);
+            if e > s {
+                painter.line_segment([start + dir * s, start + dir * e], stroke_white);
+            }
+            
+            let s2 = (d + dash_len as f32).max(0.0);
+            let e2 = (d + dash_len as f32 * 2.0).min(len);
+            if e2 > s2 {
+                painter.line_segment([start + dir * s2, start + dir * e2], stroke_black);
+            }
+            d += dash_len as f32 * 2.0;
+        }
+    }
 }

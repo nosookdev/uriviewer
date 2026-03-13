@@ -1,0 +1,88 @@
+warning: unused imports: `CMF_DEFAULTONLY` and `CMF_VERBSONLY`
+  --> src\shell_ext.rs:18:80
+   |
+18 |     DragQueryFileW, IContextMenu2_Impl, IContextMenu_Impl, IShellExtInit_Impl, CMF_DEFAULTONLY,
+   |                                                                                ^^^^^^^^^^^^^^^
+19 |     CMF_VERBSONLY, CMINVOKECOMMANDINFO, HDROP,
+   |     ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `MFS_DEFAULT` and `MIIM_STATE`
+  --> src\shell_ext.rs:22:44
+   |
+22 |     InsertMenuItemW, HMENU, MENUITEMINFOW, MFS_DEFAULT, MFT_OWNER...
+   |                                            ^^^^^^^^^^^
+23 |     MIIM_FTYPE, MIIM_ID, MIIM_STATE, MIIM_STRING,
+   |                          ^^^^^^^^^^
+
+warning: unnecessary `unsafe` block
+   --> src\shell_ext.rs:134:23
+    |
+121 | ...   unsafe {
+    |       ------ because it's nested under this `unsafe` block
+...
+134 | ...       let ok1 = unsafe { InsertMenuItemW(hmenu, menu_index, ...
+    |                     ^^^^^^ unnecessary `unsafe` block
+    |
+    = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+   --> src\shell_ext.rs:150:23
+    |
+121 | ...   unsafe {
+    |       ------ because it's nested under this `unsafe` block
+...
+150 | ...       let ok2 = unsafe { InsertMenuItemW(hmenu, menu_index, ...
+    |                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> src\shell_ext.rs:168:31
+    |
+121 | ...   unsafe {
+    |       ------ because it's nested under this `unsafe` block
+...
+168 | ...               let ok3 = unsafe { InsertMenuItemW(hmenu, menu...
+    |                             ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> src\shell_ext.rs:181:21
+    |
+121 | ...   unsafe {
+    |       ------ because it's nested under this `unsafe` block
+...
+181 | ...       let _ = unsafe { InsertMenuItemW(hmenu, menu_index, tr...
+    |                   ^^^^^^ unnecessary `unsafe` block
+
+warning: constant `COLOR_MENU` is never used
+  --> src\shell_ext.rs:39:7
+   |
+39 | const COLOR_MENU: i32 = 4;
+   |       ^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused `BOOL` that must be used
+   --> src\shell_ext.rs:282:25
+    |
+282 |                         DeleteDC(hdc_mem);
+    |                         ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+282 |                         let _ = DeleteDC(hdc_mem);
+    |                         +++++++
+
+warning: `rustview` (lib) generated 8 warnings (run `cargo fix --lib -p rustview` to apply 2 suggestions)
+   Compiling rustview v0.1.0 (C:\_new_ai_project\uriviewer)
+error: this file contains an unclosed delimiter
+   --> src\main.rs:239:3
+    |
+161 | fn register_shell_extension() -> Result<(), String> {
+    |                                                     - unclosed delimiter
+...
+239 | }
+    |  ^
+
+error: could not compile `rustview` (bin "rustview") due to 1 previous error

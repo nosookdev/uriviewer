@@ -120,6 +120,12 @@ impl LoadedImage {
 
 // ── View State ────────────────────────────────────────────────────────────
 
+pub struct SelectionState {
+    pub start: egui::Pos2,
+    pub end: egui::Pos2,
+    pub active: bool,
+}
+
 pub struct ViewState {
     pub scale: f32,
     pub offset: egui::Vec2,
@@ -130,6 +136,8 @@ pub struct ViewState {
     pub anim_frame: usize,
     pub anim_time_ms: u32,
     pub anim_loop: bool,
+    pub selection_mode: bool,
+    pub selection: Option<SelectionState>,
 }
 
 impl Default for ViewState {
@@ -144,6 +152,8 @@ impl Default for ViewState {
             anim_frame: 0,
             anim_time_ms: 0,
             anim_loop: true,
+            selection_mode: false,
+            selection: None,
         }
     }
 }
@@ -156,6 +166,8 @@ impl ViewState {
         self.fit_mode = true;
         self.anim_frame = 0;
         self.anim_time_ms = 0;
+        self.selection_mode = false;
+        self.selection = None;
     }
 }
 

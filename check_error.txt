@@ -1,0 +1,114 @@
+    Checking rustview v0.1.0 (C:\_new_ai_project\uriviewer)
+warning: unused import: `Cursor`
+ --> src\loader.rs:5:26
+  |
+5 | use std::io::{BufReader, Cursor, Read};
+  |                          ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `CMF_DEFAULTONLY` and `CMF_VERBSONLY`
+  --> src\shell_ext.rs:19:5
+   |
+19 |     CMF_DEFAULTONLY, CMF_VERBSONLY, CMINVOKECOMMANDINFO, HDROP,
+   |     ^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^
+
+warning: value assigned to `menu_index` is never read
+   --> src\shell_ext.rs:220:21
+    |
+220 |                     menu_index += 1;
+    |                     ^^^^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: constant `COLOR_MENU` is never used
+  --> src\shell_ext.rs:57:7
+   |
+57 | const COLOR_MENU: i32 = 4;
+   |       ^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rustview` (lib) generated 4 warnings (run `cargo fix --lib -p rustview` to apply 2 suggestions)
+warning: function `get_reg_value` is never used
+   --> src\main.rs:210:4
+    |
+210 | fn get_reg_value(key_path: &str, value_name: &str) -> Result<String, String> {
+    |    ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `load_from_zip` is never used
+  --> src\loader.rs:11:8
+   |
+11 | pub fn load_from_zip(ctx: &egui::Context, archive_path: &Path, file_name: &str) -> Result<LoadedImage, String> {
+   |        ^^^^^^^^^^^^^
+
+warning: field `orientation` is never read
+  --> src\types.rs:62:9
+   |
+51 | pub struct ExifData {
+   |            -------- field in this struct
+...
+62 |     pub orientation: Option<String>,
+   |         ^^^^^^^^^^^
+   |
+   = note: `ExifData` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: fields `texture` and `delay_ms` are never read
+  --> src\types.rs:69:9
+   |
+68 | pub struct AnimationFrame {
+   |            -------------- fields in this struct
+69 |     pub texture: TextureHandle,
+   |         ^^^^^^^
+70 |     pub delay_ms: u32,
+   |         ^^^^^^^^
+
+warning: fields `frames` and `total_duration_ms` are never read
+  --> src\types.rs:74:9
+   |
+73 | pub struct AnimatedImage {
+   |            ------------- fields in this struct
+74 |     pub frames: Vec<AnimationFrame>,
+   |         ^^^^^^
+75 |     pub total_duration_ms: u32,
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: fields `format` and `animation` are never read
+  --> src\types.rs:86:9
+   |
+80 | pub struct LoadedImage {
+   |            ----------- fields in this struct
+...
+86 |     pub format: String,
+   |         ^^^^^^
+87 |     pub exif: Option<ExifData>,
+88 |     pub animation: Option<AnimatedImage>,
+   |         ^^^^^^^^^
+
+warning: fields `anim_playing` and `anim_loop` are never read
+   --> src\types.rs:105:9
+    |
+ 99 | pub struct ViewState {
+    |            --------- fields in this struct
+...
+105 |     pub anim_playing: bool,
+    |         ^^^^^^^^^^^^
+...
+108 |     pub anim_loop: bool,
+    |         ^^^^^^^^^
+
+warning: fields `folder` and `selected` are never read
+   --> src\types.rs:146:9
+    |
+145 | pub struct Gallery {
+    |            ------- fields in this struct
+146 |     pub folder: PathBuf,
+    |         ^^^^^^
+147 |     pub selected: usize,
+    |         ^^^^^^^^
+
+warning: `rustview` (bin "rustview") generated 9 warnings (1 duplicate)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.42s

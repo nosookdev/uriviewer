@@ -1,0 +1,24 @@
+   Compiling rustview v0.1.0 (C:\_new_ai_project\uriviewer)
+error[E0425]: cannot find function, tuple struct or tuple variant `GetSysColor` in module `windows::Win32::UI::WindowsAndMessaging`
+   --> src\shell_ext.rs:254:70
+    |
+254 | ...                   windows::Win32::UI::WindowsAndMessaging::GetSysColor(
+    |                                                                ^^^^^^^^^^^ not found in `windows::Win32::UI::WindowsAndMessaging`
+
+error[E0425]: cannot find value `COLOR_MENU` in module `windows::Win32::UI::WindowsAndMessaging`
+   --> src\shell_ext.rs:255:74
+    |
+255 | ...                   windows::Win32::UI::WindowsAndMessaging::COLOR_MENU,
+    |                                                                ^^^^^^^^^^ not found in `windows::Win32::UI::WindowsAndMessaging`
+
+warning: unused import: `GetSysColorBrush`
+ --> src\shell_ext.rs:7:78
+  |
+7 |     BitBlt, CreateCompatibleDC, CreateDIBSection, DeleteDC, FillRect, GetDC, GetSysColorBrush,
+  |                                                                              ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+For more information about this error, try `rustc --explain E0425`.
+warning: `rustview` (lib) generated 1 warning
+error: could not compile `rustview` (lib) due to 2 previous errors; 1 warning emitted

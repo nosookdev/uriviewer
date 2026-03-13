@@ -17,7 +17,7 @@ egui = "0.30"
 image = { version = "0.25", default-features = false, features = [
     "jpeg", "png", "gif", "bmp", "webp", "tiff", "ico",
 ] }
-rfd = { version = "0.14", default-features = false, features = ["xdg-portal"] }
+rfd = "0.14"
 kamadak-exif = "0.5"
 serde = { version = "1", features = ["derive"] }
 toml = "0.8"
@@ -31,6 +31,7 @@ usvg = "0.42"
 zip = "2.1"
 sysinfo = "0.33"
 walkdir = "2.5"
+arboard = "3.6.1"
 
 [lib]
 name = "uriviewer_ext"

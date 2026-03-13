@@ -677,7 +677,6 @@ impl RustViewApp {
             let response = ui.allocate_rect(available, egui::Sense::click_and_drag());
             if response.dragged() {
                 self.view_state.offset += response.drag_delta();
-                self.view_state.fit_mode = false;
             }
         }
 

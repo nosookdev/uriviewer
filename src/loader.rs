@@ -2,7 +2,7 @@
 
 use egui::{ColorImage, Context};
 use image::{AnimationDecoder, DynamicImage};
-use std::io::{BufReader, Cursor, Read};
+use std::io::{BufReader, Read};
 use std::path::Path;
 use chrono::{DateTime, Local};
 use zip::ZipArchive;

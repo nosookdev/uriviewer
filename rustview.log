@@ -958,3 +958,1115 @@
 [2026-03-14 04:06:40] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\60game-jan24.rar"
 [2026-03-14 04:06:40] Failed to create preview bitmap
 [2026-03-14 04:06:40] QueryContextMenu returning items_added=2
+[2026-03-14 22:55:16] Initialize called
+[2026-03-14 22:55:16] QueryContextMenu: idcmdfirst=92, indexmenu=0, uflags=0x12
+[2026-03-14 22:55:16] Insert CONVERT: Success
+[2026-03-14 22:55:16] Insert VIEW: Success
+[2026-03-14 22:55:16] Creating preview for: "C:\\Program Files (x86)\\Digiarty\\Winxvideo AI\\Winxvideo AI.exe"
+[2026-03-14 22:55:16] Failed to create preview bitmap
+[2026-03-14 22:55:16] QueryContextMenu returning items_added=2
+[2026-03-14 23:07:05] Initialize called
+[2026-03-14 23:07:05] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-14 23:07:05] Insert CONVERT: Success
+[2026-03-14 23:07:05] Insert VIEW: Success
+[2026-03-14 23:07:05] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\removed-bg (2).png"
+[2026-03-14 23:07:06] Insert PREVIEW: Success (hbitmap=HBITMAP(0xfffffffffa0518c8))
+[2026-03-14 23:07:06] QueryContextMenu returning items_added=3
+[2026-03-14 23:07:06] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4D5E020
+[2026-03-14 23:07:06] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D5E000
+[2026-03-14 23:07:06] HandleMenuMsg2: Drawing preview item...
+[2026-03-14 23:07:06] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D5E000
+[2026-03-14 23:07:06] HandleMenuMsg2: Drawing preview item...
+[2026-03-14 23:07:08] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D5E000
+[2026-03-14 23:07:08] HandleMenuMsg2: Drawing preview item...
+[2026-03-14 23:07:10] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D5E000
+[2026-03-14 23:07:10] HandleMenuMsg2: Drawing preview item...
+[2026-03-14 23:07:10] InvokeCommand: id=2
+[2026-03-14 23:07:10] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\removed-bg (2).png"
+[2026-03-14 23:07:10] Preview clicked (opening viewer)
+[2026-03-14 23:07:44] Initialize called
+[2026-03-14 23:07:44] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-14 23:07:44] Insert CONVERT: Success
+[2026-03-14 23:07:44] Insert VIEW: Success
+[2026-03-14 23:07:44] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\removed-bg (2).png"
+[2026-03-14 23:07:45] Insert PREVIEW: Success (hbitmap=HBITMAP(0x7f051334))
+[2026-03-14 23:07:45] QueryContextMenu returning items_added=3
+[2026-03-14 23:07:47] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4D5E020
+[2026-03-14 23:07:47] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D5E000
+[2026-03-14 23:07:47] HandleMenuMsg2: Drawing preview item...
+[2026-03-14 23:31:14] Initialize called
+[2026-03-14 23:31:14] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-14 23:31:14] Insert CONVERT: Success
+[2026-03-14 23:31:14] Insert VIEW: Success
+[2026-03-14 23:31:14] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-14 23:31:14] Insert PREVIEW: Success (hbitmap=HBITMAP(0x5a0511db))
+[2026-03-14 23:31:14] QueryContextMenu returning items_added=3
+[2026-03-14 23:31:17] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4D5E020
+[2026-03-14 23:31:17] Initialize called
+[2026-03-14 23:31:17] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-14 23:31:17] Insert CONVERT: Success
+[2026-03-14 23:31:17] Insert VIEW: Success
+[2026-03-14 23:31:17] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-14 23:31:17] Insert PREVIEW: Success (hbitmap=HBITMAP(0x160514f4))
+[2026-03-14 23:31:17] QueryContextMenu returning items_added=3
+[2026-03-14 23:31:17] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4D59BC0
+[2026-03-14 23:31:17] HandleMenuMsg2: Drawing preview item...
+[2026-03-14 23:31:18] InvokeCommand: id=2
+[2026-03-14 23:31:18] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor (1).png"
+[2026-03-14 23:31:18] Preview clicked (opening viewer)
+[2026-03-15 00:32:47] Initialize called
+[2026-03-15 00:32:47] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-15 00:32:47] Insert CONVERT: Success
+[2026-03-15 00:32:47] Insert VIEW: Success
+[2026-03-15 00:32:47] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor222.png"
+[2026-03-15 00:32:47] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffb80508fc))
+[2026-03-15 00:32:47] QueryContextMenu returning items_added=3
+[2026-03-15 00:32:48] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x48DDEF0
+[2026-03-15 00:32:48] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:32:48] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:32:48] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:32:48] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:32:48] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:32:48] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:32:49] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:32:49] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:32:49] InvokeCommand: id=2
+[2026-03-15 00:32:49] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\photo-editor222.png"
+[2026-03-15 00:32:49] Preview clicked (opening viewer)
+[2026-03-15 00:45:42] Initialize called
+[2026-03-15 00:45:42] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-15 00:45:42] Insert CONVERT: Success
+[2026-03-15 00:45:42] Insert VIEW: Success
+[2026-03-15 00:45:42] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\photo-editor222.png"
+[2026-03-15 00:45:42] Insert PREVIEW: Success (hbitmap=HBITMAP(0x5c050f3e))
+[2026-03-15 00:45:42] QueryContextMenu returning items_added=3
+[2026-03-15 00:45:45] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x48DDEF0
+[2026-03-15 00:45:45] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48D96E0
+[2026-03-15 00:45:45] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:45:45] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:45:45] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:45:45] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:45:45] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:56:19] Initialize called
+[2026-03-15 00:56:19] QueryContextMenu: idcmdfirst=31180, indexmenu=0, uflags=0x20494
+[2026-03-15 00:56:19] Insert CONVERT: Success
+[2026-03-15 00:56:19] Insert VIEW: Success
+[2026-03-15 00:56:19] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\crop_photo-editor.png"
+[2026-03-15 00:56:19] Insert PREVIEW: Success (hbitmap=HBITMAP(0x6a05151f))
+[2026-03-15 00:56:19] QueryContextMenu returning items_added=3
+[2026-03-15 00:56:22] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x48DDEF0
+[2026-03-15 00:56:22] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:56:22] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:56:24] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:56:24] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:56:25] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x48DDED0
+[2026-03-15 00:56:25] HandleMenuMsg2: Drawing preview item...
+[2026-03-15 00:56:25] InvokeCommand: id=2
+[2026-03-15 00:56:25] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\crop_photo-editor.png"
+[2026-03-15 00:56:25] Preview clicked (opening viewer)
+[2026-03-16 00:49:43] Initialize called
+[2026-03-16 00:49:43] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-16 00:49:43] Insert CONVERT: Success
+[2026-03-16 00:49:43] Insert VIEW: Success
+[2026-03-16 00:49:43] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\lovable-project-80a75bcb-75a3-4708-9f85-edca7fd4662e-2026-03-09.zip"
+[2026-03-16 00:49:43] Failed to create preview bitmap
+[2026-03-16 00:49:43] QueryContextMenu returning items_added=2
+[2026-03-16 00:49:45] Initialize called
+[2026-03-16 00:49:45] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-16 00:49:45] Insert CONVERT: Success
+[2026-03-16 00:49:45] Insert VIEW: Success
+[2026-03-16 00:49:45] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\lovable-project-80a75bcb-75a3-4708-9f85-edca7fd4662e-2026-03-09.zip"
+[2026-03-16 00:49:45] Failed to create preview bitmap
+[2026-03-16 00:49:45] QueryContextMenu returning items_added=2
+[2026-03-16 00:49:55] Initialize called
+[2026-03-16 00:49:55] QueryContextMenu: idcmdfirst=107, indexmenu=3, uflags=0x414
+[2026-03-16 00:49:55] Insert CONVERT: Success
+[2026-03-16 00:49:55] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\lovable-project-80a75bcb-75a3-4708-9f85-edca7fd4662e-2026-03-09.zip"
+[2026-03-16 00:49:55] Failed to create preview bitmap
+[2026-03-16 00:49:55] QueryContextMenu returning items_added=1
+[2026-03-16 00:50:13] Initialize called
+[2026-03-16 00:50:13] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-16 00:50:13] Insert CONVERT: Success
+[2026-03-16 00:50:13] Insert VIEW: Success
+[2026-03-16 00:50:13] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\lovable-project-80a75bcb-75a3-4708-9f85-edca7fd4662e-2026-03-09.zip"
+[2026-03-16 00:50:13] Failed to create preview bitmap
+[2026-03-16 00:50:13] QueryContextMenu returning items_added=2
+[2026-03-16 17:20:29] Initialize called
+[2026-03-16 17:20:29] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-16 17:20:29] Insert CONVERT: Success
+[2026-03-16 17:20:29] Insert VIEW: Success
+[2026-03-16 17:20:29] Creating preview for: "D:\\_dev_ai\\sd.webui1.0\\system\\transformers-cache\\version.txt"
+[2026-03-16 17:20:29] Failed to create preview bitmap
+[2026-03-16 17:20:29] QueryContextMenu returning items_added=2
+[2026-03-16 17:20:58] Initialize called
+[2026-03-16 17:20:58] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-16 17:20:58] Insert CONVERT: Success
+[2026-03-16 17:20:58] Insert VIEW: Success
+[2026-03-16 17:20:58] Creating preview for: "D:\\_dev_ai\\sd.webui\\run.bat"
+[2026-03-16 17:20:58] Failed to create preview bitmap
+[2026-03-16 17:20:58] QueryContextMenu returning items_added=2
+[2026-03-16 17:21:02] Initialize called
+[2026-03-16 17:21:02] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-16 17:21:02] Insert CONVERT: Success
+[2026-03-16 17:21:02] Insert VIEW: Success
+[2026-03-16 17:21:02] Creating preview for: "D:\\_dev_ai\\sd.webui1.0\\run.bat"
+[2026-03-16 17:21:02] Failed to create preview bitmap
+[2026-03-16 17:21:02] QueryContextMenu returning items_added=2
+[2026-03-18 16:54:25] Initialize called
+[2026-03-18 16:54:25] QueryContextMenu: idcmdfirst=16, indexmenu=0, uflags=0x802
+[2026-03-18 16:54:25] Insert CONVERT: Success
+[2026-03-18 16:54:25] Insert VIEW: Success
+[2026-03-18 16:54:25] Creating preview for: "C:\\WINDOWS\\system32\\compmgmt.msc"
+[2026-03-18 16:54:25] Failed to create preview bitmap
+[2026-03-18 16:54:25] QueryContextMenu returning items_added=2
+[2026-03-18 16:54:26] InvokeCommand: id=53104
+[2026-03-18 16:54:26] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\WINDOWS\\system32\\compmgmt.msc"
+[2026-03-18 16:54:26] Unknown command ID: 53104
+[2026-03-18 17:38:06] Initialize called
+[2026-03-18 17:38:06] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-18 17:38:06] Insert CONVERT: Success
+[2026-03-18 17:38:06] Insert VIEW: Success
+[2026-03-18 17:38:06] Creating preview for: "C:\\Users\\uripapa7\\Videos\\Movavi Library\\빌리_어텐션.mp4"
+[2026-03-18 17:38:06] Failed to create preview bitmap
+[2026-03-18 17:38:06] QueryContextMenu returning items_added=2
+[2026-03-18 23:03:33] Initialize called
+[2026-03-18 23:03:33] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20492
+[2026-03-18 23:03:33] Insert CONVERT: Success
+[2026-03-18 23:03:33] Insert VIEW: Success
+[2026-03-18 23:03:33] Creating preview for: "C:\\Users\\uripapa7\\AppData\\Local\\Tartube\\msys64\\home\\user\\tartube\\tartube_64bit.bat"
+[2026-03-18 23:03:33] Failed to create preview bitmap
+[2026-03-18 23:03:33] QueryContextMenu returning items_added=2
+[2026-03-19 00:09:18] Initialize called
+[2026-03-19 00:09:18] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 00:09:18] Insert CONVERT: Success
+[2026-03-19 00:09:18] Insert VIEW: Success
+[2026-03-19 00:09:18] Creating preview for: "D:\\download\\대기업도 배우는 이승필의 ChatGPT_GPTs바이블\\강의장-강의.mhtml"
+[2026-03-19 00:09:18] Failed to create preview bitmap
+[2026-03-19 00:09:18] QueryContextMenu returning items_added=2
+[2026-03-19 02:34:36] Initialize called
+[2026-03-19 02:34:36] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-19 02:34:36] Insert CONVERT: Success
+[2026-03-19 02:34:36] Insert VIEW: Success
+[2026-03-19 02:34:36] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\[강의 혜택] 분야별 프롬프트 200개 모음집.xlsx"
+[2026-03-19 02:34:36] Failed to create preview bitmap
+[2026-03-19 02:34:36] QueryContextMenu returning items_added=2
+[2026-03-19 02:35:26] Initialize called
+[2026-03-19 02:35:26] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 02:35:26] Insert CONVERT: Success
+[2026-03-19 02:35:26] Insert VIEW: Success
+[2026-03-19 02:35:26] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Documents\\part-2.-chatgpt-기초-다지기.pdf"
+[2026-03-19 02:35:26] Failed to create preview bitmap
+[2026-03-19 02:35:26] QueryContextMenu returning items_added=2
+[2026-03-19 03:28:12] Initialize called
+[2026-03-19 03:28:12] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 03:28:12] Insert CONVERT: Success
+[2026-03-19 03:28:12] Insert VIEW: Success
+[2026-03-19 03:28:12] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\46c4e9ec-050e-4ea6-aca6-b6f5820e3ddb.htm"
+[2026-03-19 03:28:12] Failed to create preview bitmap
+[2026-03-19 03:28:12] QueryContextMenu returning items_added=2
+[2026-03-19 04:14:38] Initialize called
+[2026-03-19 04:14:38] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 04:14:38] Insert CONVERT: Success
+[2026-03-19 04:14:38] Insert VIEW: Success
+[2026-03-19 04:14:38] Creating preview for: "D:\\download\\1일 1바이브코딩, 30개 프로젝트 완성! Cursor AI X Claude Code로 돈 버는 웹 & 앱 만들기\\index.html"
+[2026-03-19 04:14:38] Failed to create preview bitmap
+[2026-03-19 04:14:38] QueryContextMenu returning items_added=2
+[2026-03-19 13:12:29] Initialize called
+[2026-03-19 13:12:29] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 13:12:29] Insert CONVERT: Success
+[2026-03-19 13:12:29] Insert VIEW: Success
+[2026-03-19 13:12:29] Creating preview for: "D:\\download\\1일 1바이브코딩, 30개 프로젝트 완성! Cursor AI X Claude Code로 돈 버는 웹 & 앱 만들기\\index.html"
+[2026-03-19 13:12:29] Failed to create preview bitmap
+[2026-03-19 13:12:29] QueryContextMenu returning items_added=2
+[2026-03-19 14:12:22] Initialize called
+[2026-03-19 14:12:22] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 14:12:22] Insert CONVERT: Success
+[2026-03-19 14:12:22] Insert VIEW: Success
+[2026-03-19 14:12:22] Creating preview for: "D:\\download\\1일 1바이브코딩, 30개 프로젝트 완성! Cursor AI X Claude Code로 돈 버는 웹 & 앱 만들기\\강의장-강의.ts"
+[2026-03-19 14:12:22] Failed to create preview bitmap
+[2026-03-19 14:12:22] QueryContextMenu returning items_added=2
+[2026-03-19 19:57:21] Initialize called
+[2026-03-19 19:57:21] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 19:57:21] Insert CONVERT: Success
+[2026-03-19 19:57:21] Insert VIEW: Success
+[2026-03-19 19:57:21] Creating preview for: "D:\\download\\1일 1바이브코딩, 30개 프로젝트 완성! Cursor AI X Claude Code로 돈 버는 웹 & 앱 만들기\\050406. 업비트 API로 데이터 수집하기.ts"
+[2026-03-19 19:57:21] Failed to create preview bitmap
+[2026-03-19 19:57:21] QueryContextMenu returning items_added=2
+[2026-03-19 19:57:29] Initialize called
+[2026-03-19 19:57:29] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-19 19:57:29] Insert CONVERT: Success
+[2026-03-19 19:57:29] Insert VIEW: Success
+[2026-03-19 19:57:29] Creating preview for: "D:\\download\\1일 1바이브코딩, 30개 프로젝트 완성! Cursor AI X Claude Code로 돈 버는 웹 & 앱 만들기\\050406. 업비트 API로 데이터 수집하기.ts"
+[2026-03-19 19:57:29] Failed to create preview bitmap
+[2026-03-19 19:57:29] QueryContextMenu returning items_added=2
+[2026-03-19 23:13:43] Initialize called
+[2026-03-19 23:13:43] QueryContextMenu: idcmdfirst=31177, indexmenu=0, uflags=0x20490
+[2026-03-19 23:13:43] Insert CONVERT: Success
+[2026-03-19 23:13:43] Insert VIEW: Success
+[2026-03-19 23:13:43] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Untitled Project (5).png"
+[2026-03-19 23:13:44] Insert PREVIEW: Success (hbitmap=HBITMAP(0x30529c6))
+[2026-03-19 23:13:44] QueryContextMenu returning items_added=3
+[2026-03-19 23:13:44] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0xD1405FADD0
+[2026-03-19 23:13:44] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0xD1405FADB0
+[2026-03-19 23:13:44] HandleMenuMsg2: Drawing preview item...
+[2026-03-19 23:13:45] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0xD1405FADB0
+[2026-03-19 23:13:45] HandleMenuMsg2: Drawing preview item...
+[2026-03-21 02:36:46] Initialize called
+[2026-03-21 02:36:46] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 02:36:46] Insert CONVERT: Success
+[2026-03-21 02:36:46] Insert VIEW: Success
+[2026-03-21 02:36:46] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\010101. 1.강의 개요.mp4"
+[2026-03-21 02:36:46] Failed to create preview bitmap
+[2026-03-21 02:36:46] QueryContextMenu returning items_added=2
+[2026-03-21 02:39:42] Initialize called
+[2026-03-21 02:39:42] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 02:39:42] Insert CONVERT: Success
+[2026-03-21 02:39:42] Insert VIEW: Success
+[2026-03-21 02:39:42] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\010103. 3.n8n으로 시작하는 노코드 자동화 혁명.mp4"
+[2026-03-21 02:39:42] Failed to create preview bitmap
+[2026-03-21 02:39:42] QueryContextMenu returning items_added=2
+[2026-03-21 03:03:54] Initialize called
+[2026-03-21 03:03:54] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-21 03:03:54] Insert CONVERT: Success
+[2026-03-21 03:03:54] Insert VIEW: Success
+[2026-03-21 03:03:54] Creating preview for: "D:\\download\\바이브코딩 + 자동화 풀 패키지 21개 프로젝트로 내 인생 자동화 (w. n8n x Claude Code)\\010103. 3.n8n으로 시작하는 노코드 자동화 혁명.mp4"
+[2026-03-21 03:03:54] Failed to create preview bitmap
+[2026-03-21 03:03:54] QueryContextMenu returning items_added=2
+[2026-03-21 03:45:57] Initialize called
+[2026-03-21 03:45:57] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 03:45:57] Insert CONVERT: Success
+[2026-03-21 03:45:57] Insert VIEW: Success
+[2026-03-21 03:45:57] Creating preview for: "D:\\download\\바이브코딩 + 자동화 풀 패키지 21개 프로젝트로 내 인생 자동화 (w. n8n x Claude Code)\\강의자료.txt"
+[2026-03-21 03:45:57] Failed to create preview bitmap
+[2026-03-21 03:45:57] QueryContextMenu returning items_added=2
+[2026-03-21 04:15:48] Initialize called
+[2026-03-21 04:15:48] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 04:15:48] Insert CONVERT: Success
+[2026-03-21 04:15:48] Insert VIEW: Success
+[2026-03-21 04:15:48] Creating preview for: "D:\\download\\MCP와 A2A로 끝내는 상상도 못할 Multi-Agent 구축\\강의자료.txt"
+[2026-03-21 04:15:48] Failed to create preview bitmap
+[2026-03-21 04:15:48] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:18] Initialize called
+[2026-03-21 04:16:18] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 04:16:18] Insert CONVERT: Success
+[2026-03-21 04:16:18] Insert VIEW: Success
+[2026-03-21 04:16:18] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774031655.zip"
+[2026-03-21 04:16:18] Failed to create preview bitmap
+[2026-03-21 04:16:18] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:21] Initialize called
+[2026-03-21 04:16:21] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:16:21] Insert CONVERT: Success
+[2026-03-21 04:16:21] Insert VIEW: Success
+[2026-03-21 04:16:21] Creating preview for: "D:\\download\\파이썬필수문법-백엔드의이해-교안.zip"
+[2026-03-21 04:16:21] Failed to create preview bitmap
+[2026-03-21 04:16:21] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:24] Initialize called
+[2026-03-21 04:16:24] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:16:24] Insert CONVERT: Success
+[2026-03-21 04:16:24] Insert VIEW: Success
+[2026-03-21 04:16:24] Creating preview for: "D:\\download\\파이썬필수문법-백엔드의이해-교안.zip"
+[2026-03-21 04:16:24] Failed to create preview bitmap
+[2026-03-21 04:16:24] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:26] Initialize called
+[2026-03-21 04:16:26] QueryContextMenu: idcmdfirst=31063, indexmenu=0, uflags=0x20494
+[2026-03-21 04:16:26] Insert CONVERT: Success
+[2026-03-21 04:16:26] Insert VIEW: Success
+[2026-03-21 04:16:26] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774031655.zip"
+[2026-03-21 04:16:26] Failed to create preview bitmap
+[2026-03-21 04:16:26] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:26] Initialize called
+[2026-03-21 04:16:26] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:16:26] Insert CONVERT: Success
+[2026-03-21 04:16:26] Insert VIEW: Success
+[2026-03-21 04:16:26] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774031655.zip"
+[2026-03-21 04:16:26] Failed to create preview bitmap
+[2026-03-21 04:16:26] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:43] Initialize called
+[2026-03-21 04:16:43] QueryContextMenu: idcmdfirst=31063, indexmenu=0, uflags=0x20494
+[2026-03-21 04:16:43] Insert CONVERT: Success
+[2026-03-21 04:16:43] Insert VIEW: Success
+[2026-03-21 04:16:43] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774031655.zip"
+[2026-03-21 04:16:43] Failed to create preview bitmap
+[2026-03-21 04:16:43] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:43] Initialize called
+[2026-03-21 04:16:43] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:16:43] Insert CONVERT: Success
+[2026-03-21 04:16:43] Insert VIEW: Success
+[2026-03-21 04:16:43] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774031655.zip"
+[2026-03-21 04:16:43] Failed to create preview bitmap
+[2026-03-21 04:16:43] QueryContextMenu returning items_added=2
+[2026-03-21 04:16:45] Initialize called
+[2026-03-21 04:16:45] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:16:45] Insert CONVERT: Success
+[2026-03-21 04:16:45] Insert VIEW: Success
+[2026-03-21 04:16:45] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774031655.zip"
+[2026-03-21 04:16:45] Failed to create preview bitmap
+[2026-03-21 04:16:45] QueryContextMenu returning items_added=2
+[2026-03-21 04:20:14] Initialize called
+[2026-03-21 04:20:14] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:20:14] Insert CONVERT: Success
+[2026-03-21 04:20:14] Insert VIEW: Success
+[2026-03-21 04:20:14] Creating preview for: "D:\\download\\mcp와-a2a로-끝내는-상상도-못할-강의자료--통합-.zip"
+[2026-03-21 04:20:14] Failed to create preview bitmap
+[2026-03-21 04:20:14] QueryContextMenu returning items_added=2
+[2026-03-21 04:20:16] Initialize called
+[2026-03-21 04:20:16] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:20:16] Insert CONVERT: Success
+[2026-03-21 04:20:16] Insert VIEW: Success
+[2026-03-21 04:20:16] Creating preview for: "D:\\download\\mcp와-a2a로-끝내는-상상도-못할-강의자료--통합-.zip"
+[2026-03-21 04:20:16] Failed to create preview bitmap
+[2026-03-21 04:20:16] QueryContextMenu returning items_added=2
+[2026-03-21 04:33:35] Initialize called
+[2026-03-21 04:33:35] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:33:35] Insert CONVERT: Success
+[2026-03-21 04:33:35] Insert VIEW: Success
+[2026-03-21 04:33:35] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774035036.zip"
+[2026-03-21 04:33:35] Failed to create preview bitmap
+[2026-03-21 04:33:35] QueryContextMenu returning items_added=2
+[2026-03-21 04:33:41] Initialize called
+[2026-03-21 04:33:41] QueryContextMenu: idcmdfirst=31063, indexmenu=0, uflags=0x20494
+[2026-03-21 04:33:41] Insert CONVERT: Success
+[2026-03-21 04:33:41] Insert VIEW: Success
+[2026-03-21 04:33:41] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774035036.zip"
+[2026-03-21 04:33:41] Failed to create preview bitmap
+[2026-03-21 04:33:41] QueryContextMenu returning items_added=2
+[2026-03-21 04:33:45] Initialize called
+[2026-03-21 04:33:45] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:33:45] Insert CONVERT: Success
+[2026-03-21 04:33:45] Insert VIEW: Success
+[2026-03-21 04:33:45] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774035036.zip"
+[2026-03-21 04:33:45] Failed to create preview bitmap
+[2026-03-21 04:33:45] QueryContextMenu returning items_added=2
+[2026-03-21 04:33:46] Initialize called
+[2026-03-21 04:33:46] QueryContextMenu: idcmdfirst=31063, indexmenu=0, uflags=0x20494
+[2026-03-21 04:33:46] Insert CONVERT: Success
+[2026-03-21 04:33:46] Insert VIEW: Success
+[2026-03-21 04:33:46] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774035036.zip"
+[2026-03-21 04:33:46] Failed to create preview bitmap
+[2026-03-21 04:33:46] QueryContextMenu returning items_added=2
+[2026-03-21 04:33:46] Initialize called
+[2026-03-21 04:33:46] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:33:46] Insert CONVERT: Success
+[2026-03-21 04:33:46] Insert VIEW: Success
+[2026-03-21 04:33:46] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774035036.zip"
+[2026-03-21 04:33:46] Failed to create preview bitmap
+[2026-03-21 04:33:46] QueryContextMenu returning items_added=2
+[2026-03-21 04:33:49] Initialize called
+[2026-03-21 04:33:49] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:33:49] Insert CONVERT: Success
+[2026-03-21 04:33:49] Insert VIEW: Success
+[2026-03-21 04:33:49] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774035036.zip"
+[2026-03-21 04:33:49] Failed to create preview bitmap
+[2026-03-21 04:33:49] QueryContextMenu returning items_added=2
+[2026-03-21 04:34:08] Initialize called
+[2026-03-21 04:34:08] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-21 04:34:08] Insert CONVERT: Success
+[2026-03-21 04:34:08] Insert VIEW: Success
+[2026-03-21 04:34:08] Creating preview for: "D:\\download\\code_sandbox_light_b0db4694_1774035036\\index.html"
+[2026-03-21 04:34:08] Failed to create preview bitmap
+[2026-03-21 04:34:08] QueryContextMenu returning items_added=2
+[2026-03-21 04:36:26] Initialize called
+[2026-03-21 04:36:26] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 04:36:26] Insert CONVERT: Success
+[2026-03-21 04:36:26] Insert VIEW: Success
+[2026-03-21 04:36:26] Creating preview for: "C:\\_new_ai_project\\code_sandbox_light\\index.html"
+[2026-03-21 04:36:26] Failed to create preview bitmap
+[2026-03-21 04:36:26] QueryContextMenu returning items_added=2
+[2026-03-21 04:36:45] Initialize called
+[2026-03-21 04:36:45] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 04:36:45] Insert CONVERT: Success
+[2026-03-21 04:36:45] Insert VIEW: Success
+[2026-03-21 04:36:45] Creating preview for: "C:\\_new_ai_project\\code_sandbox_light\\README.md"
+[2026-03-21 04:36:45] Failed to create preview bitmap
+[2026-03-21 04:36:45] QueryContextMenu returning items_added=2
+[2026-03-21 04:41:25] Initialize called
+[2026-03-21 04:41:25] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:41:25] Insert CONVERT: Success
+[2026-03-21 04:41:25] Insert VIEW: Success
+[2026-03-21 04:41:25] Creating preview for: "D:\\download\\강의자료.zip"
+[2026-03-21 04:41:25] Failed to create preview bitmap
+[2026-03-21 04:41:25] QueryContextMenu returning items_added=2
+[2026-03-21 04:41:27] Initialize called
+[2026-03-21 04:41:27] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:41:27] Insert CONVERT: Success
+[2026-03-21 04:41:27] Insert VIEW: Success
+[2026-03-21 04:41:27] Creating preview for: "D:\\download\\강의자료.zip"
+[2026-03-21 04:41:27] Failed to create preview bitmap
+[2026-03-21 04:41:27] QueryContextMenu returning items_added=2
+[2026-03-21 04:53:09] Initialize called
+[2026-03-21 04:53:09] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:53:09] Insert CONVERT: Success
+[2026-03-21 04:53:09] Insert VIEW: Success
+[2026-03-21 04:53:09] Creating preview for: "D:\\download\\온톨로지-강의자료.zip"
+[2026-03-21 04:53:09] Failed to create preview bitmap
+[2026-03-21 04:53:09] QueryContextMenu returning items_added=2
+[2026-03-21 04:53:11] Initialize called
+[2026-03-21 04:53:11] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 04:53:11] Insert CONVERT: Success
+[2026-03-21 04:53:11] Insert VIEW: Success
+[2026-03-21 04:53:11] Creating preview for: "D:\\download\\온톨로지-강의자료.zip"
+[2026-03-21 04:53:11] Failed to create preview bitmap
+[2026-03-21 04:53:11] QueryContextMenu returning items_added=2
+[2026-03-21 05:27:44] Initialize called
+[2026-03-21 05:27:44] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 05:27:44] Insert CONVERT: Success
+[2026-03-21 05:27:44] Insert VIEW: Success
+[2026-03-21 05:27:44] Creating preview for: "D:\\download\\-강의자료-부가자료-프로젝트-워크플로우-템플릿-모음.zip"
+[2026-03-21 05:27:44] Failed to create preview bitmap
+[2026-03-21 05:27:44] QueryContextMenu returning items_added=2
+[2026-03-21 05:27:44] Initialize called
+[2026-03-21 05:27:44] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 05:27:44] Insert CONVERT: Success
+[2026-03-21 05:27:44] Insert VIEW: Success
+[2026-03-21 05:27:44] Creating preview for: "D:\\download\\n8n-강의교안.zip"
+[2026-03-21 05:27:44] Failed to create preview bitmap
+[2026-03-21 05:27:44] QueryContextMenu returning items_added=2
+[2026-03-21 05:27:45] Initialize called
+[2026-03-21 05:27:45] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 05:27:45] Insert CONVERT: Success
+[2026-03-21 05:27:45] Insert VIEW: Success
+[2026-03-21 05:27:45] Creating preview for: "D:\\download\\n8n-강의교안.zip"
+[2026-03-21 05:27:45] Failed to create preview bitmap
+[2026-03-21 05:27:45] QueryContextMenu returning items_added=2
+[2026-03-21 05:27:49] Initialize called
+[2026-03-21 05:27:49] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 05:27:49] Insert CONVERT: Success
+[2026-03-21 05:27:49] Insert VIEW: Success
+[2026-03-21 05:27:49] Creating preview for: "D:\\download\\n8n-강의교안.zip"
+[2026-03-21 05:27:49] Failed to create preview bitmap
+[2026-03-21 05:27:49] QueryContextMenu returning items_added=2
+[2026-03-21 05:45:22] Initialize called
+[2026-03-21 05:45:22] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 05:45:22] Insert CONVERT: Success
+[2026-03-21 05:45:22] Insert VIEW: Success
+[2026-03-21 05:45:22] Creating preview for: "D:\\download\\복붙으로-끝내는-미친-ai-업무-자동화-with-claude-부가자료.zip"
+[2026-03-21 05:45:22] Failed to create preview bitmap
+[2026-03-21 05:45:22] QueryContextMenu returning items_added=2
+[2026-03-21 05:45:23] Initialize called
+[2026-03-21 05:45:23] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 05:45:23] Insert CONVERT: Success
+[2026-03-21 05:45:23] Insert VIEW: Success
+[2026-03-21 05:45:23] Creating preview for: "D:\\download\\복붙으로-끝내는-미친-ai-업무-자동화-with-claude-강의자료.zip"
+[2026-03-21 05:45:23] Failed to create preview bitmap
+[2026-03-21 05:45:23] QueryContextMenu returning items_added=2
+[2026-03-21 05:45:23] Initialize called
+[2026-03-21 05:45:23] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 05:45:23] Insert CONVERT: Success
+[2026-03-21 05:45:23] Insert VIEW: Success
+[2026-03-21 05:45:23] Creating preview for: "D:\\download\\복붙으로-끝내는-미친-ai-업무-자동화-with-claude-강의자료.zip"
+[2026-03-21 05:45:23] Failed to create preview bitmap
+[2026-03-21 05:45:23] QueryContextMenu returning items_added=2
+[2026-03-21 05:45:26] Initialize called
+[2026-03-21 05:45:26] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 05:45:26] Insert CONVERT: Success
+[2026-03-21 05:45:26] Insert VIEW: Success
+[2026-03-21 05:45:26] Creating preview for: "D:\\download\\복붙으로-끝내는-미친-ai-업무-자동화-with-claude-강의자료.zip"
+[2026-03-21 05:45:26] Failed to create preview bitmap
+[2026-03-21 05:45:26] QueryContextMenu returning items_added=2
+[2026-03-21 06:05:00] Initialize called
+[2026-03-21 06:05:00] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 06:05:00] Insert CONVERT: Success
+[2026-03-21 06:05:00] Insert VIEW: Success
+[2026-03-21 06:05:00] Creating preview for: "D:\\download\\강의교안.zip"
+[2026-03-21 06:05:00] Failed to create preview bitmap
+[2026-03-21 06:05:00] QueryContextMenu returning items_added=2
+[2026-03-21 06:05:03] Initialize called
+[2026-03-21 06:05:03] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 06:05:03] Insert CONVERT: Success
+[2026-03-21 06:05:03] Insert VIEW: Success
+[2026-03-21 06:05:03] Creating preview for: "D:\\download\\강의교안.zip"
+[2026-03-21 06:05:03] Failed to create preview bitmap
+[2026-03-21 06:05:03] QueryContextMenu returning items_added=2
+[2026-03-21 06:49:41] Initialize called
+[2026-03-21 06:49:41] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 06:49:41] Insert CONVERT: Success
+[2026-03-21 06:49:41] Insert VIEW: Success
+[2026-03-21 06:49:41] Creating preview for: "D:\\download\\실패 없이 완주하는 파이썬 데이터 분석 입문\\18026_10039.html"
+[2026-03-21 06:49:41] Failed to create preview bitmap
+[2026-03-21 06:49:41] QueryContextMenu returning items_added=2
+[2026-03-21 06:59:58] Initialize called
+[2026-03-21 06:59:58] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 06:59:58] Insert CONVERT: Success
+[2026-03-21 06:59:58] Insert VIEW: Success
+[2026-03-21 06:59:58] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Documents\\Handbook_Python_Final.pdf"
+[2026-03-21 06:59:58] Failed to create preview bitmap
+[2026-03-21 06:59:58] QueryContextMenu returning items_added=2
+[2026-03-21 12:30:18] Initialize called
+[2026-03-21 12:30:18] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 12:30:18] Insert CONVERT: Success
+[2026-03-21 12:30:18] Insert VIEW: Success
+[2026-03-21 12:30:18] Creating preview for: "D:\\download\\절대 실패하지 않는 무적의 바이브코딩 성공 공식 (w. 100가지 케이스)\\18026_24529.html"
+[2026-03-21 12:30:18] Failed to create preview bitmap
+[2026-03-21 12:30:18] QueryContextMenu returning items_added=2
+[2026-03-21 12:47:51] Initialize called
+[2026-03-21 12:47:51] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 12:47:51] Insert CONVERT: Success
+[2026-03-21 12:47:51] Insert VIEW: Success
+[2026-03-21 12:47:51] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-21 12:47:51] Failed to create preview bitmap
+[2026-03-21 12:47:51] QueryContextMenu returning items_added=2
+[2026-03-21 12:47:53] Initialize called
+[2026-03-21 12:47:53] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 12:47:53] Insert CONVERT: Success
+[2026-03-21 12:47:53] Insert VIEW: Success
+[2026-03-21 12:47:53] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-21 12:47:53] Failed to create preview bitmap
+[2026-03-21 12:47:53] QueryContextMenu returning items_added=2
+[2026-03-21 13:31:10] Initialize called
+[2026-03-21 13:31:10] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 13:31:10] Insert CONVERT: Success
+[2026-03-21 13:31:10] Insert VIEW: Success
+[2026-03-21 13:31:10] Creating preview for: "D:\\download\\코드-한-줄-없이-실전-rag-구축-가이드--no-code-rag-6가지-프로젝트-강의자료.zip"
+[2026-03-21 13:31:10] Failed to create preview bitmap
+[2026-03-21 13:31:10] QueryContextMenu returning items_added=2
+[2026-03-21 13:31:11] Initialize called
+[2026-03-21 13:31:11] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 13:31:11] Insert CONVERT: Success
+[2026-03-21 13:31:11] Insert VIEW: Success
+[2026-03-21 13:31:11] Creating preview for: "D:\\download\\코드-한-줄-없이-실전-rag-구축-가이드--no-code-rag-6가지-프로젝트-강의자료.zip"
+[2026-03-21 13:31:11] Failed to create preview bitmap
+[2026-03-21 13:31:11] QueryContextMenu returning items_added=2
+[2026-03-21 15:01:31] Initialize called
+[2026-03-21 15:01:31] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 15:01:31] Insert CONVERT: Success
+[2026-03-21 15:01:31] Insert VIEW: Success
+[2026-03-21 15:01:31] Creating preview for: "D:\\websiteCopier\\AICO - 쇼츠를 만드는 가장 스마트한 방법.mhtml"
+[2026-03-21 15:01:31] Failed to create preview bitmap
+[2026-03-21 15:01:31] QueryContextMenu returning items_added=2
+[2026-03-21 15:18:51] Initialize called
+[2026-03-21 15:18:51] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 15:18:51] Insert CONVERT: Success
+[2026-03-21 15:18:51] Insert VIEW: Success
+[2026-03-21 15:18:51] Creating preview for: "D:\\download\\mcp서버구축가이드-강의자료.zip"
+[2026-03-21 15:18:51] Failed to create preview bitmap
+[2026-03-21 15:18:51] QueryContextMenu returning items_added=2
+[2026-03-21 15:18:52] Initialize called
+[2026-03-21 15:18:52] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 15:18:52] Insert CONVERT: Success
+[2026-03-21 15:18:52] Insert VIEW: Success
+[2026-03-21 15:18:52] Creating preview for: "D:\\download\\mcp서버구축가이드-강의자료.zip"
+[2026-03-21 15:18:52] Failed to create preview bitmap
+[2026-03-21 15:18:52] QueryContextMenu returning items_added=2
+[2026-03-21 15:54:03] Initialize called
+[2026-03-21 15:54:03] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 15:54:03] Insert CONVERT: Success
+[2026-03-21 15:54:03] Insert VIEW: Success
+[2026-03-21 15:54:03] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-21 15:54:03] Failed to create preview bitmap
+[2026-03-21 15:54:03] QueryContextMenu returning items_added=2
+[2026-03-21 15:54:04] Initialize called
+[2026-03-21 15:54:04] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 15:54:04] Insert CONVERT: Success
+[2026-03-21 15:54:04] Insert VIEW: Success
+[2026-03-21 15:54:04] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-21 15:54:04] Failed to create preview bitmap
+[2026-03-21 15:54:04] QueryContextMenu returning items_added=2
+[2026-03-21 16:43:06] Initialize called
+[2026-03-21 16:43:06] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 16:43:06] Insert CONVERT: Success
+[2026-03-21 16:43:06] Insert VIEW: Success
+[2026-03-21 16:43:06] Creating preview for: "D:\\download\\-혜택자료-만능계약서탬플릿.zip"
+[2026-03-21 16:43:06] Failed to create preview bitmap
+[2026-03-21 16:43:06] QueryContextMenu returning items_added=2
+[2026-03-21 16:43:08] Initialize called
+[2026-03-21 16:43:08] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 16:43:08] Insert CONVERT: Success
+[2026-03-21 16:43:08] Insert VIEW: Success
+[2026-03-21 16:43:08] Creating preview for: "D:\\download\\-혜택자료-만능계약서탬플릿.zip"
+[2026-03-21 16:43:08] Failed to create preview bitmap
+[2026-03-21 16:43:08] QueryContextMenu returning items_added=2
+[2026-03-21 16:43:42] Initialize called
+[2026-03-21 16:43:42] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-21 16:43:42] Insert CONVERT: Success
+[2026-03-21 16:43:42] Insert VIEW: Success
+[2026-03-21 16:43:42] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\[혜택자료] 프로젝트_기능별 단가표 + 외주플랫폼 N종 정리.xlsx"
+[2026-03-21 16:43:42] Failed to create preview bitmap
+[2026-03-21 16:43:42] QueryContextMenu returning items_added=2
+[2026-03-21 16:45:34] Initialize called
+[2026-03-21 16:45:34] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 16:45:34] Insert CONVERT: Success
+[2026-03-21 16:45:34] Insert VIEW: Success
+[2026-03-21 16:45:34] Creating preview for: "D:\\download\\외주바이블-강의자료.zip"
+[2026-03-21 16:45:34] Failed to create preview bitmap
+[2026-03-21 16:45:34] QueryContextMenu returning items_added=2
+[2026-03-21 16:45:38] Initialize called
+[2026-03-21 16:45:38] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-21 16:45:38] Insert CONVERT: Success
+[2026-03-21 16:45:38] Insert VIEW: Success
+[2026-03-21 16:45:38] Creating preview for: "D:\\download\\외주바이블-강의자료.zip"
+[2026-03-21 16:45:38] Failed to create preview bitmap
+[2026-03-21 16:45:38] QueryContextMenu returning items_added=2
+[2026-03-21 21:28:24] Initialize called
+[2026-03-21 21:28:24] QueryContextMenu: idcmdfirst=63, indexmenu=0, uflags=0xC100
+[2026-03-21 21:28:24] Insert CONVERT: Success
+[2026-03-21 21:28:24] Insert VIEW: Success
+[2026-03-21 21:28:24] Creating preview for: "D:\\다운로드강의250711\\Udemy_Server_Administrator_IT_Boot_Camp_100_Labs_Hands_On_2025-6.part4_Downloadly.ir.rar"
+[2026-03-21 21:28:24] Failed to create preview bitmap
+[2026-03-21 21:28:24] QueryContextMenu returning items_added=2
+[2026-03-21 21:28:25] Initialize called
+[2026-03-21 21:28:25] QueryContextMenu: idcmdfirst=62, indexmenu=0, uflags=0xC100
+[2026-03-21 21:28:25] Insert CONVERT: Success
+[2026-03-21 21:28:25] Insert VIEW: Success
+[2026-03-21 21:28:25] Creating preview for: "D:\\다운로드강의250711\\Udemy_Server_Administrator_IT_Boot_Camp_100_Labs_Hands_On_2025-6.part4_Downloadly.ir.rar"
+[2026-03-21 21:28:25] Failed to create preview bitmap
+[2026-03-21 21:28:25] QueryContextMenu returning items_added=2
+[2026-03-21 21:28:26] Initialize called
+[2026-03-21 21:28:26] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-21 21:28:26] Insert CONVERT: Success
+[2026-03-21 21:28:26] Insert VIEW: Success
+[2026-03-21 21:28:26] Creating preview for: "D:\\다운로드강의250711\\Udemy_Server_Administrator_IT_Boot_Camp_100_Labs_Hands_On_2025-6.part1_Downloadly.ir.rar"
+[2026-03-21 21:28:26] Failed to create preview bitmap
+[2026-03-21 21:28:26] QueryContextMenu returning items_added=2
+[2026-03-21 21:28:29] Initialize called
+[2026-03-21 21:28:29] QueryContextMenu: idcmdfirst=62, indexmenu=0, uflags=0xC100
+[2026-03-21 21:28:29] Insert CONVERT: Success
+[2026-03-21 21:28:29] Insert VIEW: Success
+[2026-03-21 21:28:29] Creating preview for: "D:\\다운로드강의250711\\Udemy_Server_Administrator_IT_Boot_Camp_100_Labs_Hands_On_2025-6.part4_Downloadly.ir.rar"
+[2026-03-21 21:28:29] Failed to create preview bitmap
+[2026-03-21 21:28:29] QueryContextMenu returning items_added=2
+[2026-03-21 21:29:09] Initialize called
+[2026-03-21 21:29:09] QueryContextMenu: idcmdfirst=63, indexmenu=0, uflags=0xC100
+[2026-03-21 21:29:09] Insert CONVERT: Success
+[2026-03-21 21:29:09] Insert VIEW: Success
+[2026-03-21 21:29:09] Creating preview for: "D:\\다운로드강의250711\\Udemy_Master_Every_Step_Modeling_Painting_Animation_and_Lighting_2025-5.part1_Downloadly.ir.rar"
+[2026-03-21 21:29:09] Failed to create preview bitmap
+[2026-03-21 21:29:09] QueryContextMenu returning items_added=2
+[2026-03-21 21:29:15] Initialize called
+[2026-03-21 21:29:15] QueryContextMenu: idcmdfirst=62, indexmenu=0, uflags=0xC100
+[2026-03-21 21:29:15] Insert CONVERT: Success
+[2026-03-21 21:29:15] Insert VIEW: Success
+[2026-03-21 21:29:15] Creating preview for: "D:\\다운로드강의250711\\Udemy_Master_Every_Step_Modeling_Painting_Animation_and_Lighting_2025-5.part1_Downloadly.ir.rar"
+[2026-03-21 21:29:15] Failed to create preview bitmap
+[2026-03-21 21:29:15] QueryContextMenu returning items_added=2
+[2026-03-21 21:31:24] Initialize called
+[2026-03-21 21:31:24] QueryContextMenu: idcmdfirst=63, indexmenu=0, uflags=0xC100
+[2026-03-21 21:31:24] Insert CONVERT: Success
+[2026-03-21 21:31:24] Insert VIEW: Success
+[2026-03-21 21:31:24] Creating preview for: "D:\\다운로드강의250711\\Udemy_MEAN_Stack_E_Commerce_App_Angular_NX_PrimeNG_2023_2023_7.part1_Downloadly.ir.rar"
+[2026-03-21 21:31:24] Failed to create preview bitmap
+[2026-03-21 21:31:24] QueryContextMenu returning items_added=2
+[2026-03-21 21:34:26] Initialize called
+[2026-03-21 21:34:26] QueryContextMenu: idcmdfirst=63, indexmenu=0, uflags=0xC100
+[2026-03-21 21:34:26] Insert CONVERT: Success
+[2026-03-21 21:34:26] Insert VIEW: Success
+[2026-03-21 21:34:26] Creating preview for: "D:\\다운로드강의250530\\Udemy_AI_Trading_Bitcoin_Stocks_Investing_with_ChatGPT_LLMs_2024-6.part1_Downloadly.ir.rar"
+[2026-03-21 21:34:26] Failed to create preview bitmap
+[2026-03-21 21:34:26] QueryContextMenu returning items_added=2
+[2026-03-21 21:34:28] Initialize called
+[2026-03-21 21:34:28] QueryContextMenu: idcmdfirst=62, indexmenu=0, uflags=0xC100
+[2026-03-21 21:34:28] Insert CONVERT: Success
+[2026-03-21 21:34:28] Insert VIEW: Success
+[2026-03-21 21:34:28] Creating preview for: "D:\\다운로드강의250530\\Udemy_AI_Trading_Bitcoin_Stocks_Investing_with_ChatGPT_LLMs_2024-6.part1_Downloadly.ir.rar"
+[2026-03-21 21:34:28] Failed to create preview bitmap
+[2026-03-21 21:34:28] QueryContextMenu returning items_added=2
+[2026-03-21 21:34:29] Initialize called
+[2026-03-21 21:34:29] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-21 21:34:29] Insert CONVERT: Success
+[2026-03-21 21:34:29] Insert VIEW: Success
+[2026-03-21 21:34:29] Creating preview for: "D:\\다운로드강의250530\\Udemy_AI_Trading_Bitcoin_Stocks_Investing_with_ChatGPT_LLMs_2024-6.part4_Downloadly.ir.rar"
+[2026-03-21 21:34:29] Failed to create preview bitmap
+[2026-03-21 21:34:29] QueryContextMenu returning items_added=2
+[2026-03-21 21:34:32] Initialize called
+[2026-03-21 21:34:32] QueryContextMenu: idcmdfirst=62, indexmenu=0, uflags=0xC100
+[2026-03-21 21:34:32] Insert CONVERT: Success
+[2026-03-21 21:34:32] Insert VIEW: Success
+[2026-03-21 21:34:32] Creating preview for: "D:\\다운로드강의250530\\Udemy_AI_Trading_Bitcoin_Stocks_Investing_with_ChatGPT_LLMs_2024-6.part1_Downloadly.ir.rar"
+[2026-03-21 21:34:32] Failed to create preview bitmap
+[2026-03-21 21:34:32] QueryContextMenu returning items_added=2
+[2026-03-21 22:25:29] Initialize called
+[2026-03-21 22:25:29] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 22:25:29] Insert CONVERT: Success
+[2026-03-21 22:25:29] Insert VIEW: Success
+[2026-03-21 22:25:29] Creating preview for: "D:\\download\\llm-finetuning-part1-sft-datasets.zip"
+[2026-03-21 22:25:29] Failed to create preview bitmap
+[2026-03-21 22:25:29] QueryContextMenu returning items_added=2
+[2026-03-21 22:25:29] Initialize called
+[2026-03-21 22:25:29] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 22:25:29] Insert CONVERT: Success
+[2026-03-21 22:25:29] Insert VIEW: Success
+[2026-03-21 22:25:29] Creating preview for: "D:\\download\\llm-finetuning-part1-sft-datasets.zip"
+[2026-03-21 22:25:29] Failed to create preview bitmap
+[2026-03-21 22:25:29] QueryContextMenu returning items_added=2
+[2026-03-21 22:25:35] Initialize called
+[2026-03-21 22:25:35] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 22:25:35] Insert CONVERT: Success
+[2026-03-21 22:25:35] Insert VIEW: Success
+[2026-03-21 22:25:35] Creating preview for: "D:\\download\\llm-finetuning-part1-sft-datasets.zip"
+[2026-03-21 22:25:35] Failed to create preview bitmap
+[2026-03-21 22:25:35] QueryContextMenu returning items_added=2
+[2026-03-21 22:25:35] Initialize called
+[2026-03-21 22:25:35] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-21 22:25:35] Insert CONVERT: Success
+[2026-03-21 22:25:35] Insert VIEW: Success
+[2026-03-21 22:25:35] Creating preview for: "D:\\download\\llm-finetuning-part1-sft-datasets.zip"
+[2026-03-21 22:25:35] Failed to create preview bitmap
+[2026-03-21 22:25:35] QueryContextMenu returning items_added=2
+[2026-03-21 22:25:40] Initialize called
+[2026-03-21 22:25:40] QueryContextMenu: idcmdfirst=31062, indexmenu=0, uflags=0x20494
+[2026-03-21 22:25:40] Insert CONVERT: Success
+[2026-03-21 22:25:40] Insert VIEW: Success
+[2026-03-21 22:25:40] Creating preview for: "D:\\download\\llm-finetuning-part1-sft-datasets.zip"
+[2026-03-21 22:25:40] Failed to create preview bitmap
+[2026-03-21 22:25:40] QueryContextMenu returning items_added=2
+[2026-03-22 05:18:07] Initialize called
+[2026-03-22 05:18:07] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 05:18:07] Insert CONVERT: Success
+[2026-03-22 05:18:07] Insert VIEW: Success
+[2026-03-22 05:18:07] Creating preview for: "D:\\download\\The RED - Microsoft AI 개발자의 LLM 마스터 클래스  AI 서비스 개발부터 운영까지 by. 양파\\010101 01. 강사소개 강의자료.txt"
+[2026-03-22 05:18:07] Failed to create preview bitmap
+[2026-03-22 05:18:07] QueryContextMenu returning items_added=2
+[2026-03-22 05:25:19] Initialize called
+[2026-03-22 05:25:19] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 05:25:19] Insert CONVERT: Success
+[2026-03-22 05:25:19] Insert VIEW: Success
+[2026-03-22 05:25:19] Creating preview for: "D:\\download\\The RED - Microsoft AI 개발자의 LLM 마스터 클래스  AI 서비스 개발부터 운영까지 by. 양파\\050104 04. LLM 디자인의 기본 강의자료.txt"
+[2026-03-22 05:25:19] Failed to create preview bitmap
+[2026-03-22 05:25:19] QueryContextMenu returning items_added=2
+[2026-03-22 05:40:32] Initialize called
+[2026-03-22 05:40:32] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 05:40:32] Insert CONVERT: Success
+[2026-03-22 05:40:32] Insert VIEW: Success
+[2026-03-22 05:40:32] Creating preview for: "D:\\download\\The RED - Microsoft AI 개발자의 LLM 마스터 클래스  AI 서비스 개발부터 운영까지 by. 양파\\010101 01. 강사소개 강의자료.txt"
+[2026-03-22 05:40:32] Failed to create preview bitmap
+[2026-03-22 05:40:32] QueryContextMenu returning items_added=2
+[2026-03-22 05:41:57] Initialize called
+[2026-03-22 05:41:57] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 05:41:57] Insert CONVERT: Success
+[2026-03-22 05:41:57] Insert VIEW: Success
+[2026-03-22 05:41:57] Creating preview for: "D:\\download\\-thered--microsoft-ai-개발자의-llm-마스터클래스-ai-서비스-개발부터-운영까지.zip"
+[2026-03-22 05:41:57] Failed to create preview bitmap
+[2026-03-22 05:41:57] QueryContextMenu returning items_added=2
+[2026-03-22 05:41:59] Initialize called
+[2026-03-22 05:41:59] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 05:41:59] Insert CONVERT: Success
+[2026-03-22 05:41:59] Insert VIEW: Success
+[2026-03-22 05:41:59] Creating preview for: "D:\\download\\-thered--microsoft-ai-개발자의-llm-마스터클래스-ai-서비스-개발부터-운영까지.zip"
+[2026-03-22 05:41:59] Failed to create preview bitmap
+[2026-03-22 05:41:59] QueryContextMenu returning items_added=2
+[2026-03-22 05:42:11] Initialize called
+[2026-03-22 05:42:11] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 05:42:11] Insert CONVERT: Success
+[2026-03-22 05:42:11] Insert VIEW: Success
+[2026-03-22 05:42:11] Creating preview for: "D:\\download\\The RED - Microsoft AI 개발자의 LLM 마스터 클래스  AI 서비스 개발부터 운영까지 by. 양파\\-thered--microsoft-ai-개발자의-llm-마스터클래스-ai-서비스-개발부터-운영까지.zip"
+[2026-03-22 05:42:11] Failed to create preview bitmap
+[2026-03-22 05:42:11] QueryContextMenu returning items_added=2
+[2026-03-22 05:42:13] Initialize called
+[2026-03-22 05:42:13] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 05:42:13] Insert CONVERT: Success
+[2026-03-22 05:42:13] Insert VIEW: Success
+[2026-03-22 05:42:13] Creating preview for: "D:\\download\\The RED - Microsoft AI 개발자의 LLM 마스터 클래스  AI 서비스 개발부터 운영까지 by. 양파\\-thered--microsoft-ai-개발자의-llm-마스터클래스-ai-서비스-개발부터-운영까지.zip"
+[2026-03-22 05:42:13] Failed to create preview bitmap
+[2026-03-22 05:42:13] QueryContextMenu returning items_added=2
+[2026-03-22 05:42:48] Initialize called
+[2026-03-22 05:42:48] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 05:42:48] Insert CONVERT: Success
+[2026-03-22 05:42:48] Insert VIEW: Success
+[2026-03-22 05:42:48] Creating preview for: "D:\\download\\The RED - Microsoft AI 개발자의 LLM 마스터 클래스  AI 서비스 개발부터 운영까지 by. 양파\\-thered--microsoft-ai-개발자의-llm-마스터클래스-ai-서비스-개발부터-운영까지.zip"
+[2026-03-22 05:42:48] Failed to create preview bitmap
+[2026-03-22 05:42:48] QueryContextMenu returning items_added=2
+[2026-03-22 05:42:49] Initialize called
+[2026-03-22 05:42:49] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 05:42:49] Insert CONVERT: Success
+[2026-03-22 05:42:49] Insert VIEW: Success
+[2026-03-22 05:42:49] Creating preview for: "D:\\download\\The RED - Microsoft AI 개발자의 LLM 마스터 클래스  AI 서비스 개발부터 운영까지 by. 양파\\[TheRED] Microsoft AI 개발자의 LLM 마스터클래스 AI 서비스개발부터운영까지.zip"
+[2026-03-22 05:42:49] Failed to create preview bitmap
+[2026-03-22 05:42:49] QueryContextMenu returning items_added=2
+[2026-03-22 06:11:14] Initialize called
+[2026-03-22 06:11:14] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 06:11:14] Insert CONVERT: Success
+[2026-03-22 06:11:14] Insert VIEW: Success
+[2026-03-22 06:11:14] Creating preview for: "D:\\download\\연애 시뮬레이터로 배우는 LLM 기반 가상 캐릭터 만들기\\강의자료.txt"
+[2026-03-22 06:11:14] Failed to create preview bitmap
+[2026-03-22 06:11:14] QueryContextMenu returning items_added=2
+[2026-03-22 06:34:46] Initialize called
+[2026-03-22 06:34:46] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 06:34:46] Insert CONVERT: Success
+[2026-03-22 06:34:46] Insert VIEW: Success
+[2026-03-22 06:34:46] Creating preview for: "D:\\download\\김기현의 BERT, GPT-3를 활용한 자연어처리\\강의자료.txt"
+[2026-03-22 06:34:46] Failed to create preview bitmap
+[2026-03-22 06:34:46] QueryContextMenu returning items_added=2
+[2026-03-22 18:42:24] Initialize called
+[2026-03-22 18:42:24] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 18:42:24] Insert CONVERT: Success
+[2026-03-22 18:42:24] Insert VIEW: Success
+[2026-03-22 18:42:24] Creating preview for: "D:\\download\\월 500만원 도전! 월급을 초월하는 디자인 수익화의 모든 것\\강의자료.txt"
+[2026-03-22 18:42:24] Failed to create preview bitmap
+[2026-03-22 18:42:24] QueryContextMenu returning items_added=2
+[2026-03-22 19:43:32] Initialize called
+[2026-03-22 19:43:32] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 19:43:32] Insert CONVERT: Success
+[2026-03-22 19:43:32] Insert VIEW: Success
+[2026-03-22 19:43:32] Creating preview for: "D:\\download\\[직장인(匠人)] AI보다 먼저 배우는 프롬프트 입문  원하는 결과를 ‘정확히’ 뽑아내는 직장인 프롬프트 공식 50\\강의자료.txt"
+[2026-03-22 19:43:32] Failed to create preview bitmap
+[2026-03-22 19:43:32] QueryContextMenu returning items_added=2
+[2026-03-22 20:02:05] Initialize called
+[2026-03-22 20:02:05] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 20:02:05] Insert CONVERT: Success
+[2026-03-22 20:02:05] Insert VIEW: Success
+[2026-03-22 20:02:05] Creating preview for: "D:\\download\\AI 시대, 누구나 1시간만에 제작하는 UI 프로토타이핑 가이드 (w. figma MAKE, Cursor)\\강의자료.txt"
+[2026-03-22 20:02:05] Failed to create preview bitmap
+[2026-03-22 20:02:05] QueryContextMenu returning items_added=2
+[2026-03-22 20:02:50] Initialize called
+[2026-03-22 20:02:50] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-22 20:02:50] Insert CONVERT: Success
+[2026-03-22 20:02:50] Insert VIEW: Success
+[2026-03-22 20:02:50] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-22 20:02:50] Failed to create preview bitmap
+[2026-03-22 20:02:50] QueryContextMenu returning items_added=2
+[2026-03-22 20:02:51] Initialize called
+[2026-03-22 20:02:51] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-22 20:02:51] Insert CONVERT: Success
+[2026-03-22 20:02:51] Insert VIEW: Success
+[2026-03-22 20:02:51] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-22 20:02:51] Failed to create preview bitmap
+[2026-03-22 20:02:51] QueryContextMenu returning items_added=2
+[2026-03-22 20:03:03] Initialize called
+[2026-03-22 20:03:03] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-22 20:03:03] Insert CONVERT: Success
+[2026-03-22 20:03:03] Insert VIEW: Success
+[2026-03-22 20:03:03] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-22 20:03:03] Failed to create preview bitmap
+[2026-03-22 20:03:03] QueryContextMenu returning items_added=2
+[2026-03-22 20:03:03] Initialize called
+[2026-03-22 20:03:03] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-22 20:03:03] Insert CONVERT: Success
+[2026-03-22 20:03:03] Insert VIEW: Success
+[2026-03-22 20:03:03] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-22 20:03:03] Failed to create preview bitmap
+[2026-03-22 20:03:03] QueryContextMenu returning items_added=2
+[2026-03-22 20:03:06] Initialize called
+[2026-03-22 20:03:06] QueryContextMenu: idcmdfirst=59, indexmenu=0, uflags=0xC100
+[2026-03-22 20:03:06] Insert CONVERT: Success
+[2026-03-22 20:03:06] Insert VIEW: Success
+[2026-03-22 20:03:06] Creating preview for: "D:\\download\\강의-자료.zip"
+[2026-03-22 20:03:06] Failed to create preview bitmap
+[2026-03-22 20:03:06] QueryContextMenu returning items_added=2
+[2026-03-22 20:58:50] Initialize called
+[2026-03-22 20:58:50] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 20:58:50] Insert CONVERT: Success
+[2026-03-22 20:58:50] Insert VIEW: Success
+[2026-03-22 20:58:50] Creating preview for: "D:\\download\\[직장인(匠人)] 버는 만큼 쓰는 팀의 딜레마  적자도 수익도 아닌, 생존을 위한 설계\\강의자료.txt"
+[2026-03-22 20:58:50] Failed to create preview bitmap
+[2026-03-22 20:58:50] QueryContextMenu returning items_added=2
+[2026-03-22 22:24:09] Initialize called
+[2026-03-22 22:24:09] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 22:24:09] Insert CONVERT: Success
+[2026-03-22 22:24:09] Insert VIEW: Success
+[2026-03-22 22:24:09] Creating preview for: "D:\\download\\빠르다! AI로 초단기 합격하는 영어 시험·자격증 학습법\\강의자료.txt"
+[2026-03-22 22:24:09] Failed to create preview bitmap
+[2026-03-22 22:24:09] QueryContextMenu returning items_added=2
+[2026-03-22 22:46:02] Initialize called
+[2026-03-22 22:46:02] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-22 22:46:02] Insert CONVERT: Success
+[2026-03-22 22:46:02] Insert VIEW: Success
+[2026-03-22 22:46:02] Creating preview for: "D:\\download\\2025 AI 시대 일잘러를 위한 비즈니스 데이터 분석 by. 데이터리차드\\강의장-강의.mhtml"
+[2026-03-22 22:46:02] Failed to create preview bitmap
+[2026-03-22 22:46:02] QueryContextMenu returning items_added=2
+[2026-03-22 23:05:17] Initialize called
+[2026-03-22 23:05:17] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 23:05:17] Insert CONVERT: Success
+[2026-03-22 23:05:17] Insert VIEW: Success
+[2026-03-22 23:05:17] Creating preview for: "D:\\download\\데이터리처드-강의자료.zip"
+[2026-03-22 23:05:17] Failed to create preview bitmap
+[2026-03-22 23:05:17] QueryContextMenu returning items_added=2
+[2026-03-22 23:05:18] Initialize called
+[2026-03-22 23:05:18] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-22 23:05:18] Insert CONVERT: Success
+[2026-03-22 23:05:18] Insert VIEW: Success
+[2026-03-22 23:05:18] Creating preview for: "D:\\download\\데이터리처드-강의자료.zip"
+[2026-03-22 23:05:18] Failed to create preview bitmap
+[2026-03-22 23:05:18] QueryContextMenu returning items_added=2
+[2026-03-23 01:32:47] Initialize called
+[2026-03-23 01:32:47] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-23 01:32:47] Insert CONVERT: Success
+[2026-03-23 01:32:47] Insert VIEW: Success
+[2026-03-23 01:32:47] Creating preview for: "D:\\download\\Red Dot 수상자에게 배우는 AI 3D 모델링 (ft. 블렌더 MCP)\\강의자료.txt"
+[2026-03-23 01:32:47] Failed to create preview bitmap
+[2026-03-23 01:32:47] QueryContextMenu returning items_added=2
+[2026-03-23 01:40:48] Initialize called
+[2026-03-23 01:40:48] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-23 01:40:48] Insert CONVERT: Success
+[2026-03-23 01:40:48] Insert VIEW: Success
+[2026-03-23 01:40:48] Creating preview for: "D:\\download\\n8n 하나로 끝내는 AI 자동화의 모든 것\\강의장-강의.mhtml"
+[2026-03-23 01:40:48] Failed to create preview bitmap
+[2026-03-23 01:40:48] QueryContextMenu returning items_added=2
+[2026-03-23 04:20:16] Initialize called
+[2026-03-23 04:20:16] QueryContextMenu: idcmdfirst=92, indexmenu=0, uflags=0x12
+[2026-03-23 04:20:16] Insert CONVERT: Success
+[2026-03-23 04:20:16] Insert VIEW: Success
+[2026-03-23 04:20:16] Creating preview for: "C:\\Users\\uripapa7\\AppData\\Local\\Perplexity\\Comet\\Application\\comet.exe"
+[2026-03-23 04:20:16] Failed to create preview bitmap
+[2026-03-23 04:20:16] QueryContextMenu returning items_added=2
+[2026-03-24 16:37:46] Initialize called
+[2026-03-24 16:37:46] QueryContextMenu: idcmdfirst=63, indexmenu=0, uflags=0xC100
+[2026-03-24 16:37:46] Insert CONVERT: Success
+[2026-03-24 16:37:46] Insert VIEW: Success
+[2026-03-24 16:37:46] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Udemy_Java_Course_for_Complete_Beginners_with_Practical_Examples_2025-6_Downloadly.ir.part4.rar"
+[2026-03-24 16:37:46] Failed to create preview bitmap
+[2026-03-24 16:37:46] QueryContextMenu returning items_added=2
+[2026-03-24 16:37:50] Initialize called
+[2026-03-24 16:37:50] QueryContextMenu: idcmdfirst=63, indexmenu=0, uflags=0xC100
+[2026-03-24 16:37:50] Insert CONVERT: Success
+[2026-03-24 16:37:50] Insert VIEW: Success
+[2026-03-24 16:37:50] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Udemy_Software_Architecture_2025-5_Downloadly.ir.part3.rar"
+[2026-03-24 16:37:50] Failed to create preview bitmap
+[2026-03-24 16:37:50] QueryContextMenu returning items_added=2
+[2026-03-24 16:37:52] Initialize called
+[2026-03-24 16:37:52] QueryContextMenu: idcmdfirst=63, indexmenu=0, uflags=0xC100
+[2026-03-24 16:37:52] Insert CONVERT: Success
+[2026-03-24 16:37:52] Insert VIEW: Success
+[2026-03-24 16:37:52] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Udemy_Java_Course_for_Complete_Beginners_with_Practical_Examples_2025-6_Downloadly.ir.part4.rar"
+[2026-03-24 16:37:52] Failed to create preview bitmap
+[2026-03-24 16:37:52] QueryContextMenu returning items_added=2
+[2026-03-24 16:37:55] Initialize called
+[2026-03-24 16:37:55] QueryContextMenu: idcmdfirst=62, indexmenu=0, uflags=0xC100
+[2026-03-24 16:37:55] Insert CONVERT: Success
+[2026-03-24 16:37:55] Insert VIEW: Success
+[2026-03-24 16:37:55] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Udemy_Java_Course_for_Complete_Beginners_with_Practical_Examples_2025-6_Downloadly.ir.part4.rar"
+[2026-03-24 16:37:55] Failed to create preview bitmap
+[2026-03-24 16:37:55] QueryContextMenu returning items_added=2
+[2026-03-24 16:38:18] Initialize called
+[2026-03-24 16:38:18] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-24 16:38:18] Insert CONVERT: Success
+[2026-03-24 16:38:18] Insert VIEW: Success
+[2026-03-24 16:38:18] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\김대중 사업은 그리도 많은데 왜... '오세훈 시장이 결단해야' 이승만 지키는 길 -손효숙 리박스쿨 대표.mp4"
+[2026-03-24 16:38:18] Failed to create preview bitmap
+[2026-03-24 16:38:18] QueryContextMenu returning items_added=2
+[2026-03-24 16:38:43] Initialize called
+[2026-03-24 16:38:43] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-24 16:38:43] Insert CONVERT: Success
+[2026-03-24 16:38:43] Insert VIEW: Success
+[2026-03-24 16:38:43] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\android-studio-panda2-windows.exe"
+[2026-03-24 16:38:43] Failed to create preview bitmap
+[2026-03-24 16:38:43] QueryContextMenu returning items_added=2
+[2026-03-24 16:59:47] Initialize called
+[2026-03-24 16:59:47] QueryContextMenu: idcmdfirst=31068, indexmenu=0, uflags=0x20496
+[2026-03-24 16:59:47] Insert CONVERT: Success
+[2026-03-24 16:59:47] Insert VIEW: Success
+[2026-03-24 16:59:47] Creating preview for: "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.3.1\\bin\\idea64.exe"
+[2026-03-24 16:59:47] Failed to create preview bitmap
+[2026-03-24 16:59:47] QueryContextMenu returning items_added=2
+[2026-03-24 17:38:55] Initialize called
+[2026-03-24 17:38:55] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-24 17:38:55] Insert CONVERT: Success
+[2026-03-24 17:38:55] Insert VIEW: Success
+[2026-03-24 17:38:55] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\index-v1-a1 (0224_215455).mp4"
+[2026-03-24 17:38:55] Failed to create preview bitmap
+[2026-03-24 17:38:55] QueryContextMenu returning items_added=2
+[2026-03-24 17:39:08] Initialize called
+[2026-03-24 17:39:08] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-24 17:39:08] Insert CONVERT: Success
+[2026-03-24 17:39:08] Insert VIEW: Success
+[2026-03-24 17:39:08] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\index-v1-a1 (0227_164029).mp4"
+[2026-03-24 17:39:08] Failed to create preview bitmap
+[2026-03-24 17:39:08] QueryContextMenu returning items_added=2
+[2026-03-24 17:39:16] Initialize called
+[2026-03-24 17:39:16] QueryContextMenu: idcmdfirst=31065, indexmenu=0, uflags=0x20494
+[2026-03-24 17:39:16] Insert CONVERT: Success
+[2026-03-24 17:39:16] Insert VIEW: Success
+[2026-03-24 17:39:16] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\index-v1-a1 (0224_215455).mp4"
+[2026-03-24 17:39:16] Failed to create preview bitmap
+[2026-03-24 17:39:16] QueryContextMenu returning items_added=2
+[2026-03-24 17:39:26] Initialize called
+[2026-03-24 17:39:26] QueryContextMenu: idcmdfirst=31067, indexmenu=0, uflags=0x20494
+[2026-03-24 17:39:26] Insert CONVERT: Success
+[2026-03-24 17:39:26] Insert VIEW: Success
+[2026-03-24 17:39:26] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\PhaserEditor-5.0.0-beta.1-Setup.exe"
+[2026-03-24 17:39:26] Failed to create preview bitmap
+[2026-03-24 17:39:26] QueryContextMenu returning items_added=2
+[2026-03-24 18:10:26] Initialize called
+[2026-03-24 18:10:26] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-24 18:10:26] Insert CONVERT: Success
+[2026-03-24 18:10:26] Insert VIEW: Success
+[2026-03-24 18:10:26] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\PhaserByExample-v1-src.zip"
+[2026-03-24 18:10:26] Failed to create preview bitmap
+[2026-03-24 18:10:26] QueryContextMenu returning items_added=2
+[2026-03-24 18:10:27] Initialize called
+[2026-03-24 18:10:27] QueryContextMenu: idcmdfirst=60, indexmenu=0, uflags=0xC100
+[2026-03-24 18:10:27] Insert CONVERT: Success
+[2026-03-24 18:10:27] Insert VIEW: Success
+[2026-03-24 18:10:27] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\PhaserByExample-v1-src.zip"
+[2026-03-24 18:10:27] Failed to create preview bitmap
+[2026-03-24 18:10:27] QueryContextMenu returning items_added=2
+[2026-03-24 19:43:39] Initialize called
+[2026-03-24 19:43:39] QueryContextMenu: idcmdfirst=92, indexmenu=0, uflags=0x12
+[2026-03-24 19:43:39] Insert CONVERT: Success
+[2026-03-24 19:43:39] Insert VIEW: Success
+[2026-03-24 19:43:39] Creating preview for: "C:\\Program Files\\DAUM\\PotPlayer\\PotPlayer64.exe"
+[2026-03-24 19:43:39] Failed to create preview bitmap
+[2026-03-24 19:43:39] QueryContextMenu returning items_added=2
+[2026-03-24 20:13:56] Initialize called
+[2026-03-24 20:13:56] QueryContextMenu: idcmdfirst=92, indexmenu=0, uflags=0x12
+[2026-03-24 20:13:56] Insert CONVERT: Success
+[2026-03-24 20:13:56] Insert VIEW: Success
+[2026-03-24 20:13:56] Creating preview for: "C:\\Program Files (x86)\\Kakao\\KakaoTalk\\KakaoTalk.exe"
+[2026-03-24 20:13:56] Failed to create preview bitmap
+[2026-03-24 20:13:56] QueryContextMenu returning items_added=2
+[2026-03-25 02:01:44] Initialize called
+[2026-03-25 02:01:44] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-25 02:01:44] Insert CONVERT: Success
+[2026-03-25 02:01:44] Insert VIEW: Success
+[2026-03-25 02:01:44] Creating preview for: "D:\\download\\실전 DevOps의 모든 것  리눅스부터 GitOps까지\\강의자료.txt"
+[2026-03-25 02:01:44] Failed to create preview bitmap
+[2026-03-25 02:01:44] QueryContextMenu returning items_added=2
+[2026-03-26 01:23:00] Initialize called
+[2026-03-26 01:23:00] QueryContextMenu: idcmdfirst=92, indexmenu=0, uflags=0x12
+[2026-03-26 01:23:00] Insert CONVERT: Success
+[2026-03-26 01:23:00] Insert VIEW: Success
+[2026-03-26 01:23:00] Creating preview for: "C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2024.3\\bin\\idea64.exe"
+[2026-03-26 01:23:00] Failed to create preview bitmap
+[2026-03-26 01:23:00] QueryContextMenu returning items_added=2
+[2026-03-26 08:27:51] Initialize called
+[2026-03-26 08:27:51] QueryContextMenu: idcmdfirst=31066, indexmenu=0, uflags=0x20494
+[2026-03-26 08:27:51] Insert CONVERT: Success
+[2026-03-26 08:27:51] Insert VIEW: Success
+[2026-03-26 08:27:51] Creating preview for: "D:\\download\\시선을 사로잡는 AI 기반 SNS 광고 제작\\강의자료.txt"
+[2026-03-26 08:27:51] Failed to create preview bitmap
+[2026-03-26 08:27:51] QueryContextMenu returning items_added=2
+[2026-03-28 01:46:03] Initialize called
+[2026-03-28 01:46:03] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-28 01:46:03] Insert CONVERT: Success
+[2026-03-28 01:46:03] Insert VIEW: Success
+[2026-03-28 01:46:03] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Untitled Project (5).png"
+[2026-03-28 01:46:03] Insert PREVIEW: Success (hbitmap=HBITMAP(0x570527a6))
+[2026-03-28 01:46:03] QueryContextMenu returning items_added=3
+[2026-03-28 01:46:04] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x530D4B0
+[2026-03-28 01:46:04] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:46:04] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:46:04] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:46:04] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:46:05] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:46:05] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:46:05] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:46:05] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:46:06] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:46:06] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:46:06] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:46:06] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:46:06] InvokeCommand: id=2
+[2026-03-28 01:46:06] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\Untitled Project (5).png"
+[2026-03-28 01:46:06] Preview clicked (opening viewer)
+[2026-03-28 01:48:45] Initialize called
+[2026-03-28 01:48:45] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-28 01:48:45] Insert CONVERT: Success
+[2026-03-28 01:48:45] Insert VIEW: Success
+[2026-03-28 01:48:45] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\Untitled Project (5).png"
+[2026-03-28 01:48:45] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffff810528cf))
+[2026-03-28 01:48:45] QueryContextMenu returning items_added=3
+[2026-03-28 01:48:48] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x530D4B0
+[2026-03-28 01:48:48] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:48:48] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:48:49] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:48:49] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:48:49] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:48:49] HandleMenuMsg2: Drawing preview item...
+[2026-03-28 01:49:50] Initialize called
+[2026-03-28 01:49:50] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-03-28 01:49:50] Insert CONVERT: Success
+[2026-03-28 01:49:50] Insert VIEW: Success
+[2026-03-28 01:49:50] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\crop_Untitled Project (5).png"
+[2026-03-28 01:49:50] Insert PREVIEW: Success (hbitmap=HBITMAP(0xffffffffa1052d41))
+[2026-03-28 01:49:50] QueryContextMenu returning items_added=3
+[2026-03-28 01:49:53] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x530D4B0
+[2026-03-28 01:49:53] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x530D490
+[2026-03-28 01:49:53] HandleMenuMsg2: Drawing preview item...

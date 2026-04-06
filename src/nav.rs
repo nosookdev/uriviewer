@@ -3,15 +3,18 @@
 use std::path::{Path, PathBuf};
 
 /// Extensions recognised as image files
-const IMAGE_EXTS: &[&str] = &[
-    "jpg", "jpeg", "png", "gif", "bmp", "webp", "tif", "tiff", "ico", "svg",
-];
-
 pub fn is_image(path: &Path) -> bool {
-    path.extension()
-        .and_then(|e| e.to_str())
-        .map(|e| IMAGE_EXTS.contains(&e.to_lowercase().as_str()))
-        .unwrap_or(false)
+    let ext_list = [
+        "jpg", "jpeg", "jpe", "png", "gif", "bmp", "webp", "tiff", "tif", "ico",
+        "svg", "ani", "cal", "emf", "fax", "hdp", "mac", "pbm", "pcd", "pcx",
+        "pgm", "ppm", "psd", "ras", "tga", "wmf",
+        "cgm", "dwg", "dwf", "dxf", "iges", "obj", "plt", "step", "stl", "3ds"
+    ];
+    if let Some(ext) = path.extension().and_then(|s| s.to_str()) {
+        let e = ext.to_lowercase();
+        return ext_list.contains(&e.as_str());
+    }
+    false
 }
 
 /// Return all image files in the same folder as `current`, sorted by name.

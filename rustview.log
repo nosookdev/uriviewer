@@ -2907,3 +2907,42 @@
 [2026-04-04 18:50:16] Creating preview for: "C:\\_new_ai_project\\docs\\01-plan\\features\\uriVideoEditor.plan.md"
 [2026-04-04 18:50:16] Failed to create preview bitmap
 [2026-04-04 18:50:16] QueryContextMenu returning items_added=2
+[2026-04-07 02:50:34] Initialize called
+[2026-04-07 02:50:34] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-04-07 02:50:34] Insert CONVERT: Success
+[2026-04-07 02:50:34] Insert VIEW: Success
+[2026-04-07 02:50:34] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\course-image--2-.png"
+[2026-04-07 02:50:34] Insert PREVIEW: Success (hbitmap=HBITMAP(0x1f05150e))
+[2026-04-07 02:50:34] QueryContextMenu returning items_added=3
+[2026-04-07 02:50:37] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4EAD830
+[2026-04-07 02:50:37] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4EAD810
+[2026-04-07 02:50:37] HandleMenuMsg2: Drawing preview item...
+[2026-04-07 02:50:39] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4EAD810
+[2026-04-07 02:50:39] HandleMenuMsg2: Drawing preview item...
+[2026-04-07 02:50:40] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4EAD810
+[2026-04-07 02:50:40] HandleMenuMsg2: Drawing preview item...
+[2026-04-07 02:50:41] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4EAD810
+[2026-04-07 02:50:41] HandleMenuMsg2: Drawing preview item...
+[2026-04-07 02:50:46] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x4EAD810
+[2026-04-07 02:50:46] HandleMenuMsg2: Drawing preview item...
+[2026-04-07 02:50:46] InvokeCommand: id=2
+[2026-04-07 02:50:46] Executing: "C:\\_new_ai_project\\uriviewer\\target\\debug\\rustview.exe" with arg "C:\\Users\\uripapa7\\Downloads\\course-image--2-.png"
+[2026-04-07 02:50:46] Preview clicked (opening viewer)
+[2026-04-07 02:54:45] Initialize called
+[2026-04-07 02:54:45] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-04-07 02:54:45] Insert CONVERT: Success
+[2026-04-07 02:54:45] Insert VIEW: Success
+[2026-04-07 02:54:45] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\ChatGPT Image 2026년 3월 12일 오후 08_57_33.png"
+[2026-04-07 02:54:45] Insert PREVIEW: Success (hbitmap=HBITMAP(0x28051456))
+[2026-04-07 02:54:45] QueryContextMenu returning items_added=3
+[2026-04-07 02:54:47] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x4EAD830
+[2026-04-07 04:03:23] Initialize called
+[2026-04-07 04:03:23] QueryContextMenu: idcmdfirst=31179, indexmenu=0, uflags=0x20494
+[2026-04-07 04:03:23] Insert CONVERT: Success
+[2026-04-07 04:03:23] Insert VIEW: Success
+[2026-04-07 04:03:23] Creating preview for: "C:\\Users\\uripapa7\\Downloads\\course-image--2-.png"
+[2026-04-07 04:03:23] Insert PREVIEW: Success (hbitmap=HBITMAP(0x10052623))
+[2026-04-07 04:03:23] QueryContextMenu returning items_added=3
+[2026-04-07 04:03:25] HandleMenuMsg2: msg=0x2C, wparam=0x0, lparam=0x3DBD420
+[2026-04-07 04:03:25] HandleMenuMsg2: msg=0x2B, wparam=0x0, lparam=0x3DBD400
+[2026-04-07 04:03:25] HandleMenuMsg2: Drawing preview item...

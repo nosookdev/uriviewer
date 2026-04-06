@@ -6,6 +6,7 @@ pub mod shell_ext;
 pub mod tray;
 pub mod hotkeys;
 pub mod capture;
+pub mod win_utils;
 
 use crate::shell_ext::ShellExtension;
 use std::ffi::c_void;

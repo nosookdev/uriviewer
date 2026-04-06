@@ -7,104 +7,33 @@ warning: unused imports: `CMF_DEFAULTONLY` and `CMF_VERBSONLY`
    |
    = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
 
-warning: variable does not need to be mutable
-   --> src\app.rs:599:17
-    |
-599 |             let mut render_btn = |ui: &mut egui::Ui, icon: &str, text: &str, active: bool| {
-    |                 ----^^^^^^^^^^
-    |                 |
-    |                 help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+warning: unused import: `Path`
+ --> src\tray.rs:5:17
+  |
+5 | use std::path::{Path, PathBuf};
+  |                 ^^^^
 
-error[E0506]: cannot assign to `*self.view_mode` because it is borrowed
-   --> src\app.rs:618:17
-    |
-599 |             let mut render_btn = |ui: &mut egui::Ui, icon: &str, text: &str, active: bool| {
-    |                                  --------------------------------------------------------- `*self.view_mode` is borrowed here
-600 |                 let res = self.activity_button(ui, icon, active);
-    |                           ---- borrow occurs due to use in closure
-...
-618 |                 self.view_mode = ViewMode::Viewer;
-    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `*self.view_mode` is assigned to here but it was already borrowed
-619 |             }
-620 |             if render_btn(ui, "??, "媛ㅻ윭由?(G)", self.view_mode == ViewMode::Gallery).clicked() {
-    |                ---------- borrow later used here
+warning: unused import: `std::str::FromStr`
+ --> src\hotkeys.rs:4:5
+  |
+4 | use std::str::FromStr;
+  |     ^^^^^^^^^^^^^^^^^
 
-error[E0502]: cannot borrow `*self` as mutable because it is also borrowed as immutable
-   --> src\app.rs:621:17
-    |
-599 |             let mut render_btn = |ui: &mut egui::Ui, icon: &str, text: &str, active: bool| {
-    |                                  --------------------------------------------------------- immutable borrow occurs here
-600 |                 let res = self.activity_button(ui, icon, active);
-    |                           ---- first borrow occurs due to use of `*self` in closure
+error[E0382]: use of moved value: `fonts`
+  --> src\app.rs:58:32
+   |
+51 |         let mut fonts = egui::FontDefinitions::default();
+   |             --------- move occurs because `fonts` has type `FontDefinitions`, which does not implement the `Copy` trait
 ...
-621 |                 self.enter_gallery();
-    |                 ^^^^^^^^^^^^^^^^^^^^ mutable borrow occurs here
-622 |             }
-623 |             if render_btn(ui, "?뱛", "?뚯씪 ?닿린 (Ctrl+O)", false).clicked() {
-    |                ---------- immutable borrow later used here
-
-error[E0502]: cannot borrow `*self` as mutable because it is also borrowed as immutable
-   --> src\app.rs:624:17
-    |
-599 |             let mut render_btn = |ui: &mut egui::Ui, icon: &str, text: &str, active: bool| {
-    |                                  --------------------------------------------------------- immutable borrow occurs here
-600 |                 let res = self.activity_button(ui, icon, active);
-    |                           ---- first borrow occurs due to use of `*self` in closure
-...
-624 |                 self.open_dialog(ctx);
-    |                 ^^^^^^^^^^^^^^^^^^^^^ mutable borrow occurs here
-625 |             }
-626 |             if render_btn(ui, "??, "?곸뿭 ?좏깮 (S)", self.view_state.selection_mode).clicked() {
-    |                ---------- immutable borrow later used here
-
-error[E0506]: cannot assign to `*self.view_state.selection_mode` because it is borrowed
-   --> src\app.rs:627:17
-    |
-599 |             let mut render_btn = |ui: &mut egui::Ui, icon: &str, text: &str, active: bool| {
-    |                                  --------------------------------------------------------- `*self.view_state.selection_mode` is borrowed here
-600 |                 let res = self.activity_button(ui, icon, active);
-    |                           ---- borrow occurs due to use in closure
-...
-627 |                 self.view_state.selection_mode = !self.view_state.selection_mode;
-    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `*self.view_state.selection_mode` is assigned to here but it was already borrowed
-...
-632 |                 if render_btn(ui, "?", "?꾩?留?, self.help_open).clicked() {
-    |                    ---------- borrow later captured here by closure
-
-error[E0502]: cannot borrow `*self.settings_open` as mutable because it is also borrowed as immutable
-   --> src\app.rs:630:74
-    |
-599 |             let mut render_btn = |ui: &mut egui::Ui, icon: &str, text: &str, active: bool| {
-    |                                  --------------------------------------------------------- immutable borrow occurs here
-600 |                 let res = self.activity_button(ui, icon, active);
-    |                           ---- first borrow occurs due to use of `*self` in closure
-...
-630 |             ui.with_layout(egui::Layout::bottom_up(egui::Align::Center), |ui| {
-    |                                                                          ^^^^ mutable borrow occurs here
-631 |                 ui.add_space(8.0);
-632 |                 if render_btn(ui, "?", "?꾩?留?, self.help_open).clicked() {
-    |                    ---------- immutable borrow later captured here by closure
-...
-636 |                     self.settings_open = !self.settings_open;
-    |                     ------------------ second borrow occurs due to use of `*self.settings_open` in closure
-
-error[E0502]: cannot borrow `*self.help_open` as mutable because it is also borrowed as immutable
-   --> src\app.rs:630:74
-    |
-599 |             let mut render_btn = |ui: &mut egui::Ui, icon: &str, text: &str, active: bool| {
-    |                                  --------------------------------------------------------- immutable borrow occurs here
-600 |                 let res = self.activity_button(ui, icon, active);
-    |                           ---- first borrow occurs due to use of `*self` in closure
-...
-630 |             ui.with_layout(egui::Layout::bottom_up(egui::Align::Center), |ui| {
-    |                                                                          ^^^^ mutable borrow occurs here
-631 |                 ui.add_space(8.0);
-632 |                 if render_btn(ui, "?", "?꾩?留?, self.help_open).clicked() {
-    |                    ---------- immutable borrow later captured here by closure
-633 |                     self.help_open = !self.help_open;
-    |                     -------------- second borrow occurs due to use of `*self.help_open` in closure
+57 |         _cc.egui_ctx.set_fonts(fonts);
+   |                                ----- value moved here
+58 |         _cc.egui_ctx.set_fonts(fonts);
+   |                                ^^^^^ value used here after move
+   |
+help: consider cloning the value if the performance cost is acceptable
+   |
+57 |         _cc.egui_ctx.set_fonts(fonts.clone());
+   |                                     ++++++++
 
 warning: value assigned to `menu_index` is never read
    --> src\shell_ext.rs:220:21
@@ -115,7 +44,6 @@ warning: value assigned to `menu_index` is never read
     = help: maybe it is overwritten before being read?
     = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
 
-Some errors have detailed explanations: E0502, E0506.
-For more information about an error, try `rustc --explain E0502`.
-warning: `rustview` (lib) generated 3 warnings
-error: could not compile `rustview` (lib) due to 6 previous errors; 3 warnings emitted
+For more information about this error, try `rustc --explain E0382`.
+warning: `rustview` (lib) generated 4 warnings
+error: could not compile `rustview` (lib) due to 1 previous error; 4 warnings emitted

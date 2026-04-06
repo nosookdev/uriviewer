@@ -16,7 +16,7 @@ use std::fs::OpenOptions;
 use std::io::Write;
 use windows::Win32::UI::Shell::{
     DragQueryFileW, IContextMenu2_Impl, IContextMenu3_Impl, IContextMenu_Impl, IShellExtInit_Impl,
-    CMF_DEFAULTONLY, CMF_VERBSONLY, CMINVOKECOMMANDINFO, HDROP,
+    CMINVOKECOMMANDINFO, HDROP,
 };
 use windows::Win32::UI::WindowsAndMessaging::{
     InsertMenuItemW, HMENU, MENUITEMINFOW, MFS_DEFAULT, MFT_OWNERDRAW, MFT_SEPARATOR, MIIM_DATA,

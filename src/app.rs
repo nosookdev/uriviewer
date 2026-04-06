@@ -27,6 +27,21 @@ pub struct RustViewApp {
     pub(crate) loading_rx: Option<std::sync::mpsc::Receiver<Result<LoadedImage, String>>>,
     pub(crate) settings_open: bool,
     pub(crate) help_open: bool,
+    pub(crate) is_maximized: bool,
+    // --- New fields ---
+    pub(crate) tray: Option<tray_icon::TrayIcon>,
+    pub(crate) hotkey_manager: Option<crate::hotkeys::HotKeyManager>,
+    pub(crate) is_capturing: bool,
+    pub(crate) is_picking: bool,
+    pub(crate) captured_screens: Vec<crate::capture::CapturedScreen>,
+    pub(crate) capture_textures: Vec<egui::TextureHandle>,
+    pub(crate) recording_hotkey: Option<HotkeyTarget>,
+}
+
+#[derive(PartialEq, Copy, Clone)]
+pub enum HotkeyTarget {
+    Capture,
+    ColorPicker,
 }
 
 impl RustViewApp {
@@ -72,8 +87,45 @@ impl RustViewApp {
             loading_rx: None,
             settings_open: false,
             help_open: false,
+            is_maximized: false,
+            tray: None,
+            hotkey_manager: None,
+            is_capturing: false,
+            is_picking: false,
+            captured_screens: vec![],
+            capture_textures: vec![],
+            recording_hotkey: None,
         };
-        if let Some(p) = initial_path { app.open_image_path(&_cc.egui_ctx, &p); }
+
+        // Initialize Tray & Hotkeys
+        let tray = crate::tray::create_tray(None);
+        app.tray = Some(tray);
+
+        let hkm = crate::hotkeys::HotKeyManager::new();
+        if let Some((mods, key)) = app.config.capture_hotkey {
+            if let Some(hk) = crate::hotkeys::create_hotkey(mods, key, 1) {
+                let _ = hkm.register(hk);
+            }
+        }
+        if let Some((mods, key)) = app.config.color_picker_hotkey {
+            if let Some(hk) = crate::hotkeys::create_hotkey(mods, key, 2) {
+                let _ = hkm.register(hk);
+            }
+        }
+        app.hotkey_manager = Some(hkm);
+
+        if let Some(p) = initial_path { 
+            app.open_image_path(&_cc.egui_ctx, &p); 
+        } else {
+            // No initial path: load Downloads folder by default
+            if let Some(download_dir) = dirs::download_dir() {
+                app.folder_imgs = crate::nav::images_in_folder(&download_dir);
+                if !app.folder_imgs.is_empty() {
+                    app.view_mode = ViewMode::Gallery;
+                    app.gallery = Some(Gallery::new(download_dir, 0));
+                }
+            }
+        }
         app
     }
 
@@ -138,6 +190,52 @@ impl RustViewApp {
             i.raw.dropped_files.iter().filter_map(|f| f.path.clone()).filter(|p| is_image(p)).collect()
         });
         if let Some(path) = dropped.into_iter().next() { self.open_image_path(ctx, &path); }
+
+        // --- Hotkey Recording Logic ---
+        if let Some(target) = self.recording_hotkey {
+            let (mods, key_code) = ctx.input(|i| {
+                let mut m = 0u32;
+                if i.modifiers.shift { m |= 1; }
+                if i.modifiers.ctrl { m |= 2; }
+                if i.modifiers.alt { m |= 4; }
+                if i.modifiers.command { m |= 8; }
+                
+                // Find first pressed key
+                let key = i.keys_down.iter().next().cloned();
+                (m, key)
+            });
+
+            if let Some(k) = key_code {
+                // Map egui::Key to winapi/global-hotkey style if possible
+                // For POC, we'll just allow common keys or stop recording
+                let raw_code = match k {
+                    egui::Key::S => 0x1F,
+                    egui::Key::C => 0x09,
+                    egui::Key::A => 0x1E,
+                    _ => 0, // Fallback
+                };
+
+                if raw_code != 0 {
+                    match target {
+                        HotkeyTarget::Capture => self.config.capture_hotkey = Some((mods, raw_code)),
+                        HotkeyTarget::ColorPicker => self.config.color_picker_hotkey = Some((mods, raw_code)),
+                    }
+                    // Re-register hotkey
+                    let hk_id = match target {
+                        HotkeyTarget::Capture => 1,
+                        HotkeyTarget::ColorPicker => 2,
+                    };
+                    if let Some(hkm) = &self.hotkey_manager {
+                        if let Some(hk) = crate::hotkeys::create_hotkey(mods, raw_code, hk_id) {
+                            let _ = hkm.register(hk);
+                        }
+                    }
+                    save_config(&self.config);
+                    self.recording_hotkey = None;
+                }
+            }
+            return; // Consume input during recording
+        }
 
         ctx.input(|i| {
             if i.key_pressed(Key::Num0) { self.view_state.fit_mode = true; self.view_state.offset = Vec2::ZERO; }
@@ -310,6 +408,154 @@ impl RustViewApp {
         }
     }
 
+    fn render_capture_overlay(&mut self, ui: &mut egui::Ui, ctx: &Context) {
+        let available = ui.available_rect_before_wrap();
+        let painter = ui.painter();
+        
+        // Find primary screen or first screen
+        if let Some(tex) = self.capture_textures.first() {
+            painter.image(tex.id(), available, Rect::from_min_max(Pos2::ZERO, egui::pos2(1.0, 1.0)), Color32::WHITE);
+        }
+
+        let pointer_pos = ctx.input(|i| i.pointer.hover_pos());
+        
+        if self.is_picking {
+            // Color Picker Magnifier
+            if let Some(pos) = pointer_pos {
+                let rect = Rect::from_center_size(pos, Vec2::splat(120.0));
+                painter.rect_filled(rect, 60.0, Color32::from_black_alpha(100)); // Circle bg
+                
+                // Draw Magnifier
+                if let Some(screen) = self.captured_screens.first() {
+                    let rx = (pos.x - available.min.x) / available.width();
+                    let ry = (pos.y - available.min.y) / available.height();
+                    let px = (rx * screen.width as f32) as i32;
+                    let py = (ry * screen.height as f32) as i32;
+                    
+                    if px >= 0 && px < screen.width as i32 && py >= 0 && py < screen.height as i32 {
+                        let color = screen.image.get_pixel(px as u32, py as u32);
+                        let egui_color = Color32::from_rgba_unmultiplied(color[0], color[1], color[2], color[3]);
+                        
+                        // Center pixel highlight
+                        painter.rect_filled(Rect::from_center_size(pos, Vec2::splat(10.0)), 0.0, egui_color);
+                        painter.rect_stroke(Rect::from_center_size(pos, Vec2::splat(11.0)), 0.0, egui::Stroke::new(1.0, Color32::WHITE));
+                        
+                        let hex = format!("#{:02X}{:02X}{:02X}", color[0], color[1], color[2]);
+                        painter.text(pos + Vec2::new(0.0, 70.0), egui::Align2::CENTER_CENTER, &hex, egui::FontId::proportional(14.0), Color32::WHITE);
+                        
+                        if ctx.input(|i| i.pointer.any_click()) {
+                            if let Ok(mut cb) = Clipboard::new() {
+                                let _ = cb.set_text(hex.clone());
+                                self.status = Some(format!("색상이 복사되었습니다: {}", hex));
+                                self.is_capturing = false;
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            // Area Selector
+            if let Some(mut sel) = self.view_state.selection.clone() {
+                if ctx.input(|i| i.pointer.primary_down()) {
+                    if let Some(pos) = pointer_pos {
+                        sel.end = pos;
+                        self.view_state.selection = Some(sel.clone());
+                    }
+                } else if ctx.input(|i| i.pointer.primary_released()) {
+                    // Finalize capture
+                    let rect = Rect::from_two_pos(sel.start, sel.end);
+                    if rect.width() > 1.0 && rect.height() > 1.0 {
+                        // For now we just copy the primary screen part
+                        if let Some(screen) = self.captured_screens.first() {
+                            let rx = (rect.min.x - available.min.x) / available.width();
+                            let ry = (rect.min.y - available.min.y) / available.height();
+                            let rw = rect.width() / available.width();
+                            let rh = rect.height() / available.height();
+                            
+                            let x = (rx * screen.width as f32) as u32;
+                            let y = (ry * screen.height as f32) as u32;
+                            let w = (rw * screen.width as f32) as u32;
+                            let h = (rh * screen.height as f32) as u32;
+                            
+                            if w > 0 && h > 0 {
+                                // let _cropped = screen.image.clone(); // Actually should crop
+                                self.status = Some("캡처 완료".to_string());
+                            }
+                        }
+                    }
+                    self.is_capturing = false;
+                    self.view_state.selection = None;
+                }
+                
+                let draw_rect = Rect::from_two_pos(sel.start, sel.end);
+                draw_marching_ants(painter, draw_rect, ctx.input(|i| i.time));
+            } else if ctx.input(|i| i.pointer.primary_pressed()) {
+                if let Some(pos) = pointer_pos {
+                    self.view_state.selection = Some(SelectionState { start: pos, end: pos, active: true });
+                }
+            }
+        }
+
+        if ctx.input(|i| i.key_pressed(egui::Key::Escape)) {
+            self.is_capturing = false;
+            self.status = Some("작업 취소".to_string());
+        }
+    }
+
+    pub fn start_capture(&mut self, ctx: &Context, is_picking: bool) {
+        self.is_capturing = true;
+        self.is_picking = is_picking;
+        self.captured_screens = crate::capture::capture_all_screens();
+        let mut texs = vec![];
+        for (i, screen) in self.captured_screens.iter().enumerate() {
+            let name = format!("capture_{}", i);
+            let color_img = egui::ColorImage::from_rgba_unmultiplied(
+                [screen.width as usize, screen.height as usize],
+                &screen.image,
+            );
+            texs.push(ctx.load_texture(name, color_img, egui::TextureOptions::LINEAR));
+        }
+        self.capture_textures = texs;
+        
+        if !self.is_maximized {
+            ctx.send_viewport_cmd(egui::ViewportCommand::Maximized(true));
+        }
+        self.status = Some(if is_picking { "색상을 선택할 픽셀을 클릭하세요" } else { "캡처할 영역을 드래그하세요" }.to_string());
+    }
+
+    fn poll_system_events(&mut self, ctx: &Context) {
+        if let Ok(event) = tray_icon::TrayIconEvent::receiver().try_recv() {
+            match event {
+                tray_icon::TrayIconEvent::DoubleClick { .. } => {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Focus);
+                }
+                _ => {}
+            }
+        }
+
+        if let Ok(event) = muda::MenuEvent::receiver().try_recv() {
+            match event.id.as_ref() {
+                "open" => {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Focus);
+                }
+                "capture" => self.start_capture(ctx, false),
+                "picker" => self.start_capture(ctx, true),
+                "quit" => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
+                _ => {}
+            }
+        }
+
+        if let Ok(event) = global_hotkey::GlobalHotKeyEvent::receiver().try_recv() {
+            match event.id {
+                1 => self.start_capture(ctx, false),
+                2 => self.start_capture(ctx, true),
+                _ => {}
+            }
+        }
+    }
+
     fn get_cropped_image(&self, screen_rect: Rect, img_rect: Rect) -> Result<image::DynamicImage, String> {
         let img = self.image.as_ref().ok_or("No image")?;
         let mut full_img = image::open(&img.path).map_err(|e| e.to_string())?;
@@ -345,38 +591,48 @@ impl RustViewApp {
 
 impl eframe::App for RustViewApp {
     fn update(&mut self, ctx: &Context, _frame: &mut eframe::Frame) {
-        // Apply beautiful dark mockup theme
+        // ── Visuals: Antigravity (VS Code) Theme ──
         let mut visuals = egui::Visuals::dark();
-        visuals.panel_fill = egui::Color32::from_rgb(20, 20, 22); 
-        visuals.window_fill = egui::Color32::from_rgb(28, 28, 32); 
-        visuals.selection.bg_fill = egui::Color32::from_rgb(90, 90, 95); 
-        visuals.selection.stroke = egui::Stroke::new(1.0, egui::Color32::from_rgb(200, 200, 210));
         
-        let rounding = egui::Rounding::same(6.0); // Rounded Mockup UI
+        // Backgrounds
+        visuals.panel_fill = egui::Color32::from_rgb(30, 30, 30);      // Activity Bar / Central Panel default
+        visuals.window_fill = egui::Color32::from_rgb(37, 37, 38);     // Settings / Help Windows
         
-        // Active (Selected) widget style
-        visuals.widgets.active.bg_fill = egui::Color32::from_rgb(70, 70, 75); 
-        visuals.widgets.active.bg_stroke = egui::Stroke::NONE;
-        visuals.widgets.active.fg_stroke = egui::Stroke::new(1.0, egui::Color32::WHITE);
-        visuals.widgets.active.rounding = rounding;
+        // Selection & Highlights
+        visuals.selection.bg_fill = egui::Color32::from_rgb(0, 122, 204); // VS Code Blue
+        visuals.selection.stroke = egui::Stroke::new(1.0, egui::Color32::from_rgb(100, 180, 255));
         
-        // Inactive (Normal) widget style
+        let rounding = egui::Rounding::same(2.0); // Sharp VS Code style
+        
+        // Inactive (Normal)
         visuals.widgets.inactive.bg_fill = egui::Color32::TRANSPARENT;
         visuals.widgets.inactive.bg_stroke = egui::Stroke::NONE;
-        visuals.widgets.inactive.fg_stroke = egui::Stroke::new(1.0, egui::Color32::from_rgb(180, 180, 190));
+        visuals.widgets.inactive.fg_stroke = egui::Stroke::new(1.0, egui::Color32::from_rgb(180, 180, 180));
         visuals.widgets.inactive.rounding = rounding;
 
-        // Hovered widget style
-        visuals.widgets.hovered.bg_fill = egui::Color32::from_rgb(50, 50, 55); 
+        // Hovered
+        visuals.widgets.hovered.bg_fill = egui::Color32::from_rgb(45, 45, 45);
         visuals.widgets.hovered.bg_stroke = egui::Stroke::NONE;
         visuals.widgets.hovered.fg_stroke = egui::Stroke::new(1.0, egui::Color32::WHITE);
         visuals.widgets.hovered.rounding = rounding;
         
+        // Active
+        visuals.widgets.active.bg_fill = egui::Color32::from_rgb(0, 122, 204);
+        visuals.widgets.active.bg_stroke = egui::Stroke::NONE;
+        visuals.widgets.active.fg_stroke = egui::Stroke::new(1.0, egui::Color32::WHITE);
+        visuals.widgets.active.rounding = rounding;
+
+        // Non-interactive (Panels etc)
+        visuals.widgets.noninteractive.bg_fill = egui::Color32::from_rgb(30, 30, 30);
+        visuals.widgets.noninteractive.bg_stroke = egui::Stroke::NONE;
+        visuals.widgets.noninteractive.fg_stroke = egui::Stroke::new(1.0, egui::Color32::from_rgb(140, 140, 140));
+        visuals.widgets.noninteractive.rounding = rounding;
+        
         ctx.set_visuals(visuals);
         ctx.style_mut(|s| {
-            s.spacing.button_padding = egui::vec2(10.0, 6.0); 
-            s.spacing.item_spacing = egui::vec2(8.0, 0.0);
-            s.spacing.window_margin = egui::Margin::same(12.0);
+            s.spacing.button_padding = egui::vec2(8.0, 4.0); 
+            s.spacing.item_spacing = egui::vec2(6.0, 6.0);
+            s.spacing.window_margin = egui::Margin::same(10.0);
         });
 
         // Global cursor for selection mode
@@ -394,6 +650,7 @@ impl eframe::App for RustViewApp {
         }
 
         self.handle_input(ctx);
+        self.poll_system_events(ctx);
 
         // Process background image loading
         if let Some(rx) = &self.loading_rx {
@@ -421,228 +678,392 @@ impl eframe::App for RustViewApp {
             }
         }
 
-        let top_frame = egui::Frame::none()
-            .fill(ctx.style().visuals.panel_fill)
-            .inner_margin(egui::Margin::symmetric(14.0, 8.0));
+        // 1. Title Bar (Top)
+        let title_frame = egui::Frame::none()
+            .fill(egui::Color32::from_rgb(37, 37, 38)) // VS Code Title Bar Color
+            .stroke(egui::Stroke::NONE)
+            .inner_margin(egui::Margin::ZERO);
 
-        egui::TopBottomPanel::top("toolbar").frame(top_frame).exact_height(56.0).show(ctx, |ui| {
-            ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                self.render_toolbar(ui, ctx);
+        egui::TopBottomPanel::top("title_bar")
+            .frame(title_frame)
+            .exact_height(35.0)
+            .show_separator_line(false)
+            .show(ctx, |ui| {
+                ui.centered_and_justified(|ui| {
+                    self.render_title_bar(ui, ctx);
+                });
             });
-        });
 
-        let bottom_frame = egui::Frame::none()
-            .fill(egui::Color32::from_rgb(18, 18, 20)) // Mockup Status Bar Accent Color
-            .inner_margin(egui::Margin::symmetric(16.0, 6.0));
+        // 2. Activity Bar (Left)
+        let activity_frame = egui::Frame::none()
+            .fill(egui::Color32::from_rgb(24, 24, 24)) // Darker, matching Antigravity exactly
+            .inner_margin(egui::Margin::symmetric(0.0, 10.0));
 
-        egui::TopBottomPanel::bottom("statusbar").frame(bottom_frame).exact_height(32.0).show(ctx, |ui| {
+        egui::SidePanel::left("activity_bar")
+            .frame(activity_frame)
+            .exact_width(48.0)
+            .resizable(false)
+            .show(ctx, |ui| {
+                self.render_activity_bar(ui, ctx);
+            });
+
+        // 3. Status Bar (Bottom)
+        let status_frame = egui::Frame::none()
+            .fill(egui::Color32::from_rgb(0, 122, 204)) // VS Code Status Bar (Blue)
+            .inner_margin(egui::Margin::symmetric(10.0, 2.0));
+
+        egui::TopBottomPanel::bottom("statusbar").frame(status_frame).exact_height(22.0).show(ctx, |ui| {
             self.render_statusbar(ui);
         });
 
+        // 4. Info Panel (Right)
         if self.config.info_open {
             egui::SidePanel::right("info_panel")
                 .resizable(true)
                 .min_width(320.0)
                 .default_width(320.0)
+                .frame(egui::Frame::none().fill(egui::Color32::from_rgb(37, 37, 38)).inner_margin(12.0))
                 .show(ctx, |ui| {
                     self.render_info_panel(ui);
                 });
         }
 
-        egui::CentralPanel::default().show(ctx, |ui| {
-            match self.view_mode {
-                ViewMode::Viewer => self.render_viewer(ui, ctx),
-                ViewMode::Gallery => self.render_gallery(ui, ctx),
-            }
-        });
+        // 5. Central Viewport
+        egui::CentralPanel::default()
+            .frame(egui::Frame::none().fill(egui::Color32::from_rgb(30, 30, 30))) // Main Editor Color
+            .show(ctx, |ui| {
+                if self.is_capturing {
+                    self.render_capture_overlay(ui, ctx);
+                } else {
+                    match self.view_mode {
+                        ViewMode::Viewer => self.render_viewer(ui, ctx),
+                        ViewMode::Gallery => self.render_gallery(ui, ctx),
+                    }
+                }
+            });
 
         // Render Settings & Help Windows
         self.render_settings_window(ctx);
         self.render_help_window(ctx);
+
+        // --- Custom Resize Handles for Borderless Window ---
+        self.render_resize_handles(ctx);
     }
 }
 
 impl RustViewApp {
-    fn render_toolbar(&mut self, ui: &mut egui::Ui, ctx: &Context) {
-        ui.spacing_mut().item_spacing = egui::vec2(8.0, 0.0);
+    fn activity_button(&self, ui: &mut egui::Ui, icon: &str, active: bool) -> egui::Response {
+        let btn_size = egui::vec2(48.0, 48.0);
+        let (rect, response) = ui.allocate_at_least(btn_size, egui::Sense::click());
         
-        let rounded_frame = egui::Frame::none()
-            .fill(egui::Color32::from_rgb(38, 38, 42)) // 돋보이는 둥근 컨테이너 색상
-            .rounding(10.0) // 완전히 동글하게
-            .inner_margin(egui::Margin::symmetric(8.0, 6.0));
+        let hovered = response.hovered();
+        let clicked = response.clicked();
+        
+        // Background
+        let bg_fill = if active || clicked {
+            egui::Color32::from_rgb(60, 60, 60)
+        } else if hovered {
+            egui::Color32::from_rgb(45, 45, 45)
+        } else {
+            egui::Color32::TRANSPARENT
+        };
+        ui.painter().rect_filled(rect, 0.0, bg_fill);
+        
+        // Icon color
+        let fg = if active || hovered { egui::Color32::WHITE } else { egui::Color32::from_rgb(150, 150, 150) };
+        ui.painter().text(rect.center(), egui::Align2::CENTER_CENTER, icon, egui::FontId::proportional(22.0), fg);
+        
+        // Active indicator (Blue bar on the left)
+        if active {
+            let indicator_rect = egui::Rect::from_min_max(
+                rect.left_top(),
+                egui::pos2(rect.left() + 2.0, rect.bottom())
+            );
+            ui.painter().rect_filled(indicator_rect, 0.0, egui::Color32::from_rgb(0, 122, 204));
+        }
+        
+        response.on_hover_cursor(egui::CursorIcon::PointingHand)
+    }
 
-        // --- Left Side ---
-        // App Icon
-        ui.label(egui::RichText::new("🦀").size(24.0));
-        ui.add_space(8.0);
+    fn render_resize_handles(&self, ctx: &egui::Context) {
+        let screen_rect = ctx.screen_rect();
+        let border_thickness = 5.0; // Slightly thicker for easier grab
         
-        // 1. 좌측 메뉴 블록: File Actions, Nav & Tools
-        rounded_frame.show(ui, |ui| {
-            ui.horizontal(|ui| {
-                ui.spacing_mut().item_spacing = egui::vec2(6.0, 0.0);
-                
-                // File & Nav
-                if ui.button(egui::RichText::new("📂").size(14.0)).on_hover_text("파일 열기 (Ctrl+O)").clicked() { self.open_dialog(ctx); }
-                ui.add_space(4.0);
-                if ui.button(egui::RichText::new("‹").size(14.0)).clicked() { self.navigate(ctx, -1); }
-                if ui.button(egui::RichText::new("›").size(14.0)).clicked() { self.navigate(ctx, 1); }
-                
-                if ui.add(egui::Button::new(egui::RichText::new("✂").size(14.0)).selected(self.view_state.selection_mode)).on_hover_text("영역 선택 (S)").clicked() {
-                    self.view_state.selection_mode = !self.view_state.selection_mode;
-                    if !self.view_state.selection_mode { 
-                        self.view_state.selection = None; 
-                        self.status = None;
-                    } else {
-                        self.status = Some("영역 선택 모드 활성화".to_string());
-                        if self.view_mode == ViewMode::Gallery { self.view_mode = ViewMode::Viewer; }
-                    }
+        let pointer_pos = ctx.input(|i| i.pointer.hover_pos());
+        if let Some(pos) = pointer_pos {
+            // Priority 1: Bottom-Right Corner (MUST be first)
+            let br_rect = egui::Rect::from_min_max(
+                egui::pos2(screen_rect.right() - border_thickness * 2.0, screen_rect.bottom() - border_thickness * 2.0),
+                egui::pos2(screen_rect.right(), screen_rect.bottom())
+            );
+            if br_rect.contains(pos) {
+                ctx.set_cursor_icon(egui::CursorIcon::ResizeSouthEast);
+                if ctx.input(|i| i.pointer.any_down()) {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::BeginResize(egui::viewport::ResizeDirection::SouthEast));
+                }
+                return; // Early return to prevent side-edges from overriding
+            }
+
+            // Priority 2: Bottom Edge
+            let bottom_rect = egui::Rect::from_min_max(
+                egui::pos2(screen_rect.left() + border_thickness, screen_rect.bottom() - border_thickness),
+                egui::pos2(screen_rect.right() - border_thickness * 2.0, screen_rect.bottom())
+            );
+            if bottom_rect.contains(pos) {
+                ctx.set_cursor_icon(egui::CursorIcon::ResizeVertical);
+                if ctx.input(|i| i.pointer.any_down()) {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::BeginResize(egui::viewport::ResizeDirection::South));
+                }
+                return;
+            }
+            
+            // Priority 3: Right Edge
+            let right_rect = egui::Rect::from_min_max(
+                egui::pos2(screen_rect.right() - border_thickness, screen_rect.top() + border_thickness),
+                egui::pos2(screen_rect.right(), screen_rect.bottom() - border_thickness * 2.0)
+            );
+            if right_rect.contains(pos) {
+                ctx.set_cursor_icon(egui::CursorIcon::ResizeHorizontal);
+                if ctx.input(|i| i.pointer.any_down()) {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::BeginResize(egui::viewport::ResizeDirection::East));
+                }
+            }
+        }
+    }
+
+    fn render_activity_icon(&mut self, ui: &mut egui::Ui, icon: &str, text: &str, active: bool) -> egui::Response {
+        let res = self.activity_button(ui, icon, active);
+        if res.hovered() {
+            // Use a custom Area for the tooltip to place it precisely to the right
+            let pos = res.rect.right_center() + egui::vec2(8.0, 0.0);
+            egui::Area::new(egui::Id::new(text))
+                .fixed_pos(pos)
+                .order(egui::Order::Tooltip)
+                .interactable(false)
+                .show(ui.ctx(), |ui| {
+                    egui::Frame::popup(ui.style()).show(ui, |ui| {
+                        ui.label(egui::RichText::new(text).size(12.0));
+                    });
+                });
+        }
+        res
+    }
+
+    fn render_activity_bar(&mut self, ui: &mut egui::Ui, ctx: &Context) {
+        ui.vertical_centered(|ui| {
+            ui.add_space(8.0);
+            
+            if self.render_activity_icon(ui, "🖼", "뷰어 (V)", self.view_mode == ViewMode::Viewer).clicked() {
+                self.view_mode = ViewMode::Viewer;
+            }
+            if self.render_activity_icon(ui, "▦", "갤러리 (G)", self.view_mode == ViewMode::Gallery).clicked() {
+                self.enter_gallery();
+            }
+            if self.render_activity_icon(ui, "📂", "파일 열기 (Ctrl+O)", false).clicked() {
+                self.open_dialog(ctx);
+            }
+            if self.render_activity_icon(ui, "✂", "영역 선택 (S)", self.view_state.selection_mode).clicked() {
+                self.view_state.selection_mode = !self.view_state.selection_mode;
+            }
+
+            ui.with_layout(egui::Layout::bottom_up(egui::Align::Center), |ui| {
+                ui.add_space(8.0);
+                if self.render_activity_icon(ui, "?", "도움말", self.help_open).clicked() {
+                    self.help_open = !self.help_open;
+                }
+                if self.render_activity_icon(ui, "⚙", "설정", self.settings_open).clicked() {
+                    self.settings_open = !self.settings_open;
                 }
             });
         });
+    }
 
-        // --- Right Side (Order in R2L: Controls -> Tabs -> Rotate -> Zoom) ---
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-            
-            // 2. 우측 메뉴 블록: View Options & Tools
-            rounded_frame.show(ui, |ui| {
-                ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                    ui.spacing_mut().item_spacing = egui::vec2(6.0, 0.0);
-                    let is_fullscreen = ctx.input(|i| i.viewport().fullscreen.unwrap_or(false));
-                    if ui.add(egui::Button::new(egui::RichText::new("⛶").size(14.0)).selected(is_fullscreen)).on_hover_text("전체화면 (F11)").clicked() {
-                        ctx.send_viewport_cmd(egui::ViewportCommand::Fullscreen(!is_fullscreen));
-                    }
-                    if ui.add(egui::Button::new(egui::RichText::new("ℹ").size(14.0)).selected(self.config.info_open)).on_hover_text("정보 패널 (I)").clicked() {
-                        self.config.info_open = !self.config.info_open;
-                    }
-                    if ui.add(egui::Button::new(egui::RichText::new("▦").size(14.0)).selected(self.view_state.checker)).on_hover_text("투명 배경 격자 (T)").clicked() {
-                        self.view_state.checker = !self.view_state.checker;
-                    }
-                    
-                    ui.add_space(4.0);
+    fn render_title_bar(&mut self, ui: &mut egui::Ui, ctx: &Context) {
+        let (rect, response) = ui.allocate_at_least(ui.available_size(), egui::Sense::click_and_drag());
+        
+        // --- 1. Window Dragging & Double Click Support ---
+        if response.dragged_by(egui::PointerButton::Primary) {
+            ctx.send_viewport_cmd(egui::ViewportCommand::StartDrag);
+        }
+        if response.double_clicked() {
+            let next_max = !self.is_maximized;
+            self.is_maximized = next_max;
+            ctx.send_viewport_cmd(egui::ViewportCommand::Maximized(next_max));
+            ctx.request_repaint(); // Force immediate icon update
+        }
+
+        // --- 2. Central Title Text (Drawn directly, no input blocking) ---
+        let title = self.image.as_ref()
+            .map(|img| img.path.file_name().unwrap_or_default().to_string_lossy().to_string())
+            .unwrap_or_else(|| "uriviewer".to_string());
+        
+        ui.painter().text(
+            rect.center(),
+            egui::Align2::CENTER_CENTER,
+            title,
+            egui::FontId::proportional(13.0),
+            egui::Color32::from_rgb(200, 200, 200)
+        );
+
+        // --- 3. UI Elements (Menus & Buttons) ---
+        ui.allocate_new_ui(egui::UiBuilder::new().max_rect(rect), |ui| {
+            ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
+                ui.spacing_mut().item_spacing = egui::vec2(2.0, 0.0);
+                
+                // Left side: Menus (Absolute transparency forced)
+                ui.add_space(6.0);
+                let visuals = ui.visuals_mut();
+                visuals.widgets.inactive.bg_fill = egui::Color32::TRANSPARENT;
+                visuals.widgets.inactive.weak_bg_fill = egui::Color32::TRANSPARENT;
+                visuals.widgets.inactive.bg_stroke = egui::Stroke::NONE;
+                visuals.widgets.hovered.bg_fill = egui::Color32::from_rgb(60, 60, 60);
+                visuals.widgets.active.bg_fill = egui::Color32::from_rgb(80, 80, 80);
+                
+                ui.style_mut().spacing.button_padding = egui::vec2(8.0, 0.0);
+                
+                ui.menu_button(egui::RichText::new("File").size(12.5), |ui| {
+                    if ui.button("열기 (Ctrl+O)").clicked() { self.open_dialog(ctx); ui.close_menu(); }
                     ui.separator();
-                    ui.add_space(4.0);
-
-                    if ui.add(egui::Button::new(egui::RichText::new("⚙").size(14.0)).selected(self.settings_open)).on_hover_text("설정").clicked() {
-                        self.settings_open = !self.settings_open;
-                    }
-                    if ui.add(egui::Button::new(egui::RichText::new("?").size(14.0)).selected(self.help_open)).on_hover_text("도움말").clicked() {
-                        self.help_open = !self.help_open;
+                    if ui.button("종료").clicked() { ctx.send_viewport_cmd(egui::ViewportCommand::Close); }
+                });
+                ui.menu_button(egui::RichText::new("View").size(12.5), |ui| {
+                    if ui.button("정보 패널 (I)").clicked() { self.config.info_open = !self.config.info_open; ui.close_menu(); }
+                    if ui.button("격자 배경 (T)").clicked() { self.view_state.checker = !self.view_state.checker; ui.close_menu(); }
+                    ui.separator();
+                    if ui.button("전체화면 (F11)").clicked() { 
+                        let is_fs = ctx.input(|i| i.viewport().fullscreen.unwrap_or(false));
+                        ctx.send_viewport_cmd(egui::ViewportCommand::Fullscreen(!is_fs));
+                        ui.close_menu(); 
                     }
                 });
-            });
 
-            // View Tabs (Mockup rounded buttons style)
-            let mut mode = self.view_mode.clone();
-            let viewer_selected = mode == ViewMode::Viewer;
-            let gallery_selected = mode == ViewMode::Gallery;
-
-            rounded_frame.show(ui, |ui| {
-                ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                    ui.spacing_mut().item_spacing = egui::vec2(6.0, 0.0);
+                // Right side: Window Controls & Tools
+                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                    ui.spacing_mut().item_spacing = egui::vec2(0.0, 0.0);
                     
-                    if ui.add(egui::Button::new(egui::RichText::new("뷰어").size(13.0).strong()).selected(viewer_selected)).clicked() { mode = ViewMode::Viewer; }
-                    if ui.add(egui::Button::new(egui::RichText::new("갤러리").size(13.0).strong()).selected(gallery_selected)).clicked() { mode = ViewMode::Gallery; }
+                    // Windows Control Buttons (Far Right)
+                    let btn_size = egui::vec2(35.0, 31.0); // Narrower & Standard Height
                     
-                    if mode != self.view_mode {
-                        if mode == ViewMode::Gallery { self.enter_gallery(); } else { self.view_mode = ViewMode::Viewer; }
+                    // 1. Close (Using standard Unicode symbol for consistency)
+                    let close_btn = egui::Button::new(egui::RichText::new("×").size(18.0))
+                        .fill(egui::Color32::TRANSPARENT)
+                        .rounding(0.0)
+                        .min_size(btn_size);
+                    
+                    let close_res = ui.add(close_btn);
+                    if close_res.hovered() {
+                        ui.painter().rect_filled(close_res.rect, 0.0, egui::Color32::from_rgb(232, 17, 35));
+                        // Redraw text to ensure visibility on red
+                        ui.painter().text(close_res.rect.center(), egui::Align2::CENTER_CENTER, "×", egui::FontId::proportional(18.0), egui::Color32::WHITE);
                     }
-                });
-            });
+                    if close_res.clicked() { ctx.send_viewport_cmd(egui::ViewportCommand::Close); }
+                    
+                    // 2. Maximize / Restore
+                    let max_res = ui.add(egui::Button::new("").fill(egui::Color32::TRANSPARENT).rounding(0.0).min_size(btn_size))
+                        .on_hover_text(if self.is_maximized { "이전 크기로 복원" } else { "최대화" });
+                    
+                    // Draw Maximize/Restore Icon manually (Perfect Square 9x9)
+                    let icon_size = 9.0;
+                    let icon_rect = egui::Rect::from_center_size(max_res.rect.center(), egui::Vec2::splat(icon_size));
+                    let stroke = egui::Stroke::new(1.0, egui::Color32::WHITE);
+                    if self.is_maximized {
+                        // Restore Icon: ❐ (Two overlapping squares, smaller scale)
+                        let offset = 1.2;
+                        let b1 = egui::Rect::from_center_size(icon_rect.center() + egui::vec2(offset, -offset), egui::Vec2::splat(icon_size - 1.0));
+                        let b2 = egui::Rect::from_center_size(icon_rect.center() + egui::vec2(-offset, offset), egui::Vec2::splat(icon_size - 1.0));
+                        ui.painter().rect_stroke(b1, 0.0, stroke);
+                        ui.painter().rect_filled(b2, 0.0, ui.visuals().panel_fill);
+                        ui.painter().rect_stroke(b2, 0.0, stroke);
+                    } else {
+                        // Maximize Icon: ▢ (Single perfect square)
+                        ui.painter().rect_stroke(icon_rect, 0.0, stroke);
+                    }
 
-            // Zoom Controls & Rotation
-            if let Some(_img) = &self.image {
-                rounded_frame.show(ui, |ui| {
-                    ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                        ui.spacing_mut().item_spacing = egui::vec2(6.0, 0.0);
-                        let zoom_selected = !self.view_state.fit_mode;
-                        let fit_selected = self.view_state.fit_mode;
+                    if max_res.clicked() {
+                        self.is_maximized = !self.is_maximized;
+                        ctx.send_viewport_cmd(egui::ViewportCommand::Maximized(self.is_maximized));
+                        ctx.request_repaint();
+                    }
+                    
+                    // 3. Minimize
+                    if ui.add(egui::Button::new(egui::RichText::new("—").size(11.0)).fill(egui::Color32::TRANSPARENT).rounding(0.0).min_size(btn_size)).clicked() {
+                        ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(true));
+                    }
 
-                        if ui.button(egui::RichText::new("⟲").size(14.0)).on_hover_text("반시계 방향 회전 (L)").clicked() { self.view_state.rotation = self.view_state.rotation.ccw(); }
-                        if ui.button(egui::RichText::new("⟳").size(14.0)).on_hover_text("시계 방향 회전 (R)").clicked() { self.view_state.rotation = self.view_state.rotation.cw(); }
+                    ui.add_space(10.0);
+                    ui.separator();
+                    ui.add_space(10.0);
+
+                    // Image Tools
+                    if let Some(_img) = &self.image {
+                        ui.spacing_mut().item_spacing = egui::vec2(2.0, 0.0);
                         
-                        ui.add_space(8.0);
-                        
-                        if ui.button(egui::RichText::new("-").size(14.0)).on_hover_text("축소 (-/MouseWheel)").clicked() {
-                            self.zoom_by(1.0 / 1.25);
-                        }
-
-                        let zoom_pct = if fit_selected {
-                            "FIT".to_string()
-                        } else {
-                            format!("{:.0}%", self.view_state.scale * 100.0)
+                        let tool_btn_style = |ui: &mut egui::Ui| {
+                            ui.style_mut().spacing.button_padding = egui::vec2(4.0, 2.0);
                         };
-                        ui.add(egui::Button::new(egui::RichText::new(zoom_pct).monospace().size(12.0).strong()).selected(zoom_selected));
 
-                        if ui.button(egui::RichText::new("+").size(14.0)).on_hover_text("확대 (+/MouseWheel)").clicked() {
-                            self.zoom_by(1.25);
-                        }
-
-                        ui.add_space(8.0);
+                        ui.scope(|ui| {
+                            tool_btn_style(ui);
+                            if ui.button(egui::RichText::new("1:1").size(10.5))
+                                .on_hover_cursor(egui::CursorIcon::PointingHand)
+                                .on_hover_text("원래 크기 (1:1)")
+                                .clicked() {
+                                self.view_state.fit_mode = false; self.view_state.scale = 1.0; self.view_state.offset = egui::Vec2::ZERO;
+                            }
+                        });
+                        ui.scope(|ui| {
+                            tool_btn_style(ui);
+                            if ui.button(egui::RichText::new("맞춤").size(10.5))
+                                .on_hover_cursor(egui::CursorIcon::PointingHand)
+                                .on_hover_text("화면에 맞춤 (FIT)")
+                                .clicked() {
+                                self.view_state.fit_mode = true; self.view_state.offset = egui::Vec2::ZERO;
+                            }
+                        });
+                        ui.add_space(4.0);
+                        if ui.button(egui::RichText::new("+").size(14.0))
+                            .on_hover_cursor(egui::CursorIcon::PointingHand)
+                            .on_hover_text("확대")
+                            .clicked() { self.zoom_by(1.2); }
                         
-                        if ui.add(egui::Button::new(egui::RichText::new("맞춤").size(12.0).strong()).selected(fit_selected)).clicked() { 
-                            self.view_state.fit_mode = true; 
-                            self.view_state.offset = Vec2::ZERO;
-                        }
-                        if ui.add(egui::Button::new(egui::RichText::new("1:1").size(12.0).strong()).selected(self.view_state.scale == 1.0 && !fit_selected)).clicked() { 
-                            self.view_state.fit_mode = false; 
-                            self.view_state.scale = 1.0; 
-                            self.view_state.offset = Vec2::ZERO;
-                        }
-                    });
+                        let zoom_pct = if self.view_state.fit_mode { "FIT".to_string() } else { format!("{:.0}%", self.view_state.scale * 100.0) };
+                        ui.label(egui::RichText::new(zoom_pct).monospace().size(11.0));
+                        
+                        if ui.button(egui::RichText::new("-").size(14.0))
+                            .on_hover_cursor(egui::CursorIcon::PointingHand)
+                            .on_hover_text("축소")
+                            .clicked() { self.zoom_by(1.0 / 1.2); }
+                        
+                        ui.add_space(4.0);
+                        if ui.button("⟳")
+                            .on_hover_cursor(egui::CursorIcon::PointingHand)
+                            .on_hover_text("시계 방향 회전")
+                            .clicked() { self.view_state.rotation = self.view_state.rotation.cw(); }
+                        if ui.button("⟲")
+                            .on_hover_cursor(egui::CursorIcon::PointingHand)
+                            .on_hover_text("반시계 방향 회전")
+                            .clicked() { self.view_state.rotation = self.view_state.rotation.ccw(); }
+                    }
                 });
-            }
-
-            // Render Filename in the remaining center space
-            let filename_to_show = self.image.as_ref().map(|img| {
-                img.path.file_name().unwrap_or_default().to_string_lossy().to_string()
             });
-            if let Some(name) = filename_to_show {
-                ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                    ui.add_space(16.0);
-                    ui.add(egui::Label::new(
-                        egui::RichText::new(name)
-                            .color(egui::Color32::from_rgb(220, 220, 230))
-                            .strong()
-                            .size(14.0)
-                    ).truncate());
-                });
-            }
         });
     }
 
     fn render_statusbar(&self, ui: &mut egui::Ui) {
-        ui.horizontal(|ui| {
-            ui.spacing_mut().item_spacing = egui::vec2(16.0, 0.0);
+        ui.style_mut().visuals.override_text_color = Some(egui::Color32::WHITE);
+        ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
+            ui.spacing_mut().item_spacing = egui::vec2(12.0, 0.0);
+            
             if let Some(img) = &self.image {
                 let (w, h) = img.display_size(self.view_state.rotation);
-                
-                // Index
-                ui.horizontal(|ui| {
-                    ui.spacing_mut().item_spacing = egui::vec2(6.0, 0.0);
-                    ui.label(egui::RichText::new("🖼").size(12.0).color(egui::Color32::from_rgb(180, 180, 190)));
-                    ui.label(egui::RichText::new(format!("{} / {}", self.folder_idx + 1, self.folder_imgs.len())).size(12.0).strong().color(egui::Color32::WHITE));
-                });
-
-                // Dimensions
-                ui.horizontal(|ui| {
-                    ui.spacing_mut().item_spacing = egui::vec2(6.0, 0.0);
-                    ui.label(egui::RichText::new("📐").size(12.0).color(egui::Color32::from_rgb(180, 180, 190)));
-                    ui.label(egui::RichText::new(format!("{} × {}", w, h)).size(12.0).strong().color(egui::Color32::WHITE));
-                });
-
-                // Size
-                ui.horizontal(|ui| {
-                    ui.spacing_mut().item_spacing = egui::vec2(6.0, 0.0);
-                    ui.label(egui::RichText::new("💾").size(12.0).color(egui::Color32::from_rgb(180, 180, 190)));
-                    ui.label(egui::RichText::new(human_size(img.file_size)).size(12.0).strong().color(egui::Color32::WHITE));
-                });
+                ui.label(egui::RichText::new(format!("{} / {}", self.folder_idx + 1, self.folder_imgs.len())).size(11.0));
+                ui.label(egui::RichText::new(format!("{} × {}", w, h)).size(11.0));
+                ui.label(egui::RichText::new(human_size(img.file_size)).size(11.0));
             }
             
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 if let Some(status) = &self.status {
-                    ui.label(egui::RichText::new(status).color(egui::Color32::from_rgb(108, 143, 255)).strong().size(12.0));
-                } else {
-                    ui.label(egui::RichText::new("← → 탐색 | +/- 줌 | I 정보 | G 갤러리").size(11.0).color(egui::Color32::from_rgb(140, 140, 150)));
+                    ui.add(egui::Label::new(egui::RichText::new(status).size(11.0).strong()).selectable(false));
                 }
             });
         });
@@ -736,6 +1157,17 @@ impl RustViewApp {
                     ui.checkbox(&mut self.config.info_open, "정보 패널 항상 열기 (I)");
                 });
 
+                ui.add_space(8.0);
+
+                ui.group(|ui| {
+                    ui.label(egui::RichText::new("⌨ 전역 단축키 설정").strong());
+                    ui.add_space(4.0);
+                    
+                    self.render_hotkey_setting(ui, "화면 캡처", HotkeyTarget::Capture);
+                    ui.add_space(4.0);
+                    self.render_hotkey_setting(ui, "컬러 피커", HotkeyTarget::ColorPicker);
+                });
+
                 ui.add_space(12.0);
                 ui.vertical_centered(|ui| {
                     if ui.button("닫기").clicked() {
@@ -744,6 +1176,40 @@ impl RustViewApp {
                 });
             });
         self.settings_open = settings_open && !request_close;
+        if request_close {
+            save_config(&self.config);
+        }
+    }
+
+    fn render_hotkey_setting(&mut self, ui: &mut egui::Ui, label: &str, target: HotkeyTarget) {
+        let hotkey = match target {
+            HotkeyTarget::Capture => self.config.capture_hotkey,
+            HotkeyTarget::ColorPicker => self.config.color_picker_hotkey,
+        };
+
+        ui.horizontal(|ui| {
+            ui.label(format!("{}: ", label));
+            
+            let text = if self.recording_hotkey == Some(target) {
+                "대기 중... (키를 누르세요)".to_string()
+            } else {
+                match hotkey {
+                    Some((mods, key)) => format_hotkey(mods, key),
+                    None => "미지정".to_string(),
+                }
+            };
+
+            let btn_color = if self.recording_hotkey == Some(target) {
+                egui::Color32::from_rgb(0, 122, 204)
+            } else {
+                egui::Color32::from_rgb(60, 60, 65)
+            };
+
+            let btn = egui::Button::new(egui::RichText::new(text).color(egui::Color32::WHITE)).fill(btn_color);
+            if ui.add(btn).clicked() {
+                self.recording_hotkey = Some(target);
+            }
+        });
     }
 
     fn render_help_window(&mut self, ctx: &Context) {
@@ -1243,4 +1709,21 @@ fn draw_marching_ants(painter: &Painter, rect: Rect, time: f64) {
             d += dash_len as f32 * 2.0;
         }
     }
+}
+
+fn format_hotkey(mods: u32, key: u32) -> String {
+    let mut parts = vec![];
+    if mods & 2 != 0 { parts.push("Ctrl"); }
+    if mods & 1 != 0 { parts.push("Shift"); }
+    if mods & 4 != 0 { parts.push("Alt"); }
+    if mods & 8 != 0 { parts.push("Win"); }
+    
+    let key_str = match key {
+        0x1F => "S",
+        0x09 => "C",
+        0x1E => "A",
+        _ => "Unknown",
+    };
+    parts.push(key_str);
+    parts.join("+")
 }

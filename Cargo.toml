@@ -32,6 +32,11 @@ zip = "2.1"
 sysinfo = "0.33"
 walkdir = "2.5"
 arboard = "3.6.1"
+tray-icon = "0.19"
+muda = "0.15"
+global-hotkey = "0.6"
+xcap = "0.3"
+crossbeam-channel = "0.5"
 
 [lib]
 name = "uriviewer_ext"

@@ -3,6 +3,9 @@ pub mod loader;
 pub mod nav;
 pub mod types;
 pub mod shell_ext;
+pub mod tray;
+pub mod hotkeys;
+pub mod capture;
 
 use crate::shell_ext::ShellExtension;
 use std::ffi::c_void;

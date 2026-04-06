@@ -3,10 +3,7 @@
 
 #![windows_subsystem = "windows"]
 
-mod app;
-mod loader;
-mod nav;
-mod types;
+use uriviewer_ext::app::RustViewApp;
 
 use std::path::PathBuf;
 use std::ptr;
@@ -43,15 +40,17 @@ fn main() -> eframe::Result<()> {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size([1280.0, 800.0])
             .with_min_inner_size([640.0, 480.0])
-            .with_title("RustView")
-            .with_drag_and_drop(true),
+            .with_title("uriviewer")
+            .with_drag_and_drop(true)
+            .with_decorations(false)
+            .with_resizable(true),
         ..Default::default()
     };
 
     eframe::run_native(
-        "RustView",
+        "uriviewer",
         native_options,
-        Box::new(move |cc| Ok(Box::new(app::RustViewApp::new(cc, initial_path)))),
+        Box::new(move |cc| Ok(Box::new(RustViewApp::new(cc, initial_path)))),
     )
 }
 

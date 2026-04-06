@@ -120,6 +120,7 @@ impl LoadedImage {
 
 // ── View State ────────────────────────────────────────────────────────────
 
+#[derive(Debug, Clone)]
 pub struct SelectionState {
     pub start: egui::Pos2,
     pub end: egui::Pos2,
@@ -203,6 +204,8 @@ pub struct AppConfig {
     pub checker: bool,
     pub thumb_size: f32,
     pub last_directory: Option<PathBuf>,
+    pub capture_hotkey: Option<(u32, u32)>,      // (modifiers, key_code)
+    pub color_picker_hotkey: Option<(u32, u32)>, // (modifiers, key_code)
 }
 
 impl Default for AppConfig {
@@ -212,6 +215,10 @@ impl Default for AppConfig {
             checker: true,
             thumb_size: 140.0,
             last_directory: None,
+            // Default: Ctrl+Shift+S (Capture), Ctrl+Shift+C (Color Picker)
+            // Modifiers: Shift(1) | Ctrl(2) | Alt(4) | Super(8)
+            capture_hotkey: Some((3, 0x1F)),      // 3 = Ctrl+Shift, 0x1F = KeyS
+            color_picker_hotkey: Some((3, 0x09)), // 3 = Ctrl+Shift, 0x09 = KeyC
         }
     }
 }

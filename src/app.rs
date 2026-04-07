@@ -90,6 +90,33 @@ impl RustViewApp {
             last_clipboard_id: 0,
         };
 
+        // --- 단축키 유효성 검사 및 복구 (사용자 요청: Unknown 키 방지) ---
+        let mut config_dirty = false;
+        if let Some((_, key)) = app.config.capture_hotkey {
+            if key == 0 || key == 0x1F || key < 0x08 { // 잘못된 코드 감지
+                app.config.capture_hotkey = Some((6, 0x53)); // Ctrl+Alt+S
+                config_dirty = true;
+            }
+        } else {
+            app.config.capture_hotkey = Some((6, 0x53));
+            config_dirty = true;
+        }
+
+        if let Some((_, key)) = app.config.color_picker_hotkey {
+            if key == 0 || key == 0x09 || key < 0x08 {
+                app.config.color_picker_hotkey = Some((6, 0x43)); // Ctrl+Alt+C
+                config_dirty = true;
+            }
+        } else {
+            app.config.color_picker_hotkey = Some((6, 0x43));
+            config_dirty = true;
+        }
+
+        if config_dirty {
+            save_config(&app.config);
+        }
+        // -----------------------------------------------------------------
+
         // 초기 테마 적용
         app.apply_theme(&_cc.egui_ctx);
         
@@ -2195,15 +2222,15 @@ fn format_hotkey(mods: u32, key: u32) -> String {
         0x78 => "F9", 0x79 => "F10", 0x7A => "F11", 0x7B => "F12",
 
         0x20 => "Space", 0x0D => "Enter", 0x1B => "Esc",
+        0x08 => "Backspace", 0x09 => "Tab",
         0x21 => "PgUp", 0x22 => "PgDn", 0x23 => "End", 0x24 => "Home",
         0x25 => "Left", 0x26 => "Up", 0x27 => "Right", 0x28 => "Down",
         0x2C => "PrtSc", 0x2D => "Ins", 0x2E => "Del",
         
         // Legacy/Custom mappings fallback
         0x1F => "S",
-        0x09 => "C",
         0x1E => "A",
-        _ => "Unknown",
+        _ => if key == 0 { "None" } else { Box::leak(format!("Key(0x{:02X})", key).into_boxed_str()) },
     };
     parts.push(key_str);
     parts.join("+")

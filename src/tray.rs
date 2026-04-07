@@ -28,13 +28,21 @@ pub fn create_tray(icon_path: Option<PathBuf>) -> TrayIcon {
         .with_tooltip("uriviewer")
         .with_menu(Box::new(menu));
 
-    if let Some(p) = icon_path {
-        // In a real app, we would load an icon from path or embed it. 
-        // For now we assume typical icon loading
-        if let Ok(icon) = tray_icon::Icon::from_path(p, Some((32, 32))) {
+    // Try to load icon from path, fallback to default if None or fails
+    let path = icon_path.unwrap_or_else(|| PathBuf::from("assets/logo.png"));
+    
+    if path.exists() {
+        if let Ok(icon) = load_tray_icon(&path) {
             builder = builder.with_icon(icon);
         }
     }
 
     builder.build().unwrap()
+}
+
+fn load_tray_icon(path: &Path) -> Result<tray_icon::Icon, String> {
+    let img = image::open(path).map_err(|e| e.to_string())?;
+    let rgba = img.to_rgba8();
+    let (w, h) = rgba.dimensions();
+    tray_icon::Icon::from_rgba(rgba.as_raw().clone(), w, h).map_err(|e| e.to_string())
 }

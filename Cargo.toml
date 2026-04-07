@@ -69,4 +69,7 @@ strip         = true
 [package.metadata.bundle]
 name       = "RustView"
 identifier = "com.rustview.app"
-icon       = ["assets/icon.png"]
+icon       = ["assets/logo.png"]
+
+[build-dependencies]
+winres = "0.1"

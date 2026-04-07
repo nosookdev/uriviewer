@@ -1,7 +1,6 @@
 // hotkeys.rs — Global hotkey management
 
 use global_hotkey::{hotkey::{HotKey, Modifiers, Code}, GlobalHotKeyManager};
-use std::str::FromStr;
 
 pub fn create_hotkey(mods: u32, key_code: u32, id: u32) -> Option<HotKey> {
     let mut m = Modifiers::empty();

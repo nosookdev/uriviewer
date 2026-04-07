@@ -39,6 +39,8 @@ pub struct RustViewApp {
     pub(crate) hotkey_error: Option<String>,
     pub(crate) active_settings_tab: String,
     pub(crate) first_frame: bool,
+    pub(crate) logo_texture: Option<egui::TextureHandle>,
+    pub(crate) last_clipboard_id: u64, // 클립보드 이미지 중복 감지용 (크기 + 픽셀 합산 등)
 }
 
 #[derive(PartialEq, Copy, Clone)]
@@ -84,13 +86,32 @@ impl RustViewApp {
             hotkey_error: None,
             active_settings_tab: "일반 설정".to_string(),
             first_frame: true,
+            logo_texture: None,
+            last_clipboard_id: 0,
         };
 
         // 초기 테마 적용
         app.apply_theme(&_cc.egui_ctx);
+        
+        // 로고 텍스처 로드 (바이너리에 임베딩)
+        let logo_data = include_bytes!("../assets/logo.png");
+        if let Ok(img) = image::load_from_memory(logo_data) {
+            let rgba = img.to_rgba8();
+            let color_img = egui::ColorImage::from_rgba_unmultiplied(
+                [rgba.width() as usize, rgba.height() as usize],
+                rgba.as_flat_samples().as_slice(),
+            );
+            app.logo_texture = Some(_cc.egui_ctx.load_texture(
+                "app_logo",
+                color_img,
+                egui::TextureOptions::LINEAR
+            ));
+        }
 
         // Initialize Tray & Hotkeys
-        let tray = crate::tray::create_tray(None);
+        // assets/logo.png를 기본 트레이 아이콘으로 사용
+        let tray_icon_path = Some(PathBuf::from("assets/logo.png"));
+        let tray = crate::tray::create_tray(tray_icon_path);
         app.tray = Some(tray);
 
         let hkm = crate::hotkeys::HotKeyManager::new();
@@ -208,7 +229,6 @@ impl RustViewApp {
 
             if let Some(k) = key_code {
                 // Map egui::Key to winapi/global-hotkey style if possible
-                // For POC, we'll just allow common keys or stop recording
                 let raw_code = match k {
                     egui::Key::A => 0x41, egui::Key::B => 0x42, egui::Key::C => 0x43, egui::Key::D => 0x44,
                     egui::Key::E => 0x45, egui::Key::F => 0x46, egui::Key::G => 0x47, egui::Key::H => 0x48,
@@ -225,6 +245,11 @@ impl RustViewApp {
                     egui::Key::F1 => 0x70, egui::Key::F2 => 0x71, egui::Key::F3 => 0x72, egui::Key::F4 => 0x73,
                     egui::Key::F5 => 0x74, egui::Key::F6 => 0x75, egui::Key::F7 => 0x76, egui::Key::F8 => 0x77,
                     egui::Key::F9 => 0x78, egui::Key::F10 => 0x79, egui::Key::F11 => 0x7A, egui::Key::F12 => 0x7B,
+                    
+                    egui::Key::Space => 0x20, egui::Key::Enter => 0x0D, egui::Key::Escape => 0x1B,
+                    egui::Key::PageUp => 0x21, egui::Key::PageDown => 0x22, egui::Key::End => 0x23, egui::Key::Home => 0x24,
+                    egui::Key::ArrowLeft => 0x25, egui::Key::ArrowUp => 0x26, egui::Key::ArrowRight => 0x27, egui::Key::ArrowDown => 0x28,
+                    egui::Key::Delete => 0x2E,
                     _ => 0,
                 };
 
@@ -258,27 +283,62 @@ impl RustViewApp {
         }
 
         ctx.input(|i| {
-            if i.key_pressed(Key::Num0) { self.view_state.scale_mode = ScaleMode::Fit; self.view_state.scale = 1.0; self.view_state.offset = Vec2::ZERO; }
-            if i.key_pressed(Key::Num1) { self.view_state.scale_mode = ScaleMode::Original; self.view_state.scale = 1.0; self.view_state.offset = Vec2::ZERO; }
-            if i.key_pressed(Key::Num2) { self.view_state.scale_mode = ScaleMode::Fill; self.view_state.scale = 1.0; self.view_state.offset = Vec2::ZERO; }
-            if i.key_pressed(Key::I) { self.config.info_open = !self.config.info_open; }
-            if i.key_pressed(Key::T) { self.view_state.checker = !self.view_state.checker; self.config.checker = self.view_state.checker; }
-            if i.key_pressed(Key::L) { self.view_state.rotation = self.view_state.rotation.ccw(); }
-            if i.key_pressed(Key::R) { self.view_state.rotation = self.view_state.rotation.cw(); }
-            // S key for selection mode - consume it to prevent double-triggering
-            // Also check for 's' text event to handle Korean IME ('ㄴ')
-            let mut s_pressed = i.key_pressed(Key::S);
-            if !s_pressed {
-                for event in &i.raw.events {
-                    if let egui::Event::Text(t) = event {
-                        if t == "s" || t == "S" || t == "ㄴ" {
-                            s_pressed = true;
-                            break;
-                        }
+            // --- 0. Control / Global Commands ---
+            if i.key_pressed(Key::Escape) {
+                if self.is_capturing {
+                    self.is_capturing = false;
+                    self.status = Some("캡처 취소".to_string());
+                } else if self.view_state.selection_mode {
+                    self.view_state.selection_mode = false;
+                    self.view_state.selection = None;
+                    self.status = Some("영역 선택 취소".to_string());
+                } else if self.settings_open {
+                    self.settings_open = false;
+                } else if self.help_open {
+                    self.help_open = false;
+                } else {
+                    let is_fs = i.viewport().fullscreen.unwrap_or(false);
+                    if is_fs {
+                        ctx.send_viewport_cmd(egui::ViewportCommand::Fullscreen(false));
+                    } else if self.image.is_some() && self.view_mode == ViewMode::Viewer {
+                        // Optional: minimize on ESC if no other priority
+                        // ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(true));
                     }
                 }
             }
 
+            // --- 1. View & Zoom ---
+            let zoom_reset = i.key_pressed(Key::Num0) || (i.modifiers.command && i.key_pressed(Key::Num0));
+            if zoom_reset { self.view_state.scale_mode = ScaleMode::Fit; self.view_state.scale = 1.0; self.view_state.offset = Vec2::ZERO; }
+            if i.key_pressed(Key::Num1) { self.view_state.scale_mode = ScaleMode::Original; self.view_state.scale = 1.0; self.view_state.offset = Vec2::ZERO; }
+            if i.key_pressed(Key::Num2) { self.view_state.scale_mode = ScaleMode::Fill; self.view_state.scale = 1.0; self.view_state.offset = Vec2::ZERO; }
+            
+            if i.key_pressed(Key::I) { self.config.info_open = !self.config.info_open; }
+            if i.key_pressed(Key::T) { self.view_state.checker = !self.view_state.checker; self.config.checker = self.view_state.checker; }
+            if i.key_pressed(Key::L) && !i.modifiers.alt { self.view_state.rotation = self.view_state.rotation.ccw(); }
+            if i.key_pressed(Key::R) { self.view_state.rotation = self.view_state.rotation.cw(); }
+            
+            if i.key_pressed(Key::F1) { self.help_open = !self.help_open; }
+            if i.key_pressed(Key::Comma) && i.modifiers.command { self.settings_open = !self.settings_open; }
+
+            // --- 2. Modes ---
+            // Space or G for Gallery toggle
+            if i.key_pressed(Key::G) || (i.key_pressed(Key::Space) && !self.view_state.selection_mode) {
+                 match self.view_mode {
+                    ViewMode::Viewer => self.enter_gallery(),
+                    ViewMode::Gallery => self.view_mode = ViewMode::Viewer,
+                }
+            }
+
+            // Selection Mode (S)
+            let mut s_pressed = i.key_pressed(Key::S);
+            if !s_pressed {
+                for event in &i.raw.events {
+                    if let egui::Event::Text(t) = event {
+                        if t == "s" || t == "S" || t == "ㄴ" { s_pressed = true; break; }
+                    }
+                }
+            }
             if s_pressed && !i.modifiers.any() {
                 self.view_state.selection_mode = !self.view_state.selection_mode;
                 if !self.view_state.selection_mode {
@@ -286,51 +346,69 @@ impl RustViewApp {
                     self.status = None;
                 } else {
                     self.status = Some("영역 선택 모드 활성화".to_string());
-                    // Auto-switch to Viewer if in Gallery
-                    if self.view_mode == ViewMode::Gallery {
-                        self.view_mode = ViewMode::Viewer;
-                    }
+                    if self.view_mode == ViewMode::Gallery { self.view_mode = ViewMode::Viewer; }
                 }
             }
 
-            if i.key_pressed(Key::F11) { 
+            // Fullscreen (F11 or F)
+            if i.key_pressed(Key::F11) || (i.key_pressed(Key::F) && !i.modifiers.any()) { 
                 let is_fs = i.viewport().fullscreen.unwrap_or(false);
                 ctx.send_viewport_cmd(egui::ViewportCommand::Fullscreen(!is_fs));
             }
 
+            // Lock Scale (Alt+L)
             if i.modifiers.alt && i.key_pressed(Key::L) {
                 self.view_state.lock_scale = !self.view_state.lock_scale;
                 self.status = Some(if self.view_state.lock_scale { "배율 고정 활성화".to_string() } else { "배율 고정 해제".to_string() });
             }
-        });
 
-        let toggle_gallery = ctx.input(|i| i.key_pressed(Key::G));
-        if toggle_gallery {
-            match self.view_mode {
-                ViewMode::Viewer => self.enter_gallery(),
-                ViewMode::Gallery => self.view_mode = ViewMode::Viewer,
+            // --- 3. Clipboard ---
+            if i.modifiers.command && i.key_pressed(Key::C) && !self.view_state.selection_mode {
+                if let Some(img) = &self.image {
+                    self.status = Some("⏳ 이미지를 클립보드에 복사 중...".to_string());
+                    let path = img.path.clone();
+                    std::thread::spawn(move || {
+                        // Open file and copy full image
+                        if let Ok(full_img) = image::open(&path) {
+                            if let Ok(mut cb) = Clipboard::new() {
+                                let rgba = full_img.to_rgba8();
+                                let (w, h) = rgba.dimensions();
+                                let data = arboard::ImageData {
+                                    width: w as usize, height: h as usize,
+                                    bytes: std::borrow::Cow::from(rgba.as_raw()),
+                                };
+                                let _ = cb.set_image(data);
+                            }
+                        }
+                    });
+                    self.status = Some("✅ 전체 이미지가 복사되었습니다.".to_string());
+                }
             }
-        }
 
-        let zoom_in = ctx.input(|i| i.key_pressed(Key::Plus));
-        let zoom_out = ctx.input(|i| i.key_pressed(Key::Minus));
-        if zoom_in { self.zoom_by(1.25); }
-        if zoom_out { self.zoom_by(1.0 / 1.25); }
+            // --- 4. Zooming ---
+            if i.key_pressed(Key::Plus) || (i.modifiers.command && i.key_pressed(Key::Equals)) { self.zoom_by(1.25); }
+            if i.key_pressed(Key::Minus) || (i.modifiers.command && i.key_pressed(Key::Minus)) { self.zoom_by(1.0 / 1.25); }
 
-        // Mouse Wheel Zoom
-        let scroll = ctx.input(|i| i.smooth_scroll_delta.y);
-        if scroll > 0.0 {
-            self.zoom_by(1.1);
-        } else if scroll < 0.0 {
-            self.zoom_by(1.0 / 1.1);
-        }
-        
-        let nav = ctx.input(|i| {
-            if i.key_pressed(Key::ArrowLeft) { Some(-1i64) } 
-            else if i.key_pressed(Key::ArrowRight) { Some(1i64) }
-            else { None }
+            let scroll = i.smooth_scroll_delta.y;
+            if scroll > 0.0 { self.zoom_by(1.1); } else if scroll < 0.0 { self.zoom_by(1.0 / 1.1); }
+            
+            // --- 5. Navigation ---
+            let mut delta = None;
+            if i.key_pressed(Key::ArrowLeft) || i.key_pressed(Key::PageUp) { delta = Some(-1i64); }
+            else if i.key_pressed(Key::ArrowRight) || i.key_pressed(Key::PageDown) { delta = Some(1i64); }
+            else if i.key_pressed(Key::Home) { 
+                self.folder_idx = 0;
+                if !self.folder_imgs.is_empty() { self.start_loading_image(ctx, &self.folder_imgs[0].clone()); }
+            }
+            else if i.key_pressed(Key::End) {
+                if !self.folder_imgs.is_empty() {
+                    self.folder_idx = self.folder_imgs.len() - 1;
+                    self.start_loading_image(ctx, &self.folder_imgs[self.folder_idx].clone());
+                }
+            }
+
+            if let Some(d) = delta { self.navigate(ctx, d); }
         });
-        if let Some(d) = nav { self.navigate(ctx, d); }
     }
 
     fn zoom_by(&mut self, factor: f32) {
@@ -509,17 +587,20 @@ impl RustViewApp {
                             
                             if w > 0 && h > 0 {
                                 let cropped = image::imageops::crop_imm(&screen.image, x, y, w, h).to_image();
+                                
+                                // 1. 클립보드 복사
                                 if let Ok(mut cb) = Clipboard::new() {
                                     let img_data = arboard::ImageData {
                                         width: w as usize,
                                         height: h as usize,
                                         bytes: std::borrow::Cow::from(cropped.as_raw()),
                                     };
-                                    if let Err(e) = cb.set_image(img_data) {
-                                        self.status = Some(format!("❌ 복사 오류: {}", e));
-                                    } else {
-                                        self.status = Some("✅ 캡처 영역이 클립보드에 복사되었습니다.".to_string());
-                                    }
+                                    let _ = cb.set_image(img_data.clone());
+                                    
+                                    // 2. 즉시 앱 뷰어에 로드 (트리거)
+                                    self.last_clipboard_id = 0; // 강제 업데이트를 위해 ID 초기화
+                                    self.load_from_clipboard(ctx, img_data);
+                                    self.status = Some("✅ 캡처 완료: 클립보드 복사 및 뷰어 로드".to_string());
                                 }
                             }
                         }
@@ -565,9 +646,9 @@ impl RustViewApp {
     }
 
     fn poll_system_events(&mut self, ctx: &Context) {
-        if let Ok(event) = tray_icon::TrayIconEvent::receiver().try_recv() {
+        while let Ok(event) = tray_icon::TrayIconEvent::receiver().try_recv() {
             match event {
-                tray_icon::TrayIconEvent::DoubleClick { .. } => {
+                tray_icon::TrayIconEvent::DoubleClick { .. } | tray_icon::TrayIconEvent::Click { .. } => {
                     ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
                     ctx.send_viewport_cmd(egui::ViewportCommand::Focus);
                 }
@@ -575,7 +656,7 @@ impl RustViewApp {
             }
         }
 
-        if let Ok(event) = muda::MenuEvent::receiver().try_recv() {
+        while let Ok(event) = muda::MenuEvent::receiver().try_recv() {
             match event.id.as_ref() {
                 "open" => {
                     ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
@@ -588,7 +669,7 @@ impl RustViewApp {
             }
         }
 
-        if let Ok(event) = global_hotkey::GlobalHotKeyEvent::receiver().try_recv() {
+        while let Ok(event) = global_hotkey::GlobalHotKeyEvent::receiver().try_recv() {
             match event.id {
                 1 => self.start_capture(ctx, false),
                 2 => self.start_capture(ctx, true),
@@ -623,6 +704,77 @@ impl RustViewApp {
         if width == 0 || height == 0 { return Err("Invalid dimensions".to_string()); }
 
         Ok(full_img.crop_imm(x, y, width, height))
+    }
+
+    fn check_clipboard_update(&mut self, ctx: &Context) {
+        if !self.config.auto_watch_clipboard { return; }
+        
+        let mut clipboard = match Clipboard::new() {
+            Ok(cb) => cb,
+            Err(_) => return,
+        };
+
+        if let Ok(img_data) = clipboard.get_image() {
+            // 중복 감지 ID 생성 (너비 + 높이 + 첫 10바이트 등 조합)
+            let mut id = (img_data.width as u64) << 32 | (img_data.height as u64);
+            if img_data.bytes.len() >= 10 {
+                for i in 0..10 { id = id.wrapping_add(img_data.bytes[i] as u64); }
+            }
+
+            if self.last_clipboard_id != id {
+                self.last_clipboard_id = id;
+                
+                // 창 활성화 및 이미지 로드
+                ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+                ctx.send_viewport_cmd(egui::ViewportCommand::Focus);
+                self.load_from_clipboard(ctx, img_data);
+            }
+        }
+    }
+
+    fn load_from_clipboard(&mut self, ctx: &Context, img_data: arboard::ImageData) {
+        let rgba = image::RgbaImage::from_raw(
+            img_data.width as u32,
+            img_data.height as u32,
+            img_data.bytes.to_vec()
+        );
+
+        if let Some(rgba) = rgba {
+            let dynamic_img = image::DynamicImage::ImageRgba8(rgba);
+            let size = [dynamic_img.width() as usize, dynamic_img.height() as usize];
+            let pixels = dynamic_img.to_rgba8();
+            let color_img = egui::ColorImage::from_rgba_unmultiplied(size, pixels.as_flat_samples().as_slice());
+            
+            let tex = ctx.load_texture("clipboard_img", color_img, egui::TextureOptions::LINEAR);
+            
+            // 가상 경로 생성 (클립보드임을 표시)
+            let virtual_path = PathBuf::from("[Clipboard Image]");
+            
+            self.image = Some(LoadedImage {
+                path: virtual_path.clone(),
+                texture: tex,
+                orig_w: size[0] as u32,
+                orig_h: size[1] as u32,
+                file_size: (img_data.width * img_data.height * 4) as u64,
+                format: "Clipboard (RGBA)".to_string(),
+                exif: None,
+                fs_metadata: FileSystemMetadata {
+                    name: virtual_path.file_name().unwrap_or_default().to_string_lossy().to_string(),
+                    file_type: "Image".to_string(),
+                    location: "System Clipboard".to_string(),
+                    size: (img_data.width * img_data.height * 4) as u64,
+                    ..Default::default()
+                },
+                animation: None,
+            });
+            
+            self.view_state.reset(self.view_state.lock_scale);
+            if !self.view_state.lock_scale {
+                self.view_state.scale_mode = ScaleMode::Fit;
+            }
+            self.view_mode = ViewMode::Viewer;
+            self.status = Some("📋 클립보드 이미지를 가져왔습니다.".to_string());
+        }
     }
 }
 
@@ -660,6 +812,7 @@ impl eframe::App for RustViewApp {
 
         self.handle_input(ctx);
         self.poll_system_events(ctx);
+        self.check_clipboard_update(ctx);
 
         // Process background image loading
         if let Some(rx) = &self.loading_rx {
@@ -952,16 +1105,23 @@ impl RustViewApp {
             ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
                 ui.spacing_mut().item_spacing = egui::vec2(2.0, 0.0);
                 
-                // Left side: Menus
-                ui.add_space(6.0);
+                // Left side: App Icon & Menus
+                ui.add_space(8.0);
+                if let Some(logo) = &self.logo_texture {
+                    ui.add(egui::Image::new(logo).max_size(egui::vec2(18.0, 18.0)));
+                } else {
+                    ui.label(egui::RichText::new("🖼").size(16.0));
+                }
+                ui.add_space(4.0);
+                
                 ui.style_mut().spacing.button_padding = egui::vec2(8.0, 0.0);
                 
-                ui.menu_button(egui::RichText::new("File").size(14.0), |ui| {
+                ui.menu_button(egui::RichText::new("File").size(12.5), |ui| {
                     if ui.button("열기 (Ctrl+O)").clicked() { self.open_dialog(ctx); ui.close_menu(); }
                     ui.separator();
                     if ui.button("종료").clicked() { ctx.send_viewport_cmd(egui::ViewportCommand::Close); }
                 });
-                ui.menu_button(egui::RichText::new("View").size(14.0), |ui| {
+                ui.menu_button(egui::RichText::new("View").size(12.5), |ui| {
                     if ui.button("정보 패널 (I)").clicked() { self.config.info_open = !self.config.info_open; ui.close_menu(); }
                     if ui.button("격자 배경 (T)").clicked() { self.view_state.checker = !self.view_state.checker; ui.close_menu(); }
                     ui.separator();
@@ -1026,9 +1186,9 @@ impl RustViewApp {
                         ui.scope(|ui| {
                             tool_btn_style(ui);
                             let is_fit = self.view_state.scale_mode == ScaleMode::Fit;
-                            if ui.selectable_label(is_fit, egui::RichText::new("맞춤").size(14.0))
-                                .on_hover_cursor(egui::CursorIcon::PointingHand)
-                                .clicked() {
+                            let res = ui.selectable_label(is_fit, egui::RichText::new("맞춤").size(12.5));
+                            self.show_left_tooltip(ctx, &res, "이미지 크기에 맞춤");
+                            if res.on_hover_cursor(egui::CursorIcon::PointingHand).clicked() {
                                 self.view_state.scale_mode = ScaleMode::Fit; 
                                 self.view_state.scale = 1.0;
                                 self.view_state.offset = egui::Vec2::ZERO;
@@ -1038,8 +1198,9 @@ impl RustViewApp {
                         ui.scope(|ui| {
                             tool_btn_style(ui);
                             let is_fill = self.view_state.scale_mode == ScaleMode::Fill;
-                            if ui.selectable_label(is_fill, egui::RichText::new("꽉차게").size(14.0))
-                                .on_hover_cursor(egui::CursorIcon::PointingHand)
+                            let res = ui.selectable_label(is_fill, egui::RichText::new("꽉차게").size(12.5));
+                            self.show_left_tooltip(ctx, &res, "화면에 꽉 차게 확대");
+                            if res.on_hover_cursor(egui::CursorIcon::PointingHand)
                                 .clicked() {
                                 self.view_state.scale_mode = ScaleMode::Fill;
                                 self.view_state.scale = 1.0;
@@ -1050,8 +1211,10 @@ impl RustViewApp {
                         ui.scope(|ui| {
                             tool_btn_style(ui);
                             let is_orig = self.view_state.scale_mode == ScaleMode::Original && self.view_state.scale == 1.0;
-                            if ui.selectable_label(is_orig, egui::RichText::new("1:1").size(14.0))
-                                .on_hover_cursor(egui::CursorIcon::PointingHand)
+                            let res = ui.selectable_label(is_orig, egui::RichText::new("1:1").size(12.5));
+                            self.show_left_tooltip(ctx, &res, "원본 크기 (100%)");
+                            if res.on_hover_cursor(egui::CursorIcon::PointingHand)
+                                .on_hover_text("원본 크기 (100%)")
                                 .clicked() {
                                 self.view_state.scale_mode = ScaleMode::Original; 
                                 self.view_state.scale = 1.0; 
@@ -1061,9 +1224,9 @@ impl RustViewApp {
 
                         ui.add_space(8.0);
 
-                        if ui.button(egui::RichText::new("+").size(18.0))
-                            .on_hover_cursor(egui::CursorIcon::PointingHand)
-                            .on_hover_text("확대")
+                        let res_plus = ui.button(egui::RichText::new("+").size(12.5));
+                        self.show_left_tooltip(ctx, &res_plus, "확대");
+                        if res_plus.on_hover_cursor(egui::CursorIcon::PointingHand)
                             .clicked() { self.zoom_by(1.2); }
                         
                         let zoom_pct = match self.view_state.scale_mode {
@@ -1073,9 +1236,9 @@ impl RustViewApp {
                         };
                         ui.label(egui::RichText::new(zoom_pct).monospace().size(12.0));
                         
-                        if ui.button(egui::RichText::new("-").size(18.0))
-                            .on_hover_cursor(egui::CursorIcon::PointingHand)
-                            .on_hover_text("축소")
+                        let res_minus = ui.button(egui::RichText::new("-").size(12.5));
+                        self.show_left_tooltip(ctx, &res_minus, "축소");
+                        if res_minus.on_hover_cursor(egui::CursorIcon::PointingHand)
                             .clicked() { self.zoom_by(1.0 / 1.2); }
                         
                         ui.add_space(8.0);
@@ -1084,9 +1247,9 @@ impl RustViewApp {
                             tool_btn_style(ui);
                             let is_locked = self.view_state.lock_scale;
                             let lock_icon = if is_locked { "🔗" } else { "🔓" };
-                            if ui.selectable_label(is_locked, egui::RichText::new(lock_icon).size(18.0))
-                                .on_hover_cursor(egui::CursorIcon::PointingHand)
-                                .on_hover_text(if is_locked { "배율 고정 해제" } else { "현재 배율 고정" })
+                            let res = ui.selectable_label(is_locked, egui::RichText::new(lock_icon).size(12.5));
+                            self.show_left_tooltip(ctx, &res, if is_locked { "배율 고정 해제" } else { "현재 배율 고정" });
+                            if res.on_hover_cursor(egui::CursorIcon::PointingHand)
                                 .clicked() {
                                 self.view_state.lock_scale = !is_locked;
                             }
@@ -1094,13 +1257,14 @@ impl RustViewApp {
 
                         ui.add_space(8.0);
 
-                        if ui.button(egui::RichText::new("⟳").size(18.0))
-                            .on_hover_cursor(egui::CursorIcon::PointingHand)
-                            .on_hover_text("시계 방향 회전")
+                        let res_cw = ui.button(egui::RichText::new("⟳").size(12.5));
+                        self.show_left_tooltip(ctx, &res_cw, "시계 방향 회전");
+                        if res_cw.on_hover_cursor(egui::CursorIcon::PointingHand)
                             .clicked() { self.view_state.rotation = self.view_state.rotation.cw(); }
-                        if ui.button(egui::RichText::new("⟲").size(18.0))
-                            .on_hover_cursor(egui::CursorIcon::PointingHand)
-                            .on_hover_text("반시계 방향 회전")
+                        
+                        let res_ccw = ui.button(egui::RichText::new("⟲").size(12.5));
+                        self.show_left_tooltip(ctx, &res_ccw, "반시계 방향 회전");
+                        if res_ccw.on_hover_cursor(egui::CursorIcon::PointingHand)
                             .clicked() { self.view_state.rotation = self.view_state.rotation.ccw(); }
                     }
                 });
@@ -1159,6 +1323,26 @@ impl RustViewApp {
             Color32::from_rgb(108, 143, 255) // Light Blue
         } else {
             Color32::from_rgb(0, 103, 210) // Mid Blue
+        }
+    }
+
+    // 툴팁 위치 조정을 위한 시그니처 테스트 (빌드 후 삭제 예정)
+    fn show_left_tooltip(&self, ctx: &Context, response: &egui::Response, text: &str) {
+        if response.hovered() {
+            // 버튼의 좌측 중앙에서 약간 떨어진 위치를 기준점으로 설정
+            let pos = response.rect.left_center() + egui::vec2(-4.0, 0.0);
+            
+            // egui 0.30에서 가장 확실한 Area 기반 툴팁 구현
+            egui::Area::new(egui::Id::new(text))
+                .fixed_pos(pos)
+                .pivot(egui::Align2::RIGHT_CENTER)
+                .order(egui::Order::Tooltip)
+                .interactable(false)
+                .show(ctx, |ui| {
+                    egui::Frame::popup(ui.style()).show(ui, |ui| {
+                        ui.label(text);
+                    });
+                });
         }
     }
 
@@ -1319,6 +1503,10 @@ impl RustViewApp {
                                     if let Some(error) = &self.hotkey_error {
                                         ui.label(egui::RichText::new(error).color(egui::Color32::LIGHT_RED));
                                     }
+                                    
+                                    ui.add_space(8.0);
+                                    ui.checkbox(&mut self.config.auto_watch_clipboard, "📋 클립보드 이미지 자동 감시 및 가져오기")
+                                        .on_hover_text("윈도우 캡처(Win+Shift+S) 등으로 이미지가 복사되면 자동으로 앱을 띄웁니다.");
                                 });
                                 ui.add_space(8.0);
                                 ui.group(|ui| {
@@ -1990,6 +2178,28 @@ fn format_hotkey(mods: u32, key: u32) -> String {
     if mods & 8 != 0 { parts.push("Win"); }
     
     let key_str = match key {
+        0x41 => "A", 0x42 => "B", 0x43 => "C", 0x44 => "D",
+        0x45 => "E", 0x46 => "F", 0x47 => "G", 0x48 => "H",
+        0x49 => "I", 0x4A => "J", 0x4B => "K", 0x4C => "L",
+        0x4D => "M", 0x4E => "N", 0x4F => "O", 0x50 => "P",
+        0x51 => "Q", 0x52 => "R", 0x53 => "S", 0x54 => "T",
+        0x55 => "U", 0x56 => "V", 0x57 => "W", 0x58 => "X",
+        0x59 => "Y", 0x5A => "Z",
+        
+        0x30 => "0", 0x31 => "1", 0x32 => "2", 0x33 => "3",
+        0x34 => "4", 0x35 => "5", 0x36 => "6", 0x37 => "7",
+        0x38 => "8", 0x39 => "9",
+
+        0x70 => "F1", 0x71 => "F2", 0x72 => "F3", 0x73 => "F4",
+        0x74 => "F5", 0x75 => "F6", 0x76 => "F7", 0x77 => "F8",
+        0x78 => "F9", 0x79 => "F10", 0x7A => "F11", 0x7B => "F12",
+
+        0x20 => "Space", 0x0D => "Enter", 0x1B => "Esc",
+        0x21 => "PgUp", 0x22 => "PgDn", 0x23 => "End", 0x24 => "Home",
+        0x25 => "Left", 0x26 => "Up", 0x27 => "Right", 0x28 => "Down",
+        0x2C => "PrtSc", 0x2D => "Ins", 0x2E => "Del",
+        
+        // Legacy/Custom mappings fallback
         0x1F => "S",
         0x09 => "C",
         0x1E => "A",

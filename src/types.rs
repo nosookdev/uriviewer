@@ -241,6 +241,7 @@ pub struct AppConfig {
     pub associated_extensions: std::collections::HashSet<String>,
     pub show_assoc_notification: bool,
     pub theme: AppTheme,
+    pub auto_watch_clipboard: bool, // 클립보드 이미지 자동 감시 및 가져오기
 }
 
 impl Default for AppConfig {
@@ -256,6 +257,7 @@ impl Default for AppConfig {
             associated_extensions: std::collections::HashSet::new(), // 초기엔 비어있음 (시스템 설정에 따라 다름)
             show_assoc_notification: false,
             theme: AppTheme::Dark,
+            auto_watch_clipboard: true, // 기본값: 활성
         }
     }
 }
